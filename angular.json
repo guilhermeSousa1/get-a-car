@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "get-a-car",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "get-a-car": {
+      "projectType": "application",
+      "root": "apps/get-a-car",
+      "sourceRoot": "apps/get-a-car/src",
+      "prefix": "guilherme-sousa1",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/get-a-car",
+            "index": "apps/get-a-car/src/index.html",
+            "main": "apps/get-a-car/src/main.ts",
+            "polyfills": "apps/get-a-car/src/polyfills.ts",
+            "tsConfig": "apps/get-a-car/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/get-a-car/src/favicon.ico",
+              "apps/get-a-car/src/assets"
+            ],
+            "styles": ["apps/get-a-car/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/get-a-car/src/environments/environment.ts",
+                  "with": "apps/get-a-car/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "get-a-car:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "get-a-car:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "get-a-car:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/get-a-car/src/**/*.ts",
+              "apps/get-a-car/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/get-a-car"],
+          "options": {
+            "jestConfig": "apps/get-a-car/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "get-a-car-e2e": {
+      "root": "apps/get-a-car-e2e",
+      "sourceRoot": "apps/get-a-car-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/get-a-car-e2e/cypress.json",
+            "tsConfig": "apps/get-a-car-e2e/tsconfig.e2e.json",
+            "devServerTarget": "get-a-car:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "get-a-car:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/get-a-car-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
