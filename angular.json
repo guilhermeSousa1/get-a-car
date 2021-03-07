@@ -39,7 +39,7 @@
       "prefix": "guilherme-sousa1",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/apps/get-a-car",
             "index": "apps/get-a-car/src/index.html",
@@ -51,8 +51,11 @@
               "apps/get-a-car/src/favicon.ico",
               "apps/get-a-car/src/assets"
             ],
-            "styles": ["apps/get-a-car/src/styles.scss"],
-            "scripts": []
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/get-a-car/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -85,7 +88,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "get-a-car:build"
           },

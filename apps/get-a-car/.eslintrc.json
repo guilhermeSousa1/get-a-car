@@ -14,7 +14,6 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "guilherme-sousa1",
             "style": "camelCase"
           }
         ],
@@ -22,7 +21,6 @@
           "error",
           {
             "type": "element",
-            "prefix": "guilherme-sousa1",
             "style": "kebab-case"
           }
         ]
