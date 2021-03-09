@@ -1,0 +1,51 @@
+<aside class="h-full w-72 py-4 flex flex-col flex-nowrap bg-blue-900">
+  <!-- Sidebar Logo -->
+  <section class="flex items-center px-7">
+    <div class="w-16 h-16 mr-4 bg-contain bg-no-repeat"
+         style="background-image: url('assets/img/angular.svg')"></div>
+    <h2 class="text-white text-2xl">Get-a-car</h2>
+  </section>
+
+  <!-- Sidebar main menu -->
+  <section class="mt-8">
+    <a
+      class="h-12 px-7 flex items-center text-gray-200 opacity-70 hover:bg-blue-800"
+      routerLinkActive="sm:text-white opacity-100 border-l-4 border-solid border-blue-200" [routerLink]="['/request']">
+      <mat-icon class="mr-2">directions_car</mat-icon>
+      <span class="">Request a car</span>
+    </a>
+    <a
+      class="h-12 flex items-center px-7 text-gray-200 opacity-70 hover:bg-blue-800"
+      routerLinkActive="text-white opacity-100 border-l-4 border-solid border-blue-200" [routerLink]="['/nav']">
+      <mat-icon class="mr-2">navigation</mat-icon>
+      <span class="">My trips</span>
+    </a>
+    <a
+      class="h-12 flex items-center px-7 text-gray-200 opacity-70 hover:bg-blue-800"
+      routerLinkActive="text-white opacity-100 border-l-4 border-solid border-blue-200" [routerLink]="['/pay']">
+      <mat-icon class="mr-2">payments</mat-icon>
+      <span class="">Plan & Payment</span>
+    </a>
+    <a
+      class="h-12 flex items-center px-7 text-gray-200 opacity-70 hover:bg-blue-800"
+      routerLinkActive="text-white opacity-100 border-l-4 border-solid border-blue-200" [routerLink]="['/address']">
+      <mat-icon class="mr-2">person</mat-icon>
+      <span class="">Addresses & Account</span>
+    </a>
+    <a
+      class="h-12 flex items-center px-7 text-gray-200 opacity-70 hover:bg-blue-800"
+      routerLinkActive="text-white opacity-100 border-l-4 border-solid border-blue-200" [routerLink]="['/referak']">
+      <mat-icon class="mr-2">local_offer</mat-icon>
+      <span class="">Referrals</span>
+    </a>
+  </section>
+
+  <section class="mt-8">
+    <a
+      class="h-12 flex items-center px-7 text-gray-200 opacity-70 hover:bg-blue-800"
+      routerLinkActive="text-white opacity-100 border-l-4 border-solid border-blue-200" [routerLink]="['/log']">
+      <mat-icon class="mr-2">logout</mat-icon>
+      <span class="">Logout</span>
+    </a>
+  </section>
+</aside>
