@@ -1,0 +1,15 @@
+<mat-toolbar class="flex flex-row flex-nowrap justify-between bg-white shadow">
+  <button class="block sm:hidden text-blue-900" mat-icon-button (click)="openSidebar.emit($event)">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="hidden sm:block capitalize">
+        {{(url$ | async)}}
+  </span>
+  <img src="assets/img/angular.svg"
+       alt="user picture"
+       class="w-12 h-12 rounded-full object-cover ml-auto cursor-pointer"
+       [matMenuTriggerFor]="menu">
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Log out</button>
+  </mat-menu>
+</mat-toolbar>

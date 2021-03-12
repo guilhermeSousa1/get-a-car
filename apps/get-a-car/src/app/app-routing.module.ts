@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./request/request.module').then((m) => m.RequestModule)
   },
   {
+    path: 'nav',
+    loadChildren: () => import('./request/request.module').then((m) => m.RequestModule)
+  },
+  {
     path: '',
     redirectTo: 'request',
     pathMatch: 'full'

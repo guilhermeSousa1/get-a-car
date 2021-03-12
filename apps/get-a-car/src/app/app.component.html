@@ -9,19 +9,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="bg-gray-200">
-    <mat-toolbar class="flex flex-row flex-nowrap justify-between bg-white shadow" color="">
-      <button class="text-blue-900" mat-icon-button *ngIf="(isSmallScreen$ | async)" (click)="openSidebar($event)">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span *ngIf="!(isSmallScreen$ | async)">Request</span>
-      <img src="assets/img/angular.svg"
-           alt="user picture"
-           class="w-12 h-12 rounded-full object-cover ml-auto cursor-pointer"
-           [matMenuTriggerFor]="menu">
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Log out</button>
-      </mat-menu>
-    </mat-toolbar>
+    <toolbar (openSidebar)="openSidebar($event)"></toolbar>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

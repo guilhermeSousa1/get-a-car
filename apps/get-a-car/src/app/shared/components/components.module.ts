@@ -6,9 +6,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 const COMPONENTS = [
-  SidebarNavComponent
+  SidebarNavComponent,
+  ToolbarComponent
 ];
 
 @NgModule({
@@ -18,7 +23,10 @@ const COMPONENTS = [
     MatDividerModule,
     MatIconModule,
     RouterModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatMenuModule
   ],
   declarations: [
     ...COMPONENTS
