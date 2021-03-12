@@ -5,6 +5,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
 
 const COMPONENTS = [
   SidebarNavComponent
@@ -16,7 +17,8 @@ const COMPONENTS = [
     MatSliderModule,
     MatDividerModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatListModule
   ],
   declarations: [
     ...COMPONENTS
