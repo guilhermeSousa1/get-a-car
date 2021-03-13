@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { BehaviorSubject } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
-import { NavigationEnd, Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /**
  * Root component of the application.
@@ -14,22 +13,18 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  /** Behaviour subject for the small screen size. */
-  public isSmallScreen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  /** Behaviour subject for the url path. */
-  public url$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  /** Observable for the small screen size. */
+  public isSmallScreen$: Observable<boolean>;
   /** Behaviour subject for the opened state of the mat-sidenav. */
-  public sidebarOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public sidebarOpened$ = new BehaviorSubject<boolean>(false);
 
   /**
    * Class constructor.
    *
    * @public
    * @param breakPointObserver  Injection of the breakpoint observer utility
-   * @param router              Injection of the Router service
    */
-  constructor(private breakPointObserver: BreakpointObserver,
-              private router: Router) {
+  constructor(private breakPointObserver: BreakpointObserver) {
   }
 
   /**
@@ -38,20 +33,10 @@ export class AppComponent implements OnInit {
    * @public
    */
   public ngOnInit(): void {
-    this.router.events
+    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
       .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map((event: NavigationEnd) => event.url.substring(1)),
-        tap((url) => this.url$.next(url))
-      )
-      .subscribe();
-
-    this.breakPointObserver.observe('(max-width: 639px)')
-      .pipe(
-        map(((result) => result.matches)),
-        tap((matches) => this.isSmallScreen$.next(matches))
-      )
-      .subscribe();
+        map(((result) => result.matches))
+      );
   }
 
   /**
