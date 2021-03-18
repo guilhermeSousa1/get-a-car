@@ -10,7 +10,7 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundImage: theme => ({
+      backgroundImage: () => ({
         'app-logo': "url('/assets/img/angular.svg')"
       })
     },
