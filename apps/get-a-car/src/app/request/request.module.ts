@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RequestPageComponent } from './page/request-page.component';
-import { MatSliderModule } from '@angular/material/slider';
 import { RequestRoutingModule } from './request-routing.module';
 import { ComponentsModule } from '../shared/components/components.module';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RequestRoutingModule,
     ComponentsModule,
-    MatSliderModule
+    MaterialModule
   ],
   declarations: [
     RequestPageComponent
