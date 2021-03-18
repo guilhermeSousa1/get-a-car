@@ -2,7 +2,7 @@
 
   <!-- Sidebar -->
   <mat-sidenav class="w-60"
-               [opened]="!(isSmallScreen$ | async) || (sidebarOpened$ | async)"
+               [opened]="(isSmallScreen$ | async) === false || (sidebarOpened$ | async)"
                [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
                (closedStart)="sidebarOpened$.next(false)">
     <sidebar-nav></sidebar-nav>

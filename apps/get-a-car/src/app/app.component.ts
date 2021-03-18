@@ -7,9 +7,9 @@ import { map } from 'rxjs/operators';
  * Root component of the application.
  */
 @Component({
-  selector:    'app-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls:   ['./app.component.scss']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 

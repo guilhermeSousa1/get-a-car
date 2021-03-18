@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /** Definition of the module's routes */
 const routes: Routes = [
   {
-    path: 'request',
+    path:         'request',
     loadChildren: () => import('./request/request.module').then((m) => m.RequestModule)
   },
   {
-    path: 'nav',
+    path:         'nav',
     loadChildren: () => import('./request/request.module').then((m) => m.RequestModule)
   },
   {
-    path: '',
+    path:       '',
     redirectTo: 'request',
-    pathMatch: 'full'
+    pathMatch:  'full'
   }
 ];
 

@@ -8,9 +8,9 @@ describe('RequestPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestPageComponent ]
+      declarations: [RequestPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

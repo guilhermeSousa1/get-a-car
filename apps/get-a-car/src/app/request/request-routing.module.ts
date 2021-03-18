@@ -4,7 +4,7 @@ import { RequestPageComponent } from './page/request-page.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path:      '',
     component: RequestPageComponent
   }
 ];
