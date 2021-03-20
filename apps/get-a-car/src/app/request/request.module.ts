@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RequestPageComponent } from './page/request-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RequestRoutingModule } from './request-routing.module';
 import { ComponentsModule } from '../shared/components/components.module';
 import { MaterialModule } from '../material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RequestPageComponent } from './page/request-page.component';
+import { EditCarPreferencesDialogComponent } from './dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   declarations: [
-    RequestPageComponent
+    RequestPageComponent,
+    EditCarPreferencesDialogComponent
   ]
 })
 export class RequestModule {

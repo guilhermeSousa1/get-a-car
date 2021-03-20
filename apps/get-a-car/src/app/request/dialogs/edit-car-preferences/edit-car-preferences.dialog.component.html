@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Edit car preferences</h1>
+<div mat-dialog-content>
+  <form class="flex flex-col">
+    <mat-form-field>
+      <mat-label>Radio Station</mat-label>
+      <mat-select>
+        <mat-option value="Kiss FM">Kiss FM</mat-option>
+        <mat-option value="Smooth Jazz">Smooth Jazz</mat-option>
+        <mat-option value="Rebel Radio">Rebel Radio</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Temperature (Cº)</mat-label>
+      <input type="number" min="15" max="27" placeholder="Temperature" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Drive Mode</mat-label>
+      <mat-select>
+        <mat-option value="Comfort">Comfort</mat-option>
+        <mat-option value="Sport">Sport</mat-option>
+        <mat-option value="ECO">ECO</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Charging Cable</mat-label>
+      <mat-select>
+        <mat-option value="Lightning (Iphone)">Lightning (Iphone)</mat-option>
+        <mat-option value="USB-C">USB-C</mat-option>
+        <mat-option value="Micro-USB">Micro-USB</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+</div>
+<div mat-dialog-actions class="flex flex-row flex-nowrap justify-end">
+  <button mat-raised-button color="primary" mat-dialog-close class="">Cancel</button>
+  <button mat-raised-button color="primary" class="ml-4">Save</button>
+</div>
