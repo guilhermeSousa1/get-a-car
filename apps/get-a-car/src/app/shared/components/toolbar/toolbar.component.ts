@@ -6,6 +6,8 @@ import { filter, map } from 'rxjs/operators';
 /**
  * Component responsible for the toolbar.
  */
+
+/* eslint-disable no-multi-spaces */
 @Component({
   selector:    'toolbar',
   templateUrl: './toolbar.component.html',

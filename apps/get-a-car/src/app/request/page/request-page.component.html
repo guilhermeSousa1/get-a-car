@@ -4,10 +4,14 @@
   <div class="flex flex-col items-start justify-between w-4/12">
     <mat-form-field class="w-full">
       <mat-label>Address</mat-label>
-      <input class="overflow-ellipsis" type="text" placeholder="Address" autocomplete="off" formControlName="address"
+      <input class="overflow-ellipsis"
+             type="text"
+             placeholder="Address"
+             autocomplete="off"
+             formControlName="address"
              matInput>
       <mat-icon matSuffix class="opacity-70">room</mat-icon>
-      <mat-error *ngIf="form.get('address').hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form?.get('address')?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
@@ -18,7 +22,7 @@
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker [touchUi]="isSmallScreen$ | async"></mat-date-range-picker>
-      <mat-error *ngIf="form.get('startDate').hasError('required') || form.get('endDate').hasError('required')">
+      <mat-error *ngIf="form?.get('startDate')?.hasError('required') || form?.get('endDate')?.hasError('required')">
         This field is required
       </mat-error>
     </mat-form-field>
@@ -29,7 +33,7 @@
         <mat-select placeholder="Delivery time" formControlName="deliveryTime">
           <mat-option *ngFor="let time of timesList" [value]="time?.value">{{time?.display}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('deliveryTime').hasError('required')">This field is required</mat-error>
+        <mat-error *ngIf="form?.get('deliveryTime')?.hasError('required')">This field is required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="w-5/12">
@@ -37,17 +41,17 @@
         <mat-select placeholder="Collection time" formControlName="collectionTime">
           <mat-option *ngFor="let time of timesList" [value]="time?.value">{{time?.display}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('collectionTime').hasError('required')">This field is required</mat-error>
+        <mat-error *ngIf="form?.get('collectionTime')?.hasError('required')">This field is required</mat-error>
       </mat-form-field>
     </div>
 
     <mat-card class="w-full mt-1">
       <mat-card-content class="flex flex-col text-base">
-        <mat-card-title class="text-xl">Default car preferences</mat-card-title>
-        <span class="opacity-70 mb-1">Radio station: 88.1 FM Los Gatos</span>
-        <span class="opacity-70 mb-1">Temperature: 66 ºF</span>
-        <span class="opacity-70 mb-1">Drive mode: ECO</span>
-        <span class="opacity-70">Charging cable: Iphone</span>
+        <mat-card-title class="text-xl">Car preferences</mat-card-title>
+        <span class="opacity-70 mb-1">Radio station: {{carPreferences?.radioStation}}</span>
+        <span class="opacity-70 mb-1">Temperature: {{carPreferences?.temperature}} Cº</span>
+        <span class="opacity-70 mb-1">Drive mode: {{carPreferences?.driveMode}}</span>
+        <span class="opacity-70">Charging cable: {{carPreferences?.chargingCable}}</span>
       </mat-card-content>
       <mat-card-actions>
         <button type="button" mat-button color="primary" class="flex ml-auto" (click)="editCarPreferences()">

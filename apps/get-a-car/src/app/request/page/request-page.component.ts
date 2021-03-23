@@ -3,9 +3,17 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { map, take, tap } from 'rxjs/operators';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
 import { EditCarPreferencesDialogComponent } from '../dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
+
+const defaultCarPreferences: CarPreferences = {
+  radioStation:  RadioStation.AMAZING_BLUES,
+  temperature:   20,
+  driveMode:     DriveMode.COMFORT,
+  chargingCable: ChargingCable.LIGHTNING
+};
 
 /* eslint-disable no-multi-spaces */
 @UntilDestroy()
@@ -16,6 +24,8 @@ import { EditCarPreferencesDialogComponent } from '../dialogs/edit-car-preferenc
 })
 export class RequestPageComponent implements OnInit {
 
+  /** The car preferences for the reservation */
+  public carPreferences: CarPreferences = defaultCarPreferences;
   /** Form group to be used by the form */
   public form: FormGroup;
   /** Observable for the small screen size. */
@@ -46,12 +56,8 @@ export class RequestPageComponent implements OnInit {
    * @public
    */
   public ngOnInit(): void {
-    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
-      .pipe(
-        map(((result) => result.matches))
-      );
-
     this.initializeForm();
+    this.setupComponentObservables();
   }
 
   /**
@@ -62,15 +68,22 @@ export class RequestPageComponent implements OnInit {
   public editCarPreferences(): void {
     const config: MatDialogConfig = {
       width:     '550px',
-      autoFocus: false
+      autoFocus: false,
+      data:      {
+        carPreferences: this.carPreferences
+      }
     };
 
     const dialogRef = this.dialog.open(EditCarPreferencesDialogComponent, config);
 
     dialogRef.afterClosed()
       .pipe(
-        untilDestroyed(this),
-        tap(() => console.log('dialog closed'))
+        take(1),
+        tap((carPreferences) => {
+          if (carPreferences) {
+            this.carPreferences = carPreferences;
+          }
+        })
       )
       .subscribe();
   }
@@ -91,7 +104,19 @@ export class RequestPageComponent implements OnInit {
   }
 
   /**
-   * Validates that the delivery and collection times are possible for same day car reservation.
+   * Sets up the component observables.
+   *
+   * @private
+   */
+  private setupComponentObservables(): void {
+    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
+      .pipe(
+        map(((result) => result.matches))
+      );
+  }
+
+  /**
+   * Validates that the delivery and collection times are possible for same day car reservation periods.
    *
    * @param control  The form control
    * @returns        {ValidationErrors | null}

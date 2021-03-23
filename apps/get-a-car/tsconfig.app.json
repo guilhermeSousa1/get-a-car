@@ -1,16 +1,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@guilhermeSousa1/*": ["src/app/*"],
-      "@guilhermeSousa1/components/*": ["src/shared/components/*"]
-    },
     "outDir": "../../dist/out-tsc",
     "types": []
   },
   "angularCompilerOptions": {
     "defaultEncapsulation": 2
   },
-  "files": ["src/main.ts", "src/polyfills.ts"]
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ]
 }

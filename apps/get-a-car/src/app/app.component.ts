@@ -35,20 +35,18 @@ export class AppComponent implements OnInit {
    * @public
    */
   public ngOnInit(): void {
+    this.setupComponentObservables();
+  }
+
+  /**
+   * Sets up the component observables.
+   *
+   * @private
+   */
+  private setupComponentObservables(): void {
     this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
       .pipe(
         map(((result) => result.matches))
       );
-  }
-
-  /**
-   * Opens the sidebar
-   *
-   * @public
-   * @param event  Event data
-   */
-  public openSidebar(event: Event): void {
-    event.stopPropagation();
-    this.sidebarOpened$.next(true);
   }
 }

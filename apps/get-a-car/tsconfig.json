@@ -1,5 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@guilhermeSousa1/*": [
+        "src/app/*"
+      ],
+      "@guilhermeSousa1/components/*": [
+        "src/shared/components/*"
+      ],
+      "@guilhermeSousa1/data-models": [
+        "apps/get-a-car/src/shared/data-models/*"
+      ]
+    }
+  },
   "files": [],
   "include": [],
   "references": [

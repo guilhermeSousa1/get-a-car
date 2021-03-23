@@ -3,12 +3,12 @@
   <mat-sidenav class="w-60"
                [opened]="(isSmallScreen$ | async) === false || (sidebarOpened$ | async)"
                [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
-               (closedStart)="sidebarOpened$.next(false)">
+               (closedStart)="sidebarOpened$?.next(false)">
     <sidebar-nav></sidebar-nav>
   </mat-sidenav>
 
   <mat-sidenav-content class="bg-white">
-    <toolbar (openSidebar)="openSidebar($event)"></toolbar>
+    <toolbar (openSidebar)="sidebarOpened$?.next(true)"></toolbar>
     <div class="container mx-auto p-6">
       <router-outlet></router-outlet>
     </div>
