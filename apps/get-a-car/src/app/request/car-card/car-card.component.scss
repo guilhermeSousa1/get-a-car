@@ -1,0 +1,13 @@
+@layer components {
+  .stat-container {
+    @apply flex flex-col items-center;
+  }
+
+  .stat-icon {
+    @apply transform scale-150 mb-2;
+  }
+
+  .stat-description {
+    @apply text-black font-bold;
+  }
+}

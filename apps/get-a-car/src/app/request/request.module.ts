@@ -6,6 +6,7 @@ import { ComponentsModule } from '../shared/components/components.module';
 import { MaterialModule } from '../material.module';
 import { RequestPageComponent } from './page/request-page.component';
 import { EditCarPreferencesDialogComponent } from './dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
+import { CarCardComponent } from './car-card/car-card.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { EditCarPreferencesDialogComponent } from './dialogs/edit-car-preference
   ],
   declarations: [
     RequestPageComponent,
-    EditCarPreferencesDialogComponent
+    EditCarPreferencesDialogComponent,
+    CarCardComponent
   ]
 })
 export class RequestModule {
