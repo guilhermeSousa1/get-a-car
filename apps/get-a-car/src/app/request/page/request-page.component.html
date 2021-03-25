@@ -49,10 +49,10 @@
       <mat-card class="w-full mt-1">
         <mat-card-content class="flex flex-col text-base">
           <mat-card-title class="text-xl">Car preferences</mat-card-title>
-          <span class="opacity-70 mb-1">Radio station: {{carPreferences?.radioStation}}</span>
+          <span class="opacity-70 mb-1">Radio station: {{RADIO_STATIONS[carPreferences?.radioStation]}}</span>
           <span class="opacity-70 mb-1">Temperature: {{carPreferences?.temperature}} Cº</span>
-          <span class="opacity-70 mb-1">Drive mode: {{carPreferences?.driveMode}}</span>
-          <span class="opacity-70">Charging cable: {{carPreferences?.chargingCable}}</span>
+          <span class="opacity-70 mb-1">Drive mode: {{DRIVE_MODES[carPreferences?.driveMode]}}</span>
+          <span class="opacity-70">Charging cable: {{CHARGING_CABLES[carPreferences?.chargingCable]}}</span>
         </mat-card-content>
         <mat-card-actions>
           <button type="button" mat-button color="primary" class="flex ml-auto" (click)="editCarPreferences()">
@@ -63,8 +63,8 @@
     </div>
 
     <div class="w-7/12 flex flex-row flex-nowrap justify-between">
-      <car-card></car-card>
-      <car-card></car-card>
+      <car-card [car]="cars[0]"></car-card>
+      <car-card [car]="cars[1]"></car-card>
     </div>
   </form>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -6,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './car-card.component.html',
   styleUrls:   ['./car-card.component.scss']
 })
-export class CarCardComponent implements OnInit {
+export class CarCardComponent {
+
+  /** Instantiation of the drive systems */
+  public DRIVE_SYSTEM = DriveSystem;
+
+  /** The car stats */
+  @Input() public car: Car;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
 }

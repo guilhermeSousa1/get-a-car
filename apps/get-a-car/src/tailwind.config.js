@@ -12,7 +12,8 @@ module.exports = {
     extend: {
       backgroundImage: () => ({
         'app-logo': "url('/assets/img/angular.svg')",
-        'toyota-prius': "url('/assets/img/toyota-prius.png')"
+        'toyota-prius': "url('/assets/img/toyota-prius.png')",
+        "jeep-wrangler": "url('/assets/img/jeep-wrangler.png')",
       })
     },
   },

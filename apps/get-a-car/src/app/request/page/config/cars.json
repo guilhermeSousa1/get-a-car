@@ -1,0 +1,16 @@
+[
+  {
+    "brand": "jeep",
+    "model": "wrangler",
+    "seats": 5,
+    "driveSystem": "AWD",
+    "fuelMileage": 24
+  },
+  {
+    "brand": "toyota",
+    "model": "prius",
+    "seats": 5,
+    "driveSystem": "FWD",
+    "fuelMileage": 54
+  }
+]

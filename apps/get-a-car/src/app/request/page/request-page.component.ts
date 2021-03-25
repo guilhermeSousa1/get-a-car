@@ -4,19 +4,13 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
+import { ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
 import { EditCarPreferencesDialogComponent } from '../dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 
-const defaultCarPreferences: CarPreferences = {
-  radioStation:  RadioStation.AMAZING_BLUES,
-  temperature:   20,
-  driveMode:     DriveMode.COMFORT,
-  chargingCable: ChargingCable.LIGHTNING
-};
+import defaultCars from './config/cars.json';
+import defaultCarPreferences from './config/default-car-preferences.json';
 
 /* eslint-disable no-multi-spaces */
-@UntilDestroy()
 @Component({
   selector:    'request-page',
   templateUrl: './request-page.component.html',
@@ -24,8 +18,17 @@ const defaultCarPreferences: CarPreferences = {
 })
 export class RequestPageComponent implements OnInit {
 
+  /** Instantiation of the radio stations */
+  public RADIO_STATIONS = RadioStation;
+  /** Instantiation of the drive modes */
+  public DRIVE_MODES = DriveMode;
+  /** Instantiation of the charging cables */
+  public CHARGING_CABLES = ChargingCable;
+
+  /** The list of available cars */
+  public cars = defaultCars;
   /** The car preferences for the reservation */
-  public carPreferences: CarPreferences = defaultCarPreferences;
+  public carPreferences = defaultCarPreferences;
   /** Form group to be used by the form */
   public form: FormGroup;
   /** Observable for the small screen size. */
