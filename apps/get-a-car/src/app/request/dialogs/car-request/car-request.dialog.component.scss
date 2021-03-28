@@ -1,0 +1,5 @@
+@layer components {
+  .car-accessory {
+    @apply w-full flex flex-row flex-nowrap items-center justify-between mb-3 p-6 border-solid border border-gray-300;
+  }
+}

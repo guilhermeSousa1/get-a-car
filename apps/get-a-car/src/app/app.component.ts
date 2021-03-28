@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 /**
  * Root component of the application.
@@ -46,7 +46,12 @@ export class AppComponent implements OnInit {
   private setupComponentObservables(): void {
     this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
       .pipe(
-        map(((result) => result.matches))
+        map(((result) => result.matches)),
+        tap((matches) => {
+          if (!matches) {
+            this.sidebarOpened$.next(false);
+          }
+        })
       );
   }
 }

@@ -55,7 +55,11 @@
           <span class="opacity-70">Charging cable: {{CHARGING_CABLES[carPreferences?.chargingCable]}}</span>
         </mat-card-content>
         <mat-card-actions>
-          <button type="button" mat-button color="primary" class="flex ml-auto" (click)="editCarPreferences()">
+          <button type="button"
+                  mat-button
+                  color="primary"
+                  class="flex ml-auto"
+                  (click)="showEditCarPreferencesDialog()">
             EDIT
           </button>
         </mat-card-actions>
@@ -63,8 +67,11 @@
     </div>
 
     <div class="w-7/12 flex flex-row flex-nowrap justify-between">
-      <car-card [car]="cars[0]"></car-card>
-      <car-card [car]="cars[1]"></car-card>
+      <car-card *ngFor="let car of cars"
+                [car]="car"
+                [isFormInvalid]="form?.invalid"
+                (requestCar)="showRequestCarDialog(car)"
+      ></car-card>
     </div>
   </form>
 

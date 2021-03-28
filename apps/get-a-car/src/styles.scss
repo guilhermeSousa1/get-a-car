@@ -7,6 +7,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.mat-button-disabled {
+  cursor: not-allowed !important;
+}
+
 @layer components {
   .page-title {
     @apply text-3xl font-bold mb-6 ml-1;

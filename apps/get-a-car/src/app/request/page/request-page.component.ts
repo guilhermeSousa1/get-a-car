@@ -4,8 +4,10 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
+import { Car, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
 import { EditCarPreferencesDialogComponent } from '../dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
+import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
+
 
 import defaultCars from './config/cars.json';
 import defaultCarPreferences from './config/default-car-preferences.json';
@@ -68,7 +70,7 @@ export class RequestPageComponent implements OnInit {
    *
    * @public
    */
-  public editCarPreferences(): void {
+  public showEditCarPreferencesDialog(): void {
     const config: MatDialogConfig = {
       width:     '550px',
       autoFocus: false,
@@ -92,12 +94,27 @@ export class RequestPageComponent implements OnInit {
   }
 
   /**
+   * Displays the modal to request a car
+   *
+   * @public
+   * @param requestedCar  The requested car
+   */
+  public showRequestCarDialog(requestedCar: Car): void {
+    const config: MatDialogConfig = {
+      width:     '800px',
+      autoFocus: false
+    };
+
+    const dialogRef = this.dialog.open(CarRequestDialogComponent, config);
+  }
+
+  /**
    * Initializes the form
    *
    * @private
    */
   private initializeForm(): void {
-    this.form = this.formBuilder.group({
+    this.form = this.formBuilder?.group({
       address:        [null, Validators.required],
       startDate:      [null, Validators.required],
       endDate:        [null, Validators.required],
@@ -112,7 +129,7 @@ export class RequestPageComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
+    this.isSmallScreen$ = this.breakPointObserver?.observe('(max-width: 639px)')
       .pipe(
         map(((result) => result.matches))
       );
@@ -121,6 +138,7 @@ export class RequestPageComponent implements OnInit {
   /**
    * Validates that the delivery and collection times are possible for same day car reservation periods.
    *
+   * @private
    * @param control  The form control
    * @returns        {ValidationErrors | null}
    */
@@ -130,7 +148,7 @@ export class RequestPageComponent implements OnInit {
       && control.value?.['deliveryTime'] != null
       && control.value?.['collectionTime'] != null
       && +control.value?.['startDate'] === +control.value?.['endDate']
-      && control.value?.['deliveryTime'] > control.value?.['collectionTime']) {
+      && control.value?.['deliveryTime'] >= control.value?.['collectionTime']) {
       return { invalidSameDayReservation: true };
     } else {
       return null;

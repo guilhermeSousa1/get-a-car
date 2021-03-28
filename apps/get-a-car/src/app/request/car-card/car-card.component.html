@@ -20,7 +20,12 @@
         <span class="stat-description">{{car?.fuelMileage}} MPG</span>
       </div>
     </div>
-    <button mat-raised-button color="primary" type="button" class="w-11/12 flex justify-center">
+    <button mat-raised-button
+            color="primary"
+            type="button"
+            class="w-11/12 flex justify-center"
+            [disabled]="isFormInvalid"
+            (click)="requestCar?.emit()">
       Book now
     </button>
     <span class="opacity-70">Choose accessories in the next step</span>
