@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
+import { FormGroup } from '@angular/forms';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -14,8 +15,8 @@ export class CarCardComponent {
 
   /** The car stats */
   @Input() public car: Car;
-  /** Flag indicating if the request-a-car form is invalid*/
-  @Input() public isFormInvalid: boolean;
+  /** Form group for requesting a car */
+  @Input() public form: FormGroup;
 
   /** The event triggered in order to book a car */
   @Output() public requestCar = new EventEmitter<MouseEvent>();

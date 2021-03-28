@@ -24,11 +24,18 @@
             color="primary"
             type="button"
             class="w-11/12 flex justify-center"
-            [disabled]="isFormInvalid"
+            [disabled]="form?.invalid"
             (click)="requestCar?.emit()">
       Book now
     </button>
-    <span class="opacity-70">Choose accessories in the next step</span>
+    <span class="opacity-70" *ngIf="!form?.errors?.invalidSameDayReservation; else invalidSameDayReservation">
+      Choose accessories in the next step
+    </span>
+    <ng-template #invalidSameDayReservation>
+      <span class="text-red-500 text-sm">
+        Collection time must be superior to delivery time
+      </span>
+    </ng-template>
   </mat-card-content>
 </mat-card>
 
