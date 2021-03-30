@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Dog seat hammock",
+    "price": 10,
+    "id": 1
+  },
+  {
+    "name": "Snow chains",
+    "price": 25,
+    "id": 2
+  },
+  {
+    "name": "Surfboard rack",
+    "price": 10,
+    "id": 3
+  },
+  {
+    "name": "Trailer",
+    "price": 30,
+    "id": 4
+  }
+]

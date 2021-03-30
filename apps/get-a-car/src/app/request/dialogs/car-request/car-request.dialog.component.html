@@ -4,20 +4,22 @@
   <div class="flex flex-col">
     <div class="flex flex-col mb-6">
       <h3 class="text-xl mb-4 font-bold">Car</h3>
-      <div class="w-52 h-28 bg-contain bg-no-repeat bg-toyota-prius"></div>
-      <span class="text-lg font-bold mt-2">Toyota Prius</span>
+      <div class="w-52 h-28 bg-contain bg-no-repeat"
+           [class]="'bg-' + dialogData?.car?.brand + '-' + dialogData?.car?.model">
+      </div>
+      <span class="mt-2 text-lg font-bold capitalize">{{dialogData?.car?.brand}} {{dialogData?.car?.model}}</span>
     </div>
     <div class="flex flex-col mb-4">
       <span class="opacity-70">Start</span>
-      <span class="font-bold">Mon., Sep. 26 at 9:00 AM</span>
+      <span class="font-bold">{{dialogData?.reservationData?.startDate | date:'EEEE, MMMM d, y' }}</span>
     </div>
     <div class="flex flex-col mb-4">
       <span class="opacity-70">End</span>
-      <span class="font-bold">Mon., Sep. 26 at 10:00 PM</span>
+      <span class="font-bold">{{dialogData?.reservationData?.endDate | date:'EEEE, MMMM d, y' }}</span>
     </div>
     <div class="flex flex-col mb-4">
       <span class="opacity-70">Delivery/Return</span>
-      <span class="font-bold">Home (82 Mayflower Court Spring Valley, CA 91977)</span>
+      <span class="font-bold">{{dialogData?.reservationData?.address}}</span>
     </div>
     <div class="flex flex-col">
       <span class="opacity-70">Driving days</span>
@@ -27,35 +29,18 @@
 
   <div class="flex flex-col">
     <h3 class="text-xl mb-4 font-bold">Accessories</h3>
-    <div class="flex flex-col">
-      <div class="car-accessory mb-3">
-        <div class="flex flex-col">
-          <span class="font-bold">Dog car seat hammock</span>
-          <span class="opacity-70 text-sm">Price: $10</span>
-        </div>
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
-      <div class="car-accessory mb-3">
-        <div class="flex flex-col">
-          <span class="font-bold">Snow chains</span>
-          <span class="opacity-70 text-sm">Price: $25</span>
-        </div>
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
-      <div class="car-accessory">
-        <div class="flex flex-col">
-          <span class="font-bold">Surfboard rack & key lockbox</span>
-          <span class="opacity-70 text-sm">Price: $10</span>
-        </div>
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
+    <div class="h-full flex flex-col justify-between">
+      <car-accessory *ngFor="let accessory of defaultAccessories"
+                     [accessory]="accessory"
+                     (toggleAccessory)="toggleAccessory($event)">
+      </car-accessory>
     </div>
   </div>
 </div>
 
 <div mat-dialog-actions class="flex flex-row flex-nowrap justify-between mt-4 border-solid border-t border-gray-300">
   <div class="flex flex-col mr-3">
-    <span class="opacity-70">Additional charge: <span class="font-bold">$25</span></span>
+    <span class="opacity-70">Additional charge: <span class="font-bold">${{additionalCharge}}</span></span>
   </div>
   <button mat-raised-button type="button" color="primary">Confirm & book</button>
 </div>

@@ -4,4 +4,7 @@ export * from './car-preferences/drive-mode.enum';
 export * from './car-preferences/radio-stations.enum';
 
 export * from './car/car.model';
+export * from './car/car-accessory.model';
 export * from './car/drive-system.enum';
+
+export * from './reservation/reservation-data.model';

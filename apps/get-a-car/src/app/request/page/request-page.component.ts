@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { Car, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
-import { EditCarPreferencesDialogComponent } from '../dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
+import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, ReservationData } from '@guilhermeSousa1/shared/data-models';
+import { sameDayReservationValidation } from '@guilhermeSousa1/core/validators/same-day-reservation.validator';
+import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
-
 
 import defaultCars from './config/cars.json';
 import defaultCarPreferences from './config/default-car-preferences.json';
@@ -28,9 +28,9 @@ export class RequestPageComponent implements OnInit {
   public CHARGING_CABLES = ChargingCable;
 
   /** The list of available cars */
-  public cars = defaultCars;
+  public cars = defaultCars as Car[];
   /** The car preferences for the reservation */
-  public carPreferences = defaultCarPreferences;
+  public carPreferences = defaultCarPreferences as CarPreferences;
   /** Form group to be used by the form */
   public form: FormGroup;
   /** Observable for the small screen size. */
@@ -79,7 +79,7 @@ export class RequestPageComponent implements OnInit {
       }
     };
 
-    const dialogRef = this.dialog.open(EditCarPreferencesDialogComponent, config);
+    const dialogRef = this.dialog?.open(EditCarPreferencesDialogComponent, config);
 
     dialogRef.afterClosed()
       .pipe(
@@ -100,12 +100,26 @@ export class RequestPageComponent implements OnInit {
    * @param requestedCar  The requested car
    */
   public showRequestCarDialog(requestedCar: Car): void {
-    const config: MatDialogConfig = {
-      width:     '800px',
-      autoFocus: false
+    const reservationData: ReservationData = {
+      address:        this.form?.get('address')?.value,
+      startDate:      this.form?.get('startDate')?.value,
+      endDate:        this.form?.get('endDate')?.value,
+      deliveryTime:   this.form?.get('deliveryTime')?.value,
+      collectionTime: this.form?.get('collectionTime')?.value,
+      carPreferences: this.carPreferences,
+      accessories:    []
     };
 
-    const dialogRef = this.dialog.open(CarRequestDialogComponent, config);
+    const config: MatDialogConfig = {
+      width:     '800px',
+      autoFocus: false,
+      data:      {
+        car: requestedCar,
+        reservationData
+      }
+    };
+
+    const dialogRef = this.dialog?.open(CarRequestDialogComponent, config);
   }
 
   /**
@@ -120,7 +134,7 @@ export class RequestPageComponent implements OnInit {
       endDate:        [null, Validators.required],
       deliveryTime:   [null, Validators.required],
       collectionTime: [null, Validators.required]
-    }, { validators: this.invalidSameDayReservation });
+    }, { validators: sameDayReservationValidation() });
   }
 
   /**
@@ -134,26 +148,4 @@ export class RequestPageComponent implements OnInit {
         map(((result) => result.matches))
       );
   }
-
-  /**
-   * Validates that the delivery and collection times are possible for same day car reservation periods.
-   *
-   * @private
-   * @param control  The form control
-   * @returns        {ValidationErrors | null}
-   */
-  private invalidSameDayReservation: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    if (control.value?.['startDate'] != null
-      && control.value?.['endDate'] != null
-      && control.value?.['deliveryTime'] != null
-      && control.value?.['collectionTime'] != null
-      && +control.value?.['startDate'] === +control.value?.['endDate']
-      && control.value?.['deliveryTime'] >= control.value?.['collectionTime']) {
-      return { invalidSameDayReservation: true };
-    } else {
-      return null;
-    }
-  };
-
-
 }

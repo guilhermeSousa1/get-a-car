@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
 import { FormGroup } from '@angular/forms';
+import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
 
 /* eslint-disable no-multi-spaces */
 @Component({

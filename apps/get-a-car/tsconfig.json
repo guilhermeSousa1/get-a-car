@@ -9,11 +9,11 @@
       "@guilhermeSousa1/*": [
         "src/app/*"
       ],
-      "@guilhermeSousa1/components/*": [
-        "src/shared/components/*"
+      "@guilhermeSousa1/shared/*": [
+        "src/app/shared/*"
       ],
-      "@guilhermeSousa1/data-models": [
-        "apps/get-a-car/src/shared/data-models/*"
+      "@guilhermeSousa1/core/*": [
+        "src/app/core/*"
       ]
     }
   },
