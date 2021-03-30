@@ -1,3 +1,7 @@
+.fixed-height {
+  height: 500px;
+}
+
 @layer components {
   .stat-container {
     @apply flex flex-col items-center;

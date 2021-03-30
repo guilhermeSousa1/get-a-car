@@ -1,8 +1,8 @@
 <h1 class="page-title">Request a car</h1>
 
 <div class="content-container">
-  <form class="flex flex-row flex-nowrap justify-between" [formGroup]="form">
-    <div class="flex flex-col items-start justify-between w-4/12">
+  <form class="flex flex-col 2xl:flex-row justify-between" [formGroup]="form">
+    <div class="w-full 2xl:w-4/12 flex flex-col items-start justify-between">
       <mat-form-field class="w-full mt-0">
         <mat-label>Address</mat-label>
         <input class="overflow-ellipsis"
@@ -63,7 +63,8 @@
       </mat-card>
     </div>
 
-    <div class="w-7/12 flex flex-row flex-nowrap justify-between">
+    <div class="lg:w-full 2xl:w-7/12 flex flex-col lg:flex-row flex-nowrap
+                justify-center 2xl:justify-between lg:flex-nowrap">
       <car-card *ngFor="let car of cars"
                 [car]="car"
                 [form]="form"

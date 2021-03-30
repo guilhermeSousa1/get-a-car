@@ -10,6 +10,10 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+        'lg': '1060px',
+        '2xl': '1570px',
+      },
       backgroundImage: () => ({
         'app-logo': "url('/assets/img/angular.svg')",
         'toyota-prius': "url('/assets/img/toyota-prius.png')",

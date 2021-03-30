@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
+    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 768px)')
       .pipe(
         map(((result) => result.matches)),
         tap((matches) => {
