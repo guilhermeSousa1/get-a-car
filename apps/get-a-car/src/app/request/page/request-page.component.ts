@@ -11,6 +11,7 @@ import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-
 
 import defaultCars from './config/cars.json';
 import defaultCarPreferences from './config/default-car-preferences.json';
+import { DateService } from '@guilhermeSousa1/core/services/date.service';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -49,10 +50,12 @@ export class RequestPageComponent implements OnInit {
    * @param dialog              Injection of the Dialog service
    * @param formBuilder         Injection of the FormBuilder service
    * @param breakPointObserver  Injection of the breakpoint observer utility
+   * @param dateService         Injection of the Date service
    */
   constructor(private dialog: MatDialog,
               private formBuilder: FormBuilder,
-              private breakPointObserver: BreakpointObserver) {
+              private breakPointObserver: BreakpointObserver,
+              private dateService: DateService) {
   }
 
   /**
@@ -104,6 +107,7 @@ export class RequestPageComponent implements OnInit {
       address:        this.form?.get('address')?.value,
       startDate:      this.form?.get('startDate')?.value,
       endDate:        this.form?.get('endDate')?.value,
+      drivingDays:    this.dateService?.differenceInDays(this.form?.get('startDate')?.value, this.form?.get('endDate')?.value) + 1,
       deliveryTime:   this.form?.get('deliveryTime')?.value,
       collectionTime: this.form?.get('collectionTime')?.value,
       carPreferences: this.carPreferences,

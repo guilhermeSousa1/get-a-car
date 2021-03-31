@@ -11,6 +11,8 @@ export interface ReservationData {
   startDate: Date;
   /** The end date of the reservation */
   endDate: Date;
+  /** The number of driving days */
+  drivingDays: number;
   /** The time (hour) in which the vehicle will be delivered */
   deliveryTime: number;
   /** The time (hour) in which the vehicle will be collected */
