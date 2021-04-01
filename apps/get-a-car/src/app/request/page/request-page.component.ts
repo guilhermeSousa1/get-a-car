@@ -5,13 +5,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, ReservationData } from '@guilhermeSousa1/shared/data-models';
+import { DateService } from '@guilhermeSousa1/core/services/date.service';
 import { sameDayReservationValidation } from '@guilhermeSousa1/core/validators/same-day-reservation.validator';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
 
 import defaultCars from './config/cars.json';
 import defaultCarPreferences from './config/default-car-preferences.json';
-import { DateService } from '@guilhermeSousa1/core/services/date.service';
 
 /* eslint-disable no-multi-spaces */
 @Component({

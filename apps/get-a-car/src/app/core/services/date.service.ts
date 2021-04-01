@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays, startOfToday, startOfTomorrow } from 'date-fns';
 
 /**
- * Service providing utility functions that can be used by any component or service that works with dates.
+ * Service providing utility functions to work with dates.
  */
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,6 @@ export class DateService {
    * Returns the difference in days between two dates.
    *
    * @public
-   * @static
    *
    * @param startDate  The initial date
    * @param endDate    The final date
@@ -29,5 +28,27 @@ export class DateService {
    */
   public differenceInDays(startDate: Date, endDate: Date): number {
     return differenceInCalendarDays(endDate, startDate);
+  }
+
+  /**
+   * Returns the date of today.
+   *
+   * @public
+   *
+   * @returns  {Date}
+   */
+  public getTodayDate(): Date {
+    return startOfToday();
+  }
+
+  /**
+   * Returns the date of tomorrow.
+   *
+   * @public
+   *
+   * @returns  {Date}
+   */
+  public getTomorrowDate(): Date {
+    return startOfTomorrow();
   }
 }

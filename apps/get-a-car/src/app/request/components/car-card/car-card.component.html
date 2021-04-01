@@ -1,6 +1,9 @@
 <mat-card class="w-4/5 lg:w-auto fixed-height 2xl:h-full mt-8 mr-auto ml-auto lg:mr-4 lg:ml-4 2xl:mt-0 2xl:mr-0">
   <mat-card-header class="mb-7 flex justify-center">
-    <mat-card-title class="font-bold text-xl sm:text-2xl capitalize">{{car?.brand}} {{car?.model}}</mat-card-title>
+    <mat-card-title class="font-bold text-xl sm:text-2xl capitalize"
+                    data-testid="car-brand-model">
+      {{car?.brand}} {{car?.model}}
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content class="h-5/6 flex flex-col items-center justify-between">
     <div class="w-48 h-28 sm:w-80 sm:h-44 bg-contain bg-no-repeat"
@@ -9,32 +12,34 @@
     <div class="w-11/12 flex flex-row justify-between">
       <div class="stat-container">
         <mat-icon color="primary" class="stat-icon">groups</mat-icon>
-        <span class="stat-description">{{car?.seats}} seats</span>
+        <span class="stat-description" data-testid="car-seats">{{car?.seats}} seats</span>
       </div>
       <div class="stat-container">
-        <mat-icon color="primary" class="stat-icon">
+        <mat-icon color="primary" class="stat-icon" data-testid="car-drive-system-icon">
           {{car?.driveSystem === DRIVE_SYSTEM.AWD ? 'terrain' : 'apartment'}}
         </mat-icon>
-        <span class="stat-description">{{car?.driveSystem}}</span>
+        <span class="stat-description" data-testid="car-drive-system">{{car?.driveSystem}}</span>
       </div>
       <div class="stat-container">
         <mat-icon color="primary" class="stat-icon">local_gas_station</mat-icon>
-        <span class="stat-description">{{car?.fuelMileage}} MPG</span>
+        <span class="stat-description" data-testid="car-fuel-mileage">{{car?.fuelMileage}} MPG</span>
       </div>
     </div>
     <button mat-raised-button
             color="primary"
             type="button"
             class="w-11/12 flex justify-center"
+            data-testid="book-button"
             [disabled]="form?.invalid"
             (click)="requestCar?.emit()">
       Book now
     </button>
-    <span class="opacity-70" *ngIf="!form?.errors?.invalidSameDayReservation; else invalidSameDayReservation">
+    <span class="opacity-70" data-testid="accessories-message"
+          *ngIf="!form?.errors?.invalidSameDayReservation; else invalidSameDayReservation">
       Choose accessories in the next step
     </span>
     <ng-template #invalidSameDayReservation>
-      <span class="text-red-500 text-sm">
+      <span class="text-red-500 text-sm" data-testid="invalid-same-day-reservation-message">
         Collection time must be superior to delivery time
       </span>
     </ng-template>

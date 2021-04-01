@@ -1,8 +1,8 @@
 <div class="flex flex-row flex-nowrap items-center justify-between
             p-6 border-solid border border-gray-300 mb-3 sm:mb-0">
   <div class="flex flex-col">
-    <span class="font-bold">{{accessory?.name}}</span>
-    <span class="opacity-70 text-sm">Price: ${{accessory?.price}}</span>
+    <span class="font-bold" data-testid="accessory-name">{{accessory?.name}}</span>
+    <span class="opacity-70 text-sm" data-testid="accessory-price">Price: ${{accessory?.price}}</span>
   </div>
   <mat-checkbox color="primary" (change)="toggleAccessory?.emit(accessory)"></mat-checkbox>
 </div>

@@ -22,7 +22,6 @@ const MODULES = [
   MatMenuModule,
   MatListModule,
   MatToolbarModule,
-  MatButtonModule,
   MatMenuModule,
   MatIconModule,
   MatSidenavModule,
