@@ -1,5 +1,9 @@
 <mat-toolbar class="flex flex-row flex-nowrap justify-between bg-white shadow-sm">
-  <button type="button" class="block sm:hidden text-blue-900" mat-icon-button (click)="openSidebar?.emit($event)">
+  <button mat-icon-button
+          type="button"
+          class="block sm:hidden text-blue-900"
+          data-testid="sidebar-button"
+          (click)="openSidebar?.emit($event)">
     <mat-icon>menu</mat-icon>
   </button>
   <span class="hidden sm:block capitalize">

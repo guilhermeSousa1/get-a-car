@@ -5,7 +5,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
  *
  * @returns  {ValidatorFn}
  */
-export function sameDayReservationValidation(): ValidatorFn {
+export function sameDayReservationValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value?.['startDate'] != null
       && control.value?.['endDate'] != null

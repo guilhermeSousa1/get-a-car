@@ -31,7 +31,7 @@ export class DateService {
   }
 
   /**
-   * Returns the date of today.
+   * Returns the date for today.
    *
    * @public
    *
@@ -42,7 +42,7 @@ export class DateService {
   }
 
   /**
-   * Returns the date of tomorrow.
+   * Returns the date for tomorrow.
    *
    * @public
    *

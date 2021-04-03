@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, ReservationData } from '@guilhermeSousa1/shared/data-models';
 import { DateService } from '@guilhermeSousa1/core/services/date.service';
-import { sameDayReservationValidation } from '@guilhermeSousa1/core/validators/same-day-reservation.validator';
+import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators/same-day-reservation.validator';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
 
@@ -138,7 +138,7 @@ export class RequestPageComponent implements OnInit {
       endDate:        [null, Validators.required],
       deliveryTime:   [null, Validators.required],
       collectionTime: [null, Validators.required]
-    }, { validators: sameDayReservationValidation() });
+    }, { validators: sameDayReservationValidator() });
   }
 
   /**

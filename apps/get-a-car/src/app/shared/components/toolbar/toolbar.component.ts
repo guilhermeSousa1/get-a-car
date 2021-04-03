@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 /**
@@ -36,11 +36,19 @@ export class ToolbarComponent implements OnInit {
    * @public
    */
   public ngOnInit(): void {
+    this.setupComponentObservables();
+  }
+
+  /**
+   * Sets up the component observables.
+   *
+   * @private
+   */
+  private setupComponentObservables(): void {
     this.url$ = this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         map((event: NavigationEnd) => event.urlAfterRedirects.substring(1))
       );
   }
-
 }

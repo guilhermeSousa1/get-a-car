@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
@@ -10,8 +11,9 @@ import { CarCardComponent } from './car-card.component';
 describe('CarCardComponent', () => {
   let component: CarCardComponent;
   let fixture: ComponentFixture<CarCardComponent>;
+  let debugElement: DebugElement;
 
-  const mockCar: Car = {
+  const carHelper: Car = {
     brand:       'toyota',
     model:       'prius',
     seats:       5,
@@ -35,8 +37,9 @@ describe('CarCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CarCardComponent);
     component = fixture.componentInstance;
-    component.car = mockCar;
+    component.car = carHelper;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
   });
 
   it('should create', () => {
@@ -44,19 +47,19 @@ describe('CarCardComponent', () => {
   });
 
   it('should show car details', () => {
-    const carBrandAndModel = fixture.debugElement.query(By.css('[data-testid="car-brand-model"'));
-    const carImage = fixture.debugElement.query(By.css(`.bg-${ component.car.brand }-${ component.car.model }`));
-    const carSeats = fixture.debugElement.query(By.css('[data-testid="car-seats"'));
-    const carDriveSystemIcon = fixture.debugElement.query(By.css('[data-testid="car-drive-system-icon'));
-    const carDriveSystem = fixture.debugElement.query(By.css('[data-testid="car-drive-system'));
-    const carFuelMileage = fixture.debugElement.query(By.css('[data-testid="car-fuel-mileage'));
+    const carBrandAndModel = debugElement.query(By.css('[data-testid="car-brand-model"]')).nativeElement;
+    const carImage = debugElement.query(By.css(`.bg-${ carHelper.brand }-${ carHelper.model }`)).nativeElement;
+    const carSeats = debugElement.query(By.css('[data-testid="car-seats"]')).nativeElement;
+    const carDriveSystemIcon = debugElement.query(By.css('[data-testid="car-drive-system-icon"]')).nativeElement;
+    const carDriveSystem = debugElement.query(By.css('[data-testid="car-drive-system"]')).nativeElement;
+    const carFuelMileage = debugElement.query(By.css('[data-testid="car-fuel-mileage"]')).nativeElement;
 
-    expect(carBrandAndModel.nativeElement.textContent.trim()).toBe(`${ component.car.brand } ${ component.car.model }`);
+    expect(carBrandAndModel.textContent.trim()).toBe(`${ carHelper.brand } ${ carHelper.model }`);
     expect(carImage).toBeTruthy();
-    expect(carSeats.nativeElement.textContent).toBe(`${ component.car.seats } seats`);
-    expect(carDriveSystemIcon.nativeElement.textContent.trim()).toBe(`${ component.car.driveSystem === DriveSystem.AWD ? 'terrain' : 'apartment' }`);
-    expect(carDriveSystem.nativeElement.textContent).toBe(`${ component.car.driveSystem }`);
-    expect(carFuelMileage.nativeElement.textContent).toBe(`${ component.car.fuelMileage } MPG`);
+    expect(carSeats.textContent).toBe(`${ carHelper.seats } seats`);
+    expect(carDriveSystemIcon.textContent.trim()).toBe(`${ carHelper.driveSystem === DriveSystem.AWD ? 'terrain' : 'apartment' }`);
+    expect(carDriveSystem.textContent).toBe(`${ carHelper.driveSystem }`);
+    expect(carFuelMileage.textContent).toBe(`${ carHelper.fuelMileage } MPG`);
   });
 
   describe('invalid form', () => {
@@ -71,14 +74,14 @@ describe('CarCardComponent', () => {
     });
 
     it('should disable the book button', () => {
-      const bookButton = fixture.debugElement.query(By.css('[data-testid="book-button"'));
+      const bookButton = debugElement.query(By.css('[data-testid="book-button"]')).nativeElement;
 
-      expect(bookButton.nativeElement.disabled).toBeTruthy();
+      expect(bookButton.disabled).toBeTruthy();
     });
 
     it('should show invalid same day reservation message', () => {
-      const invalidSameDayReservationMessage = fixture.debugElement.query(By.css('[data-testid="invalid-same-day-reservation-message"'));
-      const accessoriesMessage = fixture.debugElement.query(By.css('[data-testid="accessories-message"'));
+      const invalidSameDayReservationMessage = debugElement.query(By.css('[data-testid="invalid-same-day-reservation-message"]')).nativeElement;
+      const accessoriesMessage = debugElement.query(By.css('[data-testid="accessories-message"]'));
 
       expect(invalidSameDayReservationMessage).toBeTruthy();
       expect(accessoriesMessage).toBeFalsy();
@@ -95,9 +98,9 @@ describe('CarCardComponent', () => {
 
     it('should emit on clicking the book button', () => {
       const requestCarSpy = jest.spyOn(component.requestCar, 'emit');
-      const bookButton = fixture.debugElement.query(By.css('[data-testid="book-button"'));
+      const bookButton = debugElement.query(By.css('[data-testid="book-button"]')).nativeElement;
 
-      bookButton.nativeElement.click();
+      bookButton.click();
       fixture.detectChanges();
 
       expect(requestCarSpy).toHaveBeenCalledTimes(1);

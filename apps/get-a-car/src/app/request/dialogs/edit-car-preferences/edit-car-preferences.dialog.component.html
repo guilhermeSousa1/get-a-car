@@ -4,7 +4,7 @@
   <div mat-dialog-content class="flex flex-col">
     <mat-form-field>
       <mat-label>Radio Station</mat-label>
-      <mat-select placeholder="Radio Station" formControlName="radioStation">
+      <mat-select placeholder="Radio Station" formControlName="radioStation" data-testid="radio-station">
         <mat-option *ngFor="let radioStation of RADIO_STATIONS | keyvalue" [value]="radioStation?.key">
           {{radioStation?.value}}
         </mat-option>
@@ -20,6 +20,7 @@
              placeholder="Temperature"
              autocomplete="off"
              formControlName="temperature"
+             data-testid="temperature"
              matInput>
       <mat-error *ngIf="form?.get('temperature')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form?.get('temperature')?.hasError('min') || form?.get('temperature')?.hasError('max')">
@@ -29,7 +30,7 @@
 
     <mat-form-field>
       <mat-label>Drive Mode</mat-label>
-      <mat-select placeholder="Drive Mode" formControlName="driveMode">
+      <mat-select placeholder="Drive Mode" formControlName="driveMode" data-testid="drive-mode">
         <mat-option *ngFor="let driveMode of DRIVE_MODES | keyvalue" [value]="driveMode?.key">
           {{driveMode?.value}}
         </mat-option>
@@ -39,7 +40,7 @@
 
     <mat-form-field>
       <mat-label>Charging Cable</mat-label>
-      <mat-select placeholder="Charging Cable" formControlName="chargingCable">
+      <mat-select placeholder="Charging Cable" formControlName="chargingCable" data-testid="charging-cable">
         <mat-option *ngFor="let chargingCable of CHARGING_CABLES | keyvalue" [value]="chargingCable?.key">
           {{chargingCable?.value}}
         </mat-option>
@@ -50,7 +51,14 @@
 
   <div mat-dialog-actions class="flex flex-row flex-nowrap justify-end">
     <button mat-raised-button type="button" color="primary" mat-dialog-close>Cancel</button>
-    <button mat-raised-button type="submit" color="primary" class="ml-4" [disabled]="form?.invalid">Save</button>
+    <button mat-raised-button
+            type="submit"
+            color="primary"
+            class="ml-4"
+            data-testid="submit-button"
+            [disabled]="form?.invalid">
+      Save
+    </button>
   </div>
 </form>
 

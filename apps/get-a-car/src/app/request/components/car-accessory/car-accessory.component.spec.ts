@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { first } from 'rxjs/operators';
 import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
 import { CarAccessoryComponent } from './car-accessory.component';
 
 describe('CarAccessoryComponent', () => {
   let component: CarAccessoryComponent;
   let fixture: ComponentFixture<CarAccessoryComponent>;
+  let debugElement: DebugElement;
 
-  const mockAccessory: CarAccessory = {
+  const accessoryHelper: CarAccessory = {
     name:  'Dog seat hammock',
     price: 10,
     id:    1
@@ -29,8 +32,9 @@ describe('CarAccessoryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CarAccessoryComponent);
     component = fixture.componentInstance;
-    component.accessory = mockAccessory;
+    component.accessory = accessoryHelper;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
   });
 
   it('should create', () => {
@@ -38,23 +42,25 @@ describe('CarAccessoryComponent', () => {
   });
 
   it('should show name and price of the accessory', () => {
-    const accessoryName = fixture.debugElement.query(By.css('[data-testid="accessory-name"]'));
-    const accessoryPrice = fixture.debugElement.query(By.css('[data-testid="accessory-price"]'));
+    const accessoryName = debugElement.query(By.css('[data-testid="accessory-name"]')).nativeElement;
+    const accessoryPrice = debugElement.query(By.css('[data-testid="accessory-price"]')).nativeElement;
 
-    expect(accessoryName.nativeElement.textContent).toBe(mockAccessory.name);
-    expect(accessoryPrice.nativeElement.textContent).toBe(`Price: $${ mockAccessory.price }`);
+    expect(accessoryName.textContent).toBe(accessoryHelper.name);
+    expect(accessoryPrice.textContent).toBe(`Price: $${ accessoryHelper.price }`);
   });
 
   it('should emit accessory on toggling checkbox', () => {
-    const checkbox = fixture.debugElement.query(By.css('.mat-checkbox-input'));
+    const checkbox = debugElement.query(By.css('.mat-checkbox-input')).nativeElement;
     let emittedAccessory: CarAccessory;
 
-    component.toggleAccessory.subscribe((accessory) => {
-      emittedAccessory = accessory;
-    });
+    component.toggleAccessory
+      .pipe(first())
+      .subscribe((accessory) => {
+        emittedAccessory = accessory;
+      });
 
-    checkbox.nativeElement.click();
+    checkbox.click();
 
-    expect(emittedAccessory).toBe(mockAccessory);
+    expect(emittedAccessory).toBe(accessoryHelper);
   });
 });
