@@ -4,11 +4,15 @@ import { DatePipe } from '@angular/common';
 import { By } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { EMPTY } from 'rxjs';
 import { MockComponent, MockProvider } from 'ng-mocks';
-import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
-import { CarAccessoryComponent } from '@guilhermeSousa1/request/components/car-accessory/car-accessory.component';
+import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs';
 import { Car, DriveSystem, ReservationData } from '@guilhermeSousa1/shared/data-models';
-import { DateService } from '@guilhermeSousa1/core/services/date.service';
+import { DataService, DateService } from '@guilhermeSousa1/core/services';
+import { CarAccessoryComponent } from '@guilhermeSousa1/request/components';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import defaultAccessories from 'src/assets/data/accessories.json';
 
 describe('CarRequestComponent', () => {
   let component: CarRequestDialogComponent;
@@ -39,13 +43,17 @@ describe('CarRequestComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        HttpClientTestingModule
       ],
       declarations: [
         CarRequestDialogComponent,
         MockComponent(CarAccessoryComponent)
       ],
       providers: [
+        MockProvider(DataService, {
+          getAccessories: () => EMPTY
+        }),
         MockProvider(MatDialogRef),
         MockProvider(MAT_DIALOG_DATA, {
           car:             carHelper,
@@ -91,7 +99,7 @@ describe('CarRequestComponent', () => {
 
   it('should increase the additional charge', () => {
     const originalAdditionalCharge = component.additionalCharge;
-    const accessory = component.defaultAccessories[0];
+    const accessory = defaultAccessories[0];
 
     component.toggleAccessory(accessory);
 

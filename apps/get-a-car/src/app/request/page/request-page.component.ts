@@ -4,14 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
+import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
+import { CarRequestDialogComponent, EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
+import { DataService, DateService } from '@guilhermeSousa1/core/services';
 import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, ReservationData } from '@guilhermeSousa1/shared/data-models';
-import { DateService } from '@guilhermeSousa1/core/services/date.service';
-import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators/same-day-reservation.validator';
-import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
-import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
-
-import defaultCars from './config/cars.json';
-import defaultCarPreferences from './config/default-car-preferences.json';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -28,10 +24,10 @@ export class RequestPageComponent implements OnInit {
   /** Instantiation of the charging cables */
   public CHARGING_CABLES = ChargingCable;
 
-  /** The list of available cars */
-  public cars = defaultCars as Car[];
+  /** Observable for the list of available cars */
+  public allCars$: Observable<Car[]>;
   /** The car preferences for the reservation */
-  public carPreferences = defaultCarPreferences as CarPreferences;
+  public carPreferences: CarPreferences;
   /** Form group to be used by the form */
   public form: FormGroup;
   /** Observable for the small screen size. */
@@ -47,12 +43,14 @@ export class RequestPageComponent implements OnInit {
    *
    * @public
    *
+   * @param dataService         Injection of the Data service
    * @param dialog              Injection of the Dialog service
    * @param formBuilder         Injection of the FormBuilder service
    * @param breakPointObserver  Injection of the breakpoint observer utility
    * @param dateService         Injection of the Date service
    */
-  constructor(private dialog: MatDialog,
+  constructor(private dataService: DataService,
+              private dialog: MatDialog,
               private formBuilder: FormBuilder,
               private breakPointObserver: BreakpointObserver,
               private dateService: DateService) {
@@ -151,5 +149,13 @@ export class RequestPageComponent implements OnInit {
       .pipe(
         map(((result) => result.matches))
       );
+
+    this.allCars$ = this.dataService?.getCars();
+
+    this.dataService?.getDefaultCarPreferences()
+      .pipe(take(1))
+      .subscribe((carPreferences) => {
+        this.carPreferences = carPreferences;
+      });
   }
 }

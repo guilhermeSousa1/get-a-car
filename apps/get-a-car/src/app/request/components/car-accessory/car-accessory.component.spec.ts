@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { first } from 'rxjs/operators';
 import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
-import { CarAccessoryComponent } from './car-accessory.component';
+import { CarAccessoryComponent } from '@guilhermeSousa1/request/components';
 
 describe('CarAccessoryComponent', () => {
   let component: CarAccessoryComponent;

@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { Car, CarAccessory, ReservationData } from '@guilhermeSousa1/shared/data-models';
-import defaultAccessories from './config/accessories.json';
+import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -9,10 +10,10 @@ import defaultAccessories from './config/accessories.json';
   templateUrl: './car-request.dialog.component.html',
   styleUrls:   ['./car-request.dialog.component.scss']
 })
-export class CarRequestDialogComponent {
+export class CarRequestDialogComponent implements OnInit {
 
-  /** The list of the available accessories */
-  public defaultAccessories = defaultAccessories;
+  /** Observable for the list of available accessories */
+  public allAccessories$: Observable<CarAccessory[]>;
   /** Charging value for the accessories */
   public additionalCharge = 0;
 
@@ -23,11 +24,22 @@ export class CarRequestDialogComponent {
    * Class constructor.
    *
    * @public
-   * @param dialogData  Data passed to the dialog
-   * @param dialogRef   Reference to the dialog
+   * @param dialogRef    Reference to the dialog
+   * @param dataService  Injection of the Data service
+   * @param dialogData   Data passed to the dialog
    */
-  constructor(public dialogRef: MatDialogRef<CarRequestDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public dialogData: { car: Car, reservationData: ReservationData }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { car: Car, reservationData: ReservationData },
+              private dataService: DataService,
+              private dialogRef: MatDialogRef<CarRequestDialogComponent>) {
+  }
+
+  /**
+   * Lifecycle hook that is executed after the component is initialized.
+   *
+   * @public
+   */
+  public ngOnInit(): void {
+    this.setupComponentObservables();
   }
 
   /**
@@ -45,4 +57,12 @@ export class CarRequestDialogComponent {
     }
   }
 
+  /**
+   * Sets up the component observables.
+   *
+   * @private
+   */
+  private setupComponentObservables(): void {
+    this.allAccessories$ = this.dataService?.getAccessories();
+  }
 }

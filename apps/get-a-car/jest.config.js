@@ -14,6 +14,8 @@ module.exports = {
       },
     },
   },
+  collectCoverage: true,
+  coverageReporters: ['html'],
   coverageDirectory: '../../coverage/apps/get-a-car',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',

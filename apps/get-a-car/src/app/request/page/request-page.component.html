@@ -80,7 +80,7 @@
 
     <div class="lg:w-full 2xl:w-7/12 flex flex-col lg:flex-row flex-nowrap
                 justify-center 2xl:justify-between lg:flex-nowrap">
-      <car-card *ngFor="let car of cars"
+      <car-card *ngFor="let car of (allCars$ | async)"
                 [car]="car"
                 [form]="form"
                 (requestCar)="showRequestCarDialog(car)">

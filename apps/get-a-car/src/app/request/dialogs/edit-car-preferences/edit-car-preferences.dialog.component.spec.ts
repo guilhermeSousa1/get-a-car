@@ -9,13 +9,21 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MockProvider } from 'ng-mocks';
-import { EditCarPreferencesDialogComponent } from './edit-car-preferences.dialog.component';
-import defaultCarPreferences from '../../page/config/default-car-preferences.json';
+import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
+import defaultCarPreferences from 'src/assets/data/default-car-preferences.json';
 
 describe('EditCarPreferencesComponent', () => {
   let component: EditCarPreferencesDialogComponent;
   let fixture: ComponentFixture<EditCarPreferencesDialogComponent>;
   let debugElement: DebugElement;
+  let mockMatDialogRef;
+
+  beforeEach(() => {
+    mockMatDialogRef = {
+      close: jest.fn().mockImplementation(() => {
+      })
+    };
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,7 +41,7 @@ describe('EditCarPreferencesComponent', () => {
       ],
       providers: [
         FormBuilder,
-        MockProvider(MatDialogRef),
+        { provide: MatDialogRef, useValue: mockMatDialogRef },
         MockProvider(MAT_DIALOG_DATA, {
           carPreferences: defaultCarPreferences
         })
@@ -130,7 +138,7 @@ describe('EditCarPreferencesComponent', () => {
   });
 
   it('should close dialog when form is submitted', () => {
-    const dialogCloseSpy = jest.spyOn(component.dialogRef, 'close');
+    const dialogCloseSpy = jest.spyOn(mockMatDialogRef, 'close');
 
     component.submit();
 

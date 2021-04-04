@@ -15,9 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { EMPTY } from 'rxjs';
 import { MockComponent, MockProvider } from 'ng-mocks';
-import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
-import { DateService } from '@guilhermeSousa1/core/services/date.service';
-import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
+import { DataService, DateService } from '@guilhermeSousa1/core/services';
+import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
+import { CarCardComponent } from '@guilhermeSousa1/request/components';
 import { RequestPageComponent } from './request-page.component';
 
 describe('RequestPageComponent', () => {
@@ -57,7 +57,11 @@ describe('RequestPageComponent', () => {
         MockProvider(BreakpointObserver, {
           observe: () => EMPTY
         }),
-        MockProvider(DateService)
+        MockProvider(DateService),
+        MockProvider(DataService, {
+          getDefaultCarPreferences: () => EMPTY,
+          getCars:                  () => EMPTY
+        })
       ]
     })
       .compileComponents();

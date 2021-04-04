@@ -42,7 +42,7 @@
   <div class="flex flex-col">
     <h3 class="text-xl mb-4 font-bold">Accessories</h3>
     <div class="h-full flex flex-col sm:justify-between">
-      <car-accessory *ngFor="let accessory of defaultAccessories"
+      <car-accessory *ngFor="let accessory of (allAccessories$ | async)"
                      [accessory]="accessory"
                      (toggleAccessory)="toggleAccessory($event)">
       </car-accessory>
@@ -54,5 +54,8 @@
   <div class="flex flex-col mr-3">
     <span class="opacity-70">Additional charge: <span class="font-bold">${{additionalCharge}}</span></span>
   </div>
-  <button mat-raised-button type="button" color="primary">Confirm & book</button>
+  <div>
+    <button mat-raised-button type="button" color="primary" mat-dialog-close>Cancel</button>
+    <button mat-raised-button type="button" color="primary" class="ml-4">Confirm & book</button>
+  </div>
 </div>
