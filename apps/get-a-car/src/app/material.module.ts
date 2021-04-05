@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MODULES = [
   MatToolbarModule,
@@ -35,7 +37,9 @@ const MODULES = [
   MatDialogModule,
   MatSliderModule,
   MatCheckboxModule,
-  MatTabsModule
+  MatTabsModule,
+  MatTableModule,
+  MatPaginatorModule
 ];
 
 /** Custom options to configure form field options */

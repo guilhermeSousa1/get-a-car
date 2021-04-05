@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyTripsPageComponent implements OnInit {
 
+  public arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+  public columnsToDisplay = ['date', 'days', 'car', 'extra-charge', 'status'];
+
   /**
    * Class constructor.
    *
