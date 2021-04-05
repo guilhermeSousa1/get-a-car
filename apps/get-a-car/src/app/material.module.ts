@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MODULES = [
   MatToolbarModule,
@@ -33,7 +34,8 @@ const MODULES = [
   MatCardModule,
   MatDialogModule,
   MatSliderModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTabsModule
 ];
 
 /** Custom options to configure form field options */
