@@ -8,8 +8,8 @@ const routes: Routes = [
     loadChildren: () => import('./request/request.module').then((m) => m.RequestModule)
   },
   {
-    path:         'nav',
-    loadChildren: () => import('./request/request.module').then((m) => m.RequestModule)
+    path:         'my-trips',
+    loadChildren: () => import('./my-trips/my-trips.module').then((m) => m.MyTripsModule)
   },
   {
     path:       '',
