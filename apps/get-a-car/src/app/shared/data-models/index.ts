@@ -7,4 +7,6 @@ export * from './car/car.model';
 export * from './car/car-accessory.model';
 export * from './car/drive-system.enum';
 
-export * from './reservation/reservation-data.model';
+export * from './reservation/reservation.model';
+export * from './reservation/reservation-details.model';
+export * from './reservation/reservation-status.enum';

@@ -1,10 +1,9 @@
 import { CarPreferences } from '@guilhermeSousa1/shared/data-models';
-import { CarAccessory } from '@guilhermeSousa1/shared/data-models/car/car-accessory.model';
 
 /**
- * Interface that models the reservation data.
+ * Interface that models the reservation details.
  */
-export interface ReservationData {
+export interface ReservationDetails {
   /** The delivery and return address */
   address: string;
   /** The start date of the reservation */
@@ -19,6 +18,4 @@ export interface ReservationData {
   collectionTime: number;
   /** The car preferences */
   carPreferences: CarPreferences;
-  /** The car accessories */
-  accessories: CarAccessory[];
 }

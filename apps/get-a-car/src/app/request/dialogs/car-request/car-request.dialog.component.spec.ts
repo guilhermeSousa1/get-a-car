@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { EMPTY } from 'rxjs';
 import { MockComponent, MockProvider } from 'ng-mocks';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs';
-import { Car, DriveSystem, ReservationData } from '@guilhermeSousa1/shared/data-models';
+import { Car, DriveSystem, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
 import { DataService, DateService } from '@guilhermeSousa1/core/services';
 import { CarAccessoryComponent } from '@guilhermeSousa1/request/components';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -28,15 +28,14 @@ describe('CarRequestComponent', () => {
     fuelMileage: 45
   };
 
-  const reservationDataHelper: ReservationData = {
+  const reservationDataHelper: ReservationDetails = {
     address:        'John Doe Street',
     startDate:      dateService.getTodayDate(),
     endDate:        dateService.getTomorrowDate(),
     drivingDays:    2,
     deliveryTime:   10,
     collectionTime: 20,
-    carPreferences: null,
-    accessories:    null
+    carPreferences: null
   };
 
   beforeEach(async () => {

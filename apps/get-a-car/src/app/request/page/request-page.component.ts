@@ -7,7 +7,7 @@ import { map, take, tap } from 'rxjs/operators';
 import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
 import { CarRequestDialogComponent, EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
 import { DataService, DateService } from '@guilhermeSousa1/core/services';
-import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, ReservationData } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -101,15 +101,14 @@ export class RequestPageComponent implements OnInit {
    * @param requestedCar  The requested car
    */
   public showRequestCarDialog(requestedCar: Car): void {
-    const reservationData: ReservationData = {
+    const reservationDetails: ReservationDetails = {
       address:        this.form?.get('address')?.value,
       startDate:      this.form?.get('startDate')?.value,
       endDate:        this.form?.get('endDate')?.value,
       drivingDays:    this.dateService?.differenceInDays(this.form?.get('startDate')?.value, this.form?.get('endDate')?.value) + 1,
       deliveryTime:   this.form?.get('deliveryTime')?.value,
       collectionTime: this.form?.get('collectionTime')?.value,
-      carPreferences: this.carPreferences,
-      accessories:    []
+      carPreferences: this.carPreferences
     };
 
     const config: MatDialogConfig = {
@@ -117,11 +116,22 @@ export class RequestPageComponent implements OnInit {
       autoFocus: false,
       data:      {
         car: requestedCar,
-        reservationData
+        reservationDetails
       }
     };
 
     const dialogRef = this.dialog?.open(CarRequestDialogComponent, config);
+
+    dialogRef.afterClosed()
+      .pipe(take(1))
+      .subscribe((accessories) => {
+        const reservation: Reservation = {
+          details: reservationDetails,
+          car:     requestedCar,
+          accessories,
+          status:  ReservationStatus.PLANNED
+        };
+      });
   }
 
   /**
