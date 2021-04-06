@@ -103,12 +103,11 @@ export class RequestPageComponent implements OnInit {
   public showRequestCarDialog(requestedCar: Car): void {
     const reservationDetails: ReservationDetails = {
       address:        this.form?.get('address')?.value,
-      startDate:      this.form?.get('startDate')?.value,
-      endDate:        this.form?.get('endDate')?.value,
+      startDate:      +this.form?.get('startDate')?.value,
+      endDate:        +this.form?.get('endDate')?.value,
       drivingDays:    this.dateService?.differenceInDays(this.form?.get('startDate')?.value, this.form?.get('endDate')?.value) + 1,
       deliveryTime:   this.form?.get('deliveryTime')?.value,
-      collectionTime: this.form?.get('collectionTime')?.value,
-      carPreferences: this.carPreferences
+      collectionTime: this.form?.get('collectionTime')?.value
     };
 
     const config: MatDialogConfig = {
@@ -126,10 +125,11 @@ export class RequestPageComponent implements OnInit {
       .pipe(take(1))
       .subscribe((accessories) => {
         const reservation: Reservation = {
-          details: reservationDetails,
-          car:     requestedCar,
+          details:        reservationDetails,
+          car:            requestedCar,
+          carPreferences: this.carPreferences,
           accessories,
-          status:  ReservationStatus.PLANNED
+          status:         ReservationStatus.PLANNED
         };
       });
   }

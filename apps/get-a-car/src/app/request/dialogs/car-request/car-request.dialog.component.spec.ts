@@ -30,12 +30,11 @@ describe('CarRequestComponent', () => {
 
   const reservationDataHelper: ReservationDetails = {
     address:        'John Doe Street',
-    startDate:      dateService.getTodayDate(),
-    endDate:        dateService.getTomorrowDate(),
+    startDate:      dateService.formatDateToTimestamp(dateService.getTodayDate()),
+    endDate:        dateService.formatDateToTimestamp(dateService.getTomorrowDate()),
     drivingDays:    2,
     deliveryTime:   10,
-    collectionTime: 20,
-    carPreferences: null
+    collectionTime: 20
   };
 
   beforeEach(async () => {

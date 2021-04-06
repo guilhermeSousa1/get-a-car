@@ -1,0 +1,156 @@
+[
+  {
+    "details": {
+      "address": "Westminster, London SW1A 0AA, United Kingdom",
+      "startDate": 1612656000000,
+      "endDate": 1612742400000,
+      "drivingDays": 2,
+      "deliveryTime": 10,
+      "collectionTime": 22
+    },
+    "car": {
+      "brand": "toyota",
+      "model": "prius",
+      "seats": 5,
+      "driveSystem": "FWD",
+      "fuelMileage": 54
+    },
+    "carPreferences": {
+      "radioStation": "KISS_FM",
+      "temperature": 25,
+      "driveMode": "ECO",
+      "chargingCable": "USB-C"
+    },
+    "accessories": [
+      {
+        "name": "Snow chains",
+        "price": 25,
+        "id": 2
+      },
+      {
+        "name": "Trailer",
+        "price": 30,
+        "id": 4
+      }
+    ],
+    "status": "FINISHED"
+  },
+  {
+    "details": {
+      "address": "London HA9 0WS, United Kingdom",
+      "startDate": 1614556800000,
+      "endDate": 1615334400000,
+      "drivingDays": 11,
+      "deliveryTime": 8,
+      "collectionTime": 15
+    },
+    "car": {
+      "brand": "jeep",
+      "model": "wrangler",
+      "seats": 5,
+      "driveSystem": "AWD",
+      "fuelMileage": 24
+    },
+    "carPreferences": {
+      "radioStation": "NEW_VEGAS",
+      "temperature": 18,
+      "driveMode": "SPORT",
+      "chargingCable": "MICRO_USB"
+    },
+    "accessories": [
+      {
+        "name": "Surfboard rack",
+        "price": 10,
+        "id": 3
+      }
+    ],
+    "status": "CANCELLED"
+  },
+  {
+    "details": {
+      "address": "Museumstraat 1, 1071 XX Amsterdam, Netherlands",
+      "startDate": 1609459200000,
+      "endDate": 1609459200000,
+      "drivingDays": 1,
+      "deliveryTime": 7,
+      "collectionTime": 22
+    },
+    "car": {
+      "brand": "jeep",
+      "model": "wrangler",
+      "seats": 5,
+      "driveSystem": "AWD",
+      "fuelMileage": 24
+    },
+    "carPreferences": {
+      "radioStation": "KISS_FM",
+      "temperature": 26,
+      "driveMode": "ECO",
+      "chargingCable": "MICRO_USB"
+    },
+    "accessories": [
+      {
+        "name": "Dog seat hammock",
+        "price": 10,
+        "id": 1
+      },
+      {
+        "name": "Snow chains",
+        "price": 25,
+        "id": 2
+      },
+      {
+        "name": "Surfboard rack",
+        "price": 10,
+        "id": 3
+      },
+      {
+        "name": "Trailer",
+        "price": 30,
+        "id": 4
+      }
+    ],
+    "status": "CANCELLED"
+  },
+  {
+    "details": {
+      "address": "Viale di Vedano, 5, 20900 Monza MB, Italy",
+      "startDate": 1609718400000,
+      "endDate": 1611100800000,
+      "drivingDays": 17,
+      "deliveryTime": 14,
+      "collectionTime": 20
+    },
+    "car": {
+      "brand": "toyota",
+      "model": "prius",
+      "seats": 5,
+      "driveSystem": "FWD",
+      "fuelMileage": 54
+    },
+    "carPreferences": {
+      "radioStation": "AMAZING_BLUES",
+      "temperature": 20,
+      "driveMode": "COMFORT",
+      "chargingCable": "LIGHTNING"
+    },
+    "accessories": [
+      {
+        "name": "Surfboard rack",
+        "price": 10,
+        "id": 3
+      },
+      {
+        "name": "Trailer",
+        "price": 30,
+        "id": 4
+      },
+      {
+        "name": "Dog seat hammock",
+        "price": 10,
+        "id": 1
+      }
+    ],
+    "status": "FINISHED"
+  }
+]

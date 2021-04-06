@@ -4,5 +4,5 @@
 export enum ChargingCable {
   LIGHTNING = 'Lightning (Iphone)',
   USB_C = 'USB-C',
-  Micro_USB = 'Micro-USB'
+  MICRO_USB = 'Micro-USB'
 }

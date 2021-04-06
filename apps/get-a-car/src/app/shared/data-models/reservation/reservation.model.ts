@@ -1,4 +1,4 @@
-import { Car, CarAccessory, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 
 /**
  * Interface that models a reservation.
@@ -8,6 +8,8 @@ export interface Reservation {
   details: ReservationDetails;
   /** The reserved car */
   car: Car;
+  /** The car preferences */
+  carPreferences: CarPreferences;
   /** The car accessories */
   accessories: CarAccessory[];
   /** The reservation status */
