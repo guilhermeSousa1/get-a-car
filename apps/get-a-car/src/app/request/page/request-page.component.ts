@@ -123,12 +123,13 @@ export class RequestPageComponent implements OnInit {
 
     dialogRef.afterClosed()
       .pipe(take(1))
-      .subscribe((accessories) => {
+      .subscribe(({ selectedAccessories, additionalCharge }) => {
         const reservation: Reservation = {
           details:        reservationDetails,
           car:            requestedCar,
           carPreferences: this.carPreferences,
-          accessories,
+          accessories:    selectedAccessories,
+          additionalCharge,
           status:         ReservationStatus.PLANNED
         };
       });

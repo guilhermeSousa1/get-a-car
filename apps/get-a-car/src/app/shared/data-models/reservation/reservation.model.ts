@@ -12,6 +12,8 @@ export interface Reservation {
   carPreferences: CarPreferences;
   /** The car accessories */
   accessories: CarAccessory[];
+  /** The additional charging value */
+  additionalCharge: number;
   /** The reservation status */
   status: ReservationStatus;
 }

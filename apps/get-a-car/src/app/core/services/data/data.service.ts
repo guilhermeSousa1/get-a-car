@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences, Reservation } from '@guilhermeSousa1/shared/data-models';
 import { environment } from '../../../../environments/environment';
 
 /**
@@ -54,5 +54,16 @@ export class DataService {
    */
   public getDefaultCarPreferences(): Observable<CarPreferences> {
     return this.http.get<CarPreferences>(`${ this.baseUrl }/default-car-preferences.json`);
+  }
+
+  /**
+   * Returns the list of past trips.
+   *
+   * @public
+   *
+   * @returns  {Observable<Reservation[]>}
+   */
+  public getPastReservations(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(`${ this.baseUrl }/past-reservations.json`);
   }
 }

@@ -33,6 +33,7 @@
         "id": 4
       }
     ],
+    "additionalCharge": 55,
     "status": "FINISHED"
   },
   {
@@ -64,6 +65,7 @@
         "id": 3
       }
     ],
+    "additionalCharge": 10,
     "status": "CANCELLED"
   },
   {
@@ -110,6 +112,7 @@
         "id": 4
       }
     ],
+    "additionalCharge": 75,
     "status": "CANCELLED"
   },
   {
@@ -151,6 +154,7 @@
         "id": 1
       }
     ],
+    "additionalCharge": 50,
     "status": "FINISHED"
   }
 ]

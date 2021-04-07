@@ -63,7 +63,7 @@ export class CarRequestDialogComponent implements OnInit {
    * @public
    */
   public submitAccessories(): void {
-    this.dialogRef.close(this.selectedAccessories);
+    this.dialogRef?.close({ selectedAccessories: this.selectedAccessories, additionalCharge: this.additionalCharge });
   }
 
   /**

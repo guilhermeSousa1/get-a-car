@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { DataService } from '@guilhermeSousa1/core/services';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -8,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyTripsPageComponent implements OnInit {
 
-  public arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  /** Instantiation of the reservation status */
+  public RESERVATION_STATUS = ReservationStatus;
+
+  /** Observable for the list of past trips */
+  public pastReservations$: Observable<Reservation[]>;
 
   public columnsToDisplay = ['date', 'days', 'car', 'extra-charge', 'status'];
 
@@ -16,8 +23,10 @@ export class MyTripsPageComponent implements OnInit {
    * Class constructor.
    *
    * @public
+   *
+   * @param dataService  Injection of the Data service
    */
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   /**
@@ -26,6 +35,16 @@ export class MyTripsPageComponent implements OnInit {
    * @public
    */
   public ngOnInit(): void {
+    this.setupComponentObservables();
+  }
+
+  /**
+   * Sets up the component observables.
+   *
+   * @private
+   */
+  private setupComponentObservables(): void {
+    this.pastReservations$ = this.dataService?.getPastReservations();
   }
 
 }
