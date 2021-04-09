@@ -5,6 +5,7 @@ import { MyTripsRoutingModule } from './my-trips-routing.module';
 import { ComponentsModule } from '../shared/components/components.module';
 import { MaterialModule } from '../material.module';
 import { MyTripsPageComponent } from './page/my-trips-page.component';
+import { PastTripsComponent } from './components/past-trips/past-trips.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,10 @@ import { MyTripsPageComponent } from './page/my-trips-page.component';
     MaterialModule,
     ReactiveFormsModule
   ],
-  declarations: [MyTripsPageComponent]
+  declarations: [
+    MyTripsPageComponent,
+    PastTripsComponent
+  ]
 })
 export class MyTripsModule {
 }

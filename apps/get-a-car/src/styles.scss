@@ -1,3 +1,7 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
 }
@@ -7,10 +11,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-button-disabled {
-  cursor: not-allowed !important;
-}
-
 @layer components {
   .page-title {
     @apply text-3xl font-bold mb-6 ml-1;
@@ -18,5 +18,45 @@ body {
 
   .content-container {
     @apply bg-white p-8 border-solid border rounded-lg border-gray-300;
+  }
+}
+
+//  Material overrides
+
+// MAT-BUTTON
+.mat-button-disabled {
+  cursor: not-allowed !important;
+}
+
+// MAT-TABLE
+.mat-header-row {
+  height: 48px;
+}
+
+.mat-cell {
+  height: 56px;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  border-bottom-width: 0 !important;
+}
+
+.mat-row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  &:nth-child(odd) {
+    background-color: #F7F8F9;
+  }
+
+  &:nth-child(even) {
+    background-color: transparent;
+  }
+
+  &:hover {
+    background-color: #EAEEF2;
+    cursor: pointer;
   }
 }
