@@ -34,7 +34,7 @@
             (click)="requestCar?.emit()">
       Book now
     </button>
-    <span class="opacity-70" data-testid="accessories-message"
+    <span class="text-gray-500" data-testid="accessories-message"
           *ngIf="!form?.errors?.invalidSameDayReservation; else invalidSameDayReservation">
       Choose accessories in the next step
     </span>

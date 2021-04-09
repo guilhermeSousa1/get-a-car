@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap, withLatestFrom } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 /**
  * Root component of the application.
  */
 
 /* eslint-disable no-multi-spaces */
+@UntilDestroy()
 @Component({
   selector:    'app-root',
   templateUrl: './app.component.html',
@@ -25,8 +28,10 @@ export class AppComponent implements OnInit {
    *
    * @public
    * @param breakPointObserver  Injection of the breakpoint observer utility
+   * @param router              Injection of the Router service
    */
-  constructor(private breakPointObserver: BreakpointObserver) {
+  constructor(private breakPointObserver: BreakpointObserver,
+              private router: Router) {
   }
 
   /**
@@ -44,7 +49,7 @@ export class AppComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 768px)')
+    this.isSmallScreen$ = this.breakPointObserver?.observe('(max-width: 767px)')
       .pipe(
         map(((result) => result.matches)),
         tap((matches) => {
@@ -53,5 +58,17 @@ export class AppComponent implements OnInit {
           }
         })
       );
+
+    this.router?.events
+      .pipe(
+        untilDestroyed(this),
+        filter((event) => event instanceof NavigationEnd),
+        withLatestFrom(this.isSmallScreen$)
+      )
+      .subscribe(([_, isSmallScreen]) => {
+        if (isSmallScreen) {
+          this.sidebarOpened$?.next(false);
+        }
+      });
   }
 }

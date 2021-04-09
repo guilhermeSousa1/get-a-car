@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services';
 
@@ -14,6 +16,8 @@ export class PastTripsComponent implements OnInit {
   /** Instantiation of the reservation status */
   public RESERVATION_STATUS = ReservationStatus;
 
+  /** Observable for the large screen size. */
+  public isLargeScreen$: Observable<boolean>;
   /** Observable for the list of past trips */
   public pastReservations$: Observable<Reservation[]>;
 
@@ -24,9 +28,11 @@ export class PastTripsComponent implements OnInit {
    *
    * @public
    *
-   * @param dataService  Injection of the Data service
+   * @param dataService         Injection of the Data service
+   * @param breakPointObserver  Injection of the breakpoint observer utility
    */
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private breakPointObserver: BreakpointObserver) {
   }
 
   /**
@@ -44,6 +50,11 @@ export class PastTripsComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
+    this.isLargeScreen$ = this.breakPointObserver?.observe('(max-width: 1059px)')
+      .pipe(
+        map(((result) => result.matches))
+      );
+
     this.pastReservations$ = this.dataService?.getPastReservations();
   }
 

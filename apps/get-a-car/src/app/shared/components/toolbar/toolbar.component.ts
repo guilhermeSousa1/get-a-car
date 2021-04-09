@@ -1,7 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 /**
  * Component responsible for the toolbar.
@@ -13,42 +10,16 @@ import { filter, map } from 'rxjs/operators';
   templateUrl: './toolbar.component.html',
   styleUrls:   ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
   /** The event triggered when the sidebar is opened */
   @Output() public openSidebar = new EventEmitter<MouseEvent>();
-
-  /** Behaviour subject for the url path. */
-  public url$: Observable<string>;
 
   /**
    * Class constructor.
    *
    * @public
-   * @param router  Injection of the Router service
    */
-  constructor(private router: Router) {
-  }
-
-  /**
-   * Lifecycle hook that is executed after the component is initialized.
-   *
-   * @public
-   */
-  public ngOnInit(): void {
-    this.setupComponentObservables();
-  }
-
-  /**
-   * Sets up the component observables.
-   *
-   * @private
-   */
-  private setupComponentObservables(): void {
-    this.url$ = this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map((event: NavigationEnd) => event.urlAfterRedirects.substring(1))
-      );
+  constructor() {
   }
 }

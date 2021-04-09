@@ -1,14 +1,11 @@
 <mat-toolbar class="flex flex-row flex-nowrap justify-between bg-white shadow-sm">
   <button mat-icon-button
           type="button"
-          class="block sm:hidden text-blue-900"
+          class="block md:hidden text-blue-900"
           data-testid="sidebar-button"
           (click)="openSidebar?.emit($event)">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="hidden sm:block capitalize">
-        {{(url$ | async)}}
-  </span>
   <img src="assets/img/angular.svg"
        alt="user picture"
        class="w-12 h-12 rounded-full object-cover ml-auto cursor-pointer"
