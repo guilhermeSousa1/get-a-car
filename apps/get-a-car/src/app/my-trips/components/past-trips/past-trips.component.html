@@ -43,7 +43,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showTripDetailsDialog()"></tr>
   </table>
 </ng-template>
 
@@ -68,7 +68,8 @@
       <button type="button"
               mat-button
               color="primary"
-              class="flex ml-auto">
+              class="flex ml-auto"
+              (click)="showTripDetailsDialog()">
         DETAILS
       </button>
     </mat-card-actions>

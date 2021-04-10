@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services';
+import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 
 /**
  * Component responsible for the past-trips.
@@ -34,9 +36,11 @@ export class PastTripsComponent implements OnInit {
    *
    * @param breakPointObserver  Injection of the breakpoint observer utility
    * @param dataService         Injection of the Data service
+   * @param dialog              Injection of the Dialog service
    */
   constructor(private breakPointObserver: BreakpointObserver,
-              private dataService: DataService) {
+              private dataService: DataService,
+              private dialog: MatDialog) {
   }
 
   /**
@@ -46,6 +50,20 @@ export class PastTripsComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.setupComponentObservables();
+  }
+
+  /**
+   * Displays the modal with the trip details.
+   *
+   * @public
+   */
+  public showTripDetailsDialog(): void {
+    const config: MatDialogConfig = {
+      width:     '800px',
+      autoFocus: false
+    };
+
+    const dialogRef = this.dialog?.open(TripDetailsDialogComponent, config);
   }
 
   /**

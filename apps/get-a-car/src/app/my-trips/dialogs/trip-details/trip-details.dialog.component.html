@@ -1,0 +1,77 @@
+<h1 mat-dialog-title class="pb-4 text-2xl font-bold border-solid border-b-2 border-gray-300">Trip details</h1>
+
+<div mat-dialog-content class="flex flex-col justify-between">
+  <div class="mb-5">
+    <h3 class="section-title">Trip start</h3>
+    <div class="section-container">
+      <div class="stat-container">
+        <span class="stat-title">START DATE</span>
+        <span>09/25/2019</span>
+        <span class="text-sm text-gray-500">Tuesday</span>
+      </div>
+      <div class="stat-container">
+        <span class="stat-title">START TIME</span>
+        <span>6:25 pm</span>
+      </div>
+      <div class="stat-container">
+        <span class="stat-title">START LOCATION</span>
+        <span>82 Mayflower Court, Spring Valley, CA 91977</span>
+      </div>
+    </div>
+  </div>
+  <div class="mb-5">
+    <h3 class="section-title">Trip end</h3>
+    <div class="section-container">
+      <div class="stat-container">
+        <span class="stat-title">END DATE</span>
+        <span>09/28/2019</span>
+        <span class="text-sm text-gray-500">Friday</span>
+      </div>
+      <div class="stat-container">
+        <span class="stat-title">START TIME</span>
+        <span>11:00 pm</span>
+      </div>
+      <div class="stat-container">
+        <span class="stat-title">END LOCATION</span>
+        <span>12 Henry St., Union City, CA 94587</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="section-container">
+      <div class="col-span-2 flex flex-col">
+        <h3 class="section-title">Car</h3>
+        <span class="stat-title">MODEL</span>
+        <span>Toyota Prius Hybrid</span>
+        <span class="mt-2 stat-title">ACCESSORIES</span>
+        <span>Snow chains, surfboard rack</span>
+      </div>
+      <div class="flex flex-col">
+        <h3 class="section-title">Extra charge</h3>
+        <div class="flex flex-col">
+          <div class="extra-charge-row-container mb-2">
+            <span class="stat-title">ITEM</span>
+            <span class="stat-title">CHARGE</span>
+          </div>
+          <div class="extra-charge-row-container">
+            <span>Snow chains</span>
+            <span>$19</span>
+          </div>
+          <div class="extra-charge-row-container">
+            <span>Surfboard rack</span>
+            <span>$29</span>
+          </div>
+          <mat-divider class="border-black mt-2 mb-2"></mat-divider>
+          <div class="extra-charge-row-container">
+            <span class="font-bold">Total amount</span>
+            <span class="font-bold">$137</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button type="button" color="primary" class="ml-auto" mat-dialog-close>OK</button>
+</div>

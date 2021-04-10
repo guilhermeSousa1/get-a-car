@@ -6,6 +6,7 @@ import { ComponentsModule } from '../shared/components/components.module';
 import { MaterialModule } from '../material.module';
 import { MyTripsPageComponent } from './page/my-trips-page.component';
 import { PastTripsComponent } from './components/past-trips/past-trips.component';
+import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { PastTripsComponent } from './components/past-trips/past-trips.component
   ],
   declarations: [
     MyTripsPageComponent,
-    PastTripsComponent
+    PastTripsComponent,
+    TripDetailsDialogComponent
   ]
 })
 export class MyTripsModule {
