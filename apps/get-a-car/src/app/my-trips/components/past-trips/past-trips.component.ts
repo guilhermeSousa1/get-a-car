@@ -32,11 +32,11 @@ export class PastTripsComponent implements OnInit {
    *
    * @public
    *
-   * @param dataService         Injection of the Data service
    * @param breakPointObserver  Injection of the breakpoint observer utility
+   * @param dataService         Injection of the Data service
    */
-  constructor(private dataService: DataService,
-              private breakPointObserver: BreakpointObserver) {
+  constructor(private breakPointObserver: BreakpointObserver,
+              private dataService: DataService) {
   }
 
   /**

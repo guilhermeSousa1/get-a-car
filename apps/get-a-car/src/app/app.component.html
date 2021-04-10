@@ -1,8 +1,8 @@
 <mat-sidenav-container fullscreen autosize>
 
   <mat-sidenav class="w-60"
-               [opened]="(isSmallScreen$ | async) === false || (sidebarOpened$ | async)"
-               [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
+               [opened]="(isMediumScreen$ | async) === false || (sidebarOpened$ | async)"
+               [mode]="(isMediumScreen$ | async) ? 'over' : 'side'"
                (closedStart)="sidebarOpened$?.next(false)">
     <sidebar-nav></sidebar-nav>
   </mat-sidenav>

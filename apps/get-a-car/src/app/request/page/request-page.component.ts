@@ -47,17 +47,17 @@ export class RequestPageComponent implements OnInit {
    *
    * @public
    *
+   * @param breakPointObserver  Injection of the breakpoint observer utility
    * @param dataService         Injection of the Data service
+   * @param dateService         Injection of the Date service
    * @param dialog              Injection of the Dialog service
    * @param formBuilder         Injection of the FormBuilder service
-   * @param breakPointObserver  Injection of the breakpoint observer utility
-   * @param dateService         Injection of the Date service
    */
-  constructor(private dataService: DataService,
+  constructor(private breakPointObserver: BreakpointObserver,
+              private dataService: DataService,
+              private dateService: DateService,
               private dialog: MatDialog,
-              private formBuilder: FormBuilder,
-              private breakPointObserver: BreakpointObserver,
-              private dateService: DateService) {
+              private formBuilder: FormBuilder) {
   }
 
   /**

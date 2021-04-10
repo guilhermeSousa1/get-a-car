@@ -18,8 +18,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class AppComponent implements OnInit {
 
-  /** Observable for the small screen size. */
-  public isSmallScreen$: Observable<boolean>;
+  /** Observable for the medium screen size. */
+  public isMediumScreen$: Observable<boolean>;
   /** Behaviour subject for the opened state of the mat-sidenav. */
   public sidebarOpened$ = new BehaviorSubject<boolean>(false);
 
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isSmallScreen$ = this.breakPointObserver?.observe('(max-width: 767px)')
+    this.isMediumScreen$ = this.breakPointObserver?.observe('(max-width: 767px)')
       .pipe(
         map(((result) => result.matches)),
         tap((matches) => {
@@ -63,10 +63,10 @@ export class AppComponent implements OnInit {
       .pipe(
         untilDestroyed(this),
         filter((event) => event instanceof NavigationEnd),
-        withLatestFrom(this.isSmallScreen$)
+        withLatestFrom(this.isMediumScreen$)
       )
-      .subscribe(([_, isSmallScreen]) => {
-        if (isSmallScreen) {
+      .subscribe(([_, isMediumScreen]) => {
+        if (isMediumScreen) {
           this.sidebarOpened$?.next(false);
         }
       });
