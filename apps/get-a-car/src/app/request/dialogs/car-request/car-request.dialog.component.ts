@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { Car, CarAccessory, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 
+/**
+ * Component responsible for the dialog to request a car.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'car-request',

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Component responsible for the my-trips page.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'my-trips-page',

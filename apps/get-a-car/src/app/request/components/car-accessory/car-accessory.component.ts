@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
 
+/**
+ * Component responsible for the car accessory.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'car-accessory',

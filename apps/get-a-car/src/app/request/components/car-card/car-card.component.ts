@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
 
+/**
+ * Component responsible for the car card.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'car-card',

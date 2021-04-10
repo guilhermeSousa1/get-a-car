@@ -9,6 +9,10 @@ import { CarRequestDialogComponent, EditCarPreferencesDialogComponent } from '@g
 import { DataService, DateService } from '@guilhermeSousa1/core/services';
 import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 
+/**
+ * Component responsible for the page to request a car.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'request-page',

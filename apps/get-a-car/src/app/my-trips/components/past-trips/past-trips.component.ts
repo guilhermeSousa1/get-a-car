@@ -5,6 +5,10 @@ import { map } from 'rxjs/operators';
 import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services';
 
+/**
+ * Component responsible for the past-trips.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'past-trips',

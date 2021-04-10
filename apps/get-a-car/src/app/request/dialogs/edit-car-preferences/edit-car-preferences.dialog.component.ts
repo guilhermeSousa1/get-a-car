@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
 
+/**
+ * Component responsible for the dialog to edit the car preferences.
+ */
+
 /* eslint-disable no-multi-spaces */
 @Component({
   selector:    'edit-car-preferences',
