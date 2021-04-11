@@ -43,8 +43,9 @@
         <h3 class="section-title">Car</h3>
         <span class="stat-title">MODEL</span>
         <span class="capitalize">{{dialogData?.trip?.car?.brand + ' ' + dialogData?.trip?.car?.model}}</span>
-        <span class="mt-2 stat-title">ACCESSORIES</span>
-        <span class="w-4/5">
+        <ng-container *ngIf="dialogData?.trip?.accessories?.length > 0 ">
+          <span class="mt-2 stat-title">ACCESSORIES</span>
+          <span class="w-4/5">
           <ng-container *ngFor="let accessory of dialogData?.trip?.accessories; let last = last">
             <ng-template [ngIf]="!last">
               {{accessory.name + ', '}}
@@ -54,8 +55,9 @@
             </ng-template>
           </ng-container>
         </span>
+        </ng-container>
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col" *ngIf="dialogData?.trip?.accessories?.length > 0 ">
         <h3 class="section-title">Extra charge</h3>
         <div class="flex flex-col">
           <div class="extra-charge-row-container mb-2">
