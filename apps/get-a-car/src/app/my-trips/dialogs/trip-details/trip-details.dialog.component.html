@@ -11,7 +11,7 @@
       </div>
       <div class="stat-container">
         <span class="stat-title">START TIME</span>
-        <span>{{dialogData?.trip?.details?.deliveryTime + ':00'}}</span>
+        <span>{{dialogData?.trip?.details?.startDate | date: 'hh:mm a'}}</span>
       </div>
       <div class="stat-container">
         <span class="stat-title">START LOCATION</span>
@@ -29,7 +29,7 @@
       </div>
       <div class="stat-container">
         <span class="stat-title">START TIME</span>
-        <span>{{dialogData?.trip?.details?.collectionTime + ':00'}}</span>
+        <span>{{dialogData?.trip?.details?.endDate | date: 'hh:mm a'}}</span>
       </div>
       <div class="stat-container">
         <span class="stat-title">END LOCATION</span>
@@ -44,7 +44,7 @@
         <span class="stat-title">MODEL</span>
         <span class="capitalize">{{dialogData?.trip?.car?.brand + ' ' + dialogData?.trip?.car?.model}}</span>
         <span class="mt-2 stat-title">ACCESSORIES</span>
-        <span>
+        <span class="w-4/5">
           <ng-container *ngFor="let accessory of dialogData?.trip?.accessories; let last = last">
             <ng-template [ngIf]="!last">
               {{accessory.name + ', '}}

@@ -2,11 +2,9 @@
   {
     "details": {
       "address": "Westminster, London SW1A 0AA, United Kingdom",
-      "startDate": 1612656000000,
-      "endDate": 1612742400000,
-      "drivingDays": 2,
-      "deliveryTime": 10,
-      "collectionTime": 22
+      "startDate": 1612692000000,
+      "endDate": 1612821600000,
+      "drivingDays": 2
     },
     "car": {
       "brand": "toyota",
@@ -39,11 +37,9 @@
   {
     "details": {
       "address": "London HA9 0WS, United Kingdom",
-      "startDate": 1614556800000,
-      "endDate": 1615334400000,
-      "drivingDays": 11,
-      "deliveryTime": 8,
-      "collectionTime": 15
+      "startDate": 1614585600000,
+      "endDate": 1615388400000,
+      "drivingDays": 11
     },
     "car": {
       "brand": "jeep",
@@ -71,11 +67,9 @@
   {
     "details": {
       "address": "Museumstraat 1, 1071 XX Amsterdam, Netherlands",
-      "startDate": 1609459200000,
-      "endDate": 1609459200000,
-      "drivingDays": 1,
-      "deliveryTime": 7,
-      "collectionTime": 22
+      "startDate": 1609484400000,
+      "endDate": 1609538400000,
+      "drivingDays": 1
     },
     "car": {
       "brand": "jeep",
@@ -118,11 +112,9 @@
   {
     "details": {
       "address": "Viale di Vedano, 5, 20900 Monza MB, Italy",
-      "startDate": 1609718400000,
-      "endDate": 1611100800000,
-      "drivingDays": 17,
-      "deliveryTime": 14,
-      "collectionTime": 20
+      "startDate": 1609768800000,
+      "endDate": 1611172800000,
+      "drivingDays": 17
     },
     "car": {
       "brand": "toyota",

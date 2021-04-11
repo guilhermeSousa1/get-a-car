@@ -105,13 +105,15 @@ export class RequestPageComponent implements OnInit {
    * @param requestedCar  The requested car
    */
   public showRequestCarDialog(requestedCar: Car): void {
+    const startDate = +this.dateService?.setHours(this.form?.get('startDate')?.value, this.form?.get('deliveryTime')?.value);
+    const endDate = +this.dateService?.setHours(this.form?.get('endDate')?.value, this.form?.get('collectionTime')?.value);
+    const drivingDays = this.dateService?.differenceInDays(this.form?.get('startDate')?.value, this.form?.get('endDate')?.value) + 1;
+
     const reservationDetails: ReservationDetails = {
-      address:        this.form?.get('address')?.value,
-      startDate:      +this.form?.get('startDate')?.value,
-      endDate:        +this.form?.get('endDate')?.value,
-      drivingDays:    this.dateService?.differenceInDays(this.form?.get('startDate')?.value, this.form?.get('endDate')?.value) + 1,
-      deliveryTime:   this.form?.get('deliveryTime')?.value,
-      collectionTime: this.form?.get('collectionTime')?.value
+      address: this.form?.get('address')?.value,
+      startDate,
+      endDate,
+      drivingDays
     };
 
     const config: MatDialogConfig = {
@@ -128,14 +130,16 @@ export class RequestPageComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(take(1))
       .subscribe(({ selectedAccessories, additionalCharge }) => {
-        const reservation: Reservation = {
-          details:        reservationDetails,
-          car:            requestedCar,
-          carPreferences: this.carPreferences,
-          accessories:    selectedAccessories,
-          additionalCharge,
-          status:         ReservationStatus.PLANNED
-        };
+        if (selectedAccessories != null && additionalCharge != null) {
+          const reservation: Reservation = {
+            details:        reservationDetails,
+            car:            requestedCar,
+            carPreferences: this.carPreferences,
+            accessories:    selectedAccessories,
+            additionalCharge,
+            status:         ReservationStatus.PLANNED
+          };
+        }
       });
   }
 
