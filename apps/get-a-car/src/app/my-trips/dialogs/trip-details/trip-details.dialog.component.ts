@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Reservation } from '@guilhermeSousa1/shared/data-models';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -6,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './trip-details.dialog.component.html',
   styleUrls:   ['./trip-details.dialog.component.scss']
 })
-export class TripDetailsDialogComponent implements OnInit {
+export class TripDetailsDialogComponent {
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
+  /**
+   * Class constructor.
+   *
+   * @public
+   * @param dialogData   Data passed to the dialog
+   */
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { trip: Reservation }) {
   }
 
 }

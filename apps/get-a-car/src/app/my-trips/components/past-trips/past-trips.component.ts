@@ -57,10 +57,13 @@ export class PastTripsComponent implements OnInit {
    *
    * @public
    */
-  public showTripDetailsDialog(): void {
+  public showTripDetailsDialog(trip: Reservation): void {
     const config: MatDialogConfig = {
       width:     '800px',
-      autoFocus: false
+      autoFocus: false,
+      data:      {
+        trip
+      }
     };
 
     const dialogRef = this.dialog?.open(TripDetailsDialogComponent, config);

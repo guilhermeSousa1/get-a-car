@@ -5,7 +5,7 @@
       <td mat-cell *matCellDef="let reservation">
         <div class="flex flex-col">
           <span class="text-base">
-            {{reservation?.details?.startDate | date:'M/d/yy'}} - {{reservation?.details?.endDate | date:'M/d/yy'}}
+            {{reservation?.details?.startDate | date:'d/M/yy'}} - {{reservation?.details?.endDate | date:'d/M/yy'}}
           </span>
           <span class="text-gray-500">
             {{reservation?.details?.startDate | date:'EEEE'}} - {{reservation?.details?.endDate | date:'EEEE'}}
@@ -43,7 +43,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showTripDetailsDialog()"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showTripDetailsDialog(myRowData)"></tr>
   </table>
 </ng-template>
 
@@ -52,7 +52,7 @@
             class="mt-4 border-solid border border-gray-200">
     <mat-card-content class="flex flex-col text-base">
       <mat-card-title>
-        {{reservation?.details?.startDate | date:'M/d/yy'}} - {{reservation?.details?.endDate | date:'M/d/yy'}}
+        {{reservation?.details?.startDate | date:'d/M/yy'}} - {{reservation?.details?.endDate | date:'d/M/yy'}}
       </mat-card-title>
       <mat-card-subtitle>
         {{reservation?.details?.startDate | date:'EEEE'}} - {{reservation?.details?.endDate | date:'EEEE'}}
@@ -69,7 +69,7 @@
               mat-button
               color="primary"
               class="flex ml-auto"
-              (click)="showTripDetailsDialog()">
+              (click)="showTripDetailsDialog(reservation)">
         DETAILS
       </button>
     </mat-card-actions>
