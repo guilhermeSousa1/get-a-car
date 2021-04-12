@@ -66,4 +66,15 @@ export class DataService {
   public getPastReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(`${ this.baseUrl }/past-reservations.json`);
   }
+
+  /**
+   * Returns the list of planned trips.
+   *
+   * @public
+   *
+   * @returns  {Observable<Reservation[]>}
+   */
+  public getPlannedReservations(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(`${ this.baseUrl }/planned-reservations.json`);
+  }
 }

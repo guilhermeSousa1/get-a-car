@@ -4,31 +4,29 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { Reservation } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services';
 import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 
 /**
- * Component responsible for the past-trips.
+ * Component responsible for the planned-trips.
  */
 
 /* eslint-disable no-multi-spaces */
 @Component({
-  selector:    'past-trips',
-  templateUrl: './past-trips.component.html',
-  styleUrls:   ['./past-trips.component.scss']
+  selector:    'planned-trips',
+  templateUrl: './planned-trips.component.html',
+  styleUrls:   ['./planned-trips.component.scss']
 })
-export class PastTripsComponent implements OnInit {
-
-  /** Instantiation of the reservation status */
-  public RESERVATION_STATUS = ReservationStatus;
+export class PlannedTripsComponent implements OnInit {
 
   /** List of columns to display on the mat-table */
-  public columnsToDisplay = ['date', 'days', 'car', 'extra-charge', 'status'];
+  public columnsToDisplay = ['date', 'days', 'car', 'extra-charge'];
+
   /** Observable for the large screen size. */
   public isLargeScreen$: Observable<boolean>;
-  /** Observable for the list of past trips */
-  public pastReservations$: Observable<Reservation[]>;
+  /** Observable for the list of planned trips */
+  public plannedReservations$: Observable<Reservation[]>;
   /** The start index to slice the reservation list */
   public startSlice = 0;
   /** The end index to slice the reservation list */
@@ -79,7 +77,7 @@ export class PastTripsComponent implements OnInit {
    *
    * @public
    *
-   * @param event The page event
+   * @param  event The page event
    */
   public sliceReservationsList(event: PageEvent): void {
     this.startSlice = event.pageIndex * event.pageSize;
@@ -97,7 +95,7 @@ export class PastTripsComponent implements OnInit {
         map(((result) => result.matches))
       );
 
-    this.pastReservations$ = this.dataService?.getPastReservations();
+    this.plannedReservations$ = this.dataService?.getPlannedReservations();
   }
 
 }

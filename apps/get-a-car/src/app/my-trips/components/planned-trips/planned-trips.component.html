@@ -1,5 +1,5 @@
 <ng-template [ngIf]="(isLargeScreen$ | async) === false">
-  <table mat-table [dataSource]="pastReservations$ | async | slice: startSlice : endSlice" class="w-full">
+  <table mat-table [dataSource]="plannedReservations$ | async | slice: startSlice : endSlice" class="w-full">
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Date</th>
       <td mat-cell *matCellDef="let reservation">
@@ -35,20 +35,13 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef class="col-header-cell">Status</th>
-      <td mat-cell *matCellDef="let reservation" class="text-base">
-        {{RESERVATION_STATUS[reservation?.status]}}
-      </td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showTripDetailsDialog(myRowData)"></tr>
   </table>
 </ng-template>
 
 <ng-template [ngIf]="isLargeScreen$ | async">
-  <mat-card *ngFor="let reservation of (pastReservations$ | async | slice: startSlice : endSlice)"
+  <mat-card *ngFor="let reservation of (plannedReservations$ | async | slice: startSlice : endSlice)"
             class="mt-4 border-solid border border-gray-200">
     <mat-card-content class="flex flex-col text-base">
       <mat-card-title>
@@ -62,7 +55,6 @@
         Car: {{reservation?.car?.brand + ' ' + reservation?.car?.model}}
       </span>
       <span class="text-gray-500 mb-1">Extra Charge: ${{reservation?.additionalCharge}}</span>
-      <span class="text-gray-500">Status: {{RESERVATION_STATUS[reservation?.status]}}</span>
     </mat-card-content>
     <mat-card-actions>
       <button type="button"
@@ -70,7 +62,7 @@
               color="primary"
               class="flex ml-auto"
               (click)="showTripDetailsDialog(reservation)">
-        DETAILS
+        Edit or Cancel
       </button>
     </mat-card-actions>
   </mat-card>
@@ -78,6 +70,6 @@
 
 <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                pageSize="5"
-               [length]="(pastReservations$ | async)?.length"
+               [length]="(plannedReservations$ | async)?.length"
                (page)="sliceReservationsList($event)">
 </mat-paginator>
