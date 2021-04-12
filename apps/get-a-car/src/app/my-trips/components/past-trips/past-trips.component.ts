@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,6 +27,10 @@ export class PastTripsComponent implements OnInit {
   public isLargeScreen$: Observable<boolean>;
   /** Observable for the list of past trips */
   public pastReservations$: Observable<Reservation[]>;
+  /** The start index to slice the past reservation list */
+  public startSlice = 0;
+  /** The end index to slice the past reservation list */
+  public endSlice = 5;
 
   public columnsToDisplay = ['date', 'days', 'car', 'extra-charge', 'status'];
 
@@ -67,6 +72,18 @@ export class PastTripsComponent implements OnInit {
     };
 
     const dialogRef = this.dialog?.open(TripDetailsDialogComponent, config);
+  }
+
+  /**
+   * Changes the slicing properties for the past reservations list.
+   *
+   * @public
+   *
+   * @param event The page event
+   */
+  public slicePastReservationsList(event: PageEvent): void {
+    this.startSlice = event.pageIndex * event.pageSize;
+    this.endSlice = this.startSlice + event.pageSize;
   }
 
   /**
