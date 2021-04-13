@@ -39,7 +39,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showTripDetailsDialog(myRowData)"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="showEditTripDialog(myRowData)"></tr>
   </table>
 </ng-template>
 
@@ -64,7 +64,7 @@
               mat-button
               color="primary"
               class="flex ml-auto"
-              (click)="showTripDetailsDialog(reservation)">
+              (click)="showEditTripDialog(reservation)">
         Edit or Cancel
       </button>
     </mat-card-actions>

@@ -1,0 +1,23 @@
+@layer components {
+  .section-container {
+    @apply pb-7 grid grid-cols-3 grid-rows-1 justify-between border-solid border-b border-gray-300;
+  }
+
+  .section-title {
+    @apply font-bold text-lg mb-3;
+  }
+
+  .stat-container {
+    @apply flex flex-col;
+  }
+
+  .stat-title {
+    @apply text-sm font-bold text-gray-500;
+  }
+
+
+  .extra-charge-row-container {
+    @apply flex flex-row flex-nowrap justify-between items-center;
+  }
+
+}

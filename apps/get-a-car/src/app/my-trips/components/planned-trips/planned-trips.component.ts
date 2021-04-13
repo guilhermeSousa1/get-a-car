@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Reservation } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services';
 import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
+import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
 
 /**
  * Component responsible for the planned-trips.
@@ -56,11 +57,11 @@ export class PlannedTripsComponent implements OnInit {
   }
 
   /**
-   * Displays the modal with the trip details.
+   * Displays the modal to edit a trip.
    *
    * @public
    */
-  public showTripDetailsDialog(trip: Reservation): void {
+  public showEditTripDialog(trip: Reservation): void {
     const config: MatDialogConfig = {
       width:     '800px',
       autoFocus: false,
@@ -69,7 +70,7 @@ export class PlannedTripsComponent implements OnInit {
       }
     };
 
-    const dialogRef = this.dialog?.open(TripDetailsDialogComponent, config);
+    const dialogRef = this.dialog?.open(EditTripDialogComponent, config);
   }
 
   /**
