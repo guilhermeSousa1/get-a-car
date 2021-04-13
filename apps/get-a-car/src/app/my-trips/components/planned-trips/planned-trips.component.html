@@ -1,5 +1,8 @@
 <ng-template [ngIf]="(isLargeScreen$ | async) === false">
-  <table mat-table [dataSource]="plannedReservations$ | async | slice: startSlice : endSlice" class="w-full">
+  <table mat-table
+         class="w-full"
+         fixedLayout
+         [dataSource]="plannedReservations$ | async | slice: startSlice : endSlice">
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Date</th>
       <td mat-cell *matCellDef="let reservation">
