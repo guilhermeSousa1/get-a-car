@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Reservation } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services';
-import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
 
 /**
