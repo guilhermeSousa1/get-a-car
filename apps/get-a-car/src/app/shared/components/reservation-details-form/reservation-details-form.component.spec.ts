@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReservationDetailsFormComponent } from '@guilhermeSousa1/request/components/reservation-details/reservation-details-form/reservation-details-form.component';
+import { ReservationDetailsFormComponent } from '@guilhermeSousa1/shared/components/reservation-details-form/reservation-details-form.component';
 
 describe('ReservationDetailsComponent', () => {
   let component: ReservationDetailsFormComponent;

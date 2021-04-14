@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MockProvider } from 'ng-mocks';
-import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
+import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 import defaultCarPreferences from 'src/assets/data/default-car-preferences.json';
 
 describe('EditCarPreferencesComponent', () => {

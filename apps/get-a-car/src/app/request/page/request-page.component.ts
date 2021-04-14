@@ -3,11 +3,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
-import { CarRequestDialogComponent, EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
 import { DataService, DateService } from '@guilhermeSousa1/core/services';
-import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarPreferences, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
 
 /**
  * Component responsible for the page to request a car.
@@ -20,13 +20,6 @@ import { Car, CarPreferences, ChargingCable, DriveMode, RadioStation, Reservatio
   styleUrls:   ['./request-page.component.scss']
 })
 export class RequestPageComponent implements OnInit {
-
-  /** Instantiation of the radio stations */
-  public RADIO_STATIONS = RadioStation;
-  /** Instantiation of the drive modes */
-  public DRIVE_MODES = DriveMode;
-  /** Instantiation of the charging cables */
-  public CHARGING_CABLES = ChargingCable;
 
   /** Observable for the list of available cars */
   public allCars$: Observable<Car[]>;
@@ -68,34 +61,6 @@ export class RequestPageComponent implements OnInit {
   public ngOnInit(): void {
     this.initializeForm();
     this.setupComponentObservables();
-  }
-
-  /**
-   * Displays the modal to edit the car preferences
-   *
-   * @public
-   */
-  public showEditCarPreferencesDialog(): void {
-    const config: MatDialogConfig = {
-      width:     '550px',
-      autoFocus: false,
-      data:      {
-        carPreferences: this.carPreferences
-      }
-    };
-
-    const dialogRef = this.dialog?.open(EditCarPreferencesDialogComponent, config);
-
-    dialogRef.afterClosed()
-      .pipe(
-        take(1),
-        tap((carPreferences) => {
-          if (carPreferences) {
-            this.carPreferences = carPreferences;
-          }
-        })
-      )
-      .subscribe();
   }
 
   /**
