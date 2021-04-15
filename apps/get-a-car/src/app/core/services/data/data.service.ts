@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class DataService {
 
+  /** Base path for the data files */
   private baseUrl = environment.url;
 
   /**

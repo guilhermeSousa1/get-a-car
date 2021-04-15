@@ -3,8 +3,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DateService } from '@guilhermeSousa1/core/services';
 import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
+import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
 
 /**
  * Component responsible for the form of the reservation details.

@@ -5,8 +5,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
-import { DataService } from '@guilhermeSousa1/core/services';
 import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
+import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 
 /**
  * Component responsible for the past-trips.

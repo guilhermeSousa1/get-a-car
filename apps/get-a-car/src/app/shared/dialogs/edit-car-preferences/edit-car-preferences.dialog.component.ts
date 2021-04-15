@@ -30,9 +30,9 @@ export class EditCarPreferencesDialogComponent implements OnInit {
    *
    * @public
    *
-   * @param dialogData   Data passed to the dialog
-   * @param dialogRef    Reference to the dialog
-   * @param formBuilder  Injection of the FormBuilder service
+   * @param dialogData          Data passed to the dialog
+   * @param dialogRef           Reference to the dialog
+   * @param formBuilder         Injection of the FormBuilder service
    */
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { carPreferences: CarPreferences },
               private dialogRef: MatDialogRef<EditCarPreferencesDialogComponent>,

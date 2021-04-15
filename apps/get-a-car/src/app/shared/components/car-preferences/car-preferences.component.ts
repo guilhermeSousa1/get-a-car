@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { DataService } from '@guilhermeSousa1/core/services';
 import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
+import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
 /**
  * Component responsible for the car preferences.
@@ -24,19 +25,19 @@ export class CarPreferencesComponent implements OnInit {
   /** Instantiation of the charging cables */
   public CHARGING_CABLES = ChargingCable;
 
-  /** The car preferences */
-  public carPreferences: CarPreferences;
+  /** Observable for the car preferences */
+  public carPreferences$: Observable<CarPreferences>;
 
   /**
    * Class constructor.
    *
    * @public
    *
-   * @param dataService  Injection of the Data service
-   * @param dialog       Injection of the Dialog service
+   * @param dialog              Injection of the Dialog service
+   * @param reservationService  Injection of the reservation service
    */
-  constructor(private dataService: DataService,
-              private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private reservationService: ReservationService) {
   }
 
   /**
@@ -58,7 +59,7 @@ export class CarPreferencesComponent implements OnInit {
       width:     '550px',
       autoFocus: false,
       data:      {
-        carPreferences: this.carPreferences
+        carPreferences: this.reservationService?.getCarPreferences()
       }
     };
 
@@ -68,7 +69,7 @@ export class CarPreferencesComponent implements OnInit {
       .pipe(take(1))
       .subscribe((carPreferences) => {
         if (carPreferences) {
-          this.carPreferences = carPreferences;
+          this.reservationService?.updateCarPreferences(carPreferences);
         }
       });
   }
@@ -79,10 +80,6 @@ export class CarPreferencesComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.dataService?.getDefaultCarPreferences()
-      .pipe(take(1))
-      .subscribe((carPreferences) => {
-        this.carPreferences = carPreferences;
-      });
+    this.carPreferences$ = this.reservationService?.carPreferences$;
   }
 }

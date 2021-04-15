@@ -1,18 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { EMPTY } from 'rxjs';
 import { MockComponent, MockProvider } from 'ng-mocks';
-import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs';
 import { Car, DriveSystem, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
-import { DataService, DateService } from '@guilhermeSousa1/core/services';
 import { CarAccessoryComponent } from '@guilhermeSousa1/request/components';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
+import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
 
 import defaultAccessories from 'src/assets/data/accessories.json';
+
 
 describe('CarRequestComponent', () => {
   let component: CarRequestDialogComponent;

@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
-import { DateService } from '@guilhermeSousa1/core/services';
+import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
 
 describe('SameDayReservationValidator', () => {
   const validator = sameDayReservationValidator();
