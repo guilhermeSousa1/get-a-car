@@ -10,23 +10,27 @@ import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 @Injectable()
 export class ReservationService {
 
-  /** The source for the reservation details  */
-  private readonly detailsSource = new BehaviorSubject<ReservationDetails>(null);
+  /** The source for the car accessories */
+  private readonly carAccessoriesSource = new BehaviorSubject<CarAccessory[]>([]);
   /** The source for the car preferences  */
   private readonly carPreferencesSource = new BehaviorSubject<CarPreferences>(null);
   /** The source for the car */
   private readonly carSource = new BehaviorSubject<Car>(null);
-  /** The source for the car accessories */
-  private readonly carAccessoriesSource = new BehaviorSubject<CarAccessory[]>([]);
+  /** The source for the reservation details  */
+  private readonly detailsSource = new BehaviorSubject<ReservationDetails>(null);
+  /** The source for the invalid same day reservation */
+  private readonly invalidSameDayReservationSource = new BehaviorSubject<boolean>(false);
 
-  /** Exposed observable for the details */
-  public readonly details$ = this.detailsSource?.asObservable();
+  /** Exposed observable for the car accessories */
+  public readonly carAccessories$ = this.carAccessoriesSource?.asObservable();
   /** Exposed observable for the car preferences */
   public readonly carPreferences$ = this.carPreferencesSource?.asObservable();
   /** Exposed observable for the car */
   public readonly car$ = this.carSource?.asObservable();
-  /** Exposed observable for the car accessories */
-  public readonly carAccessories$ = this.carAccessoriesSource?.asObservable();
+  /** Exposed observable for the details */
+  public readonly details$ = this.detailsSource?.asObservable();
+  /** Exposed observable for the invalid same day reservation */
+  public readonly invalidSameDayReservation$ = this.invalidSameDayReservationSource?.asObservable();
 
   /**
    * Class constructor.
@@ -44,26 +48,15 @@ export class ReservationService {
   }
 
   /**
-   * Returns the latest value for the reservation details.
-   *
-   * @public
-   */
-  public getReservationDetails(): ReservationDetails {
-    return this.detailsSource?.getValue();
-  }
-
-  /**
-   * Updates the reservation details.
+   * Updates the car accessories.
    *
    * @public
    *
-   * @param details  The reservation details
+   * @param carAccessories  The car accessories
    */
-  public updateDetails(details: ReservationDetails): void {
-    if (details) {
-      this.detailsSource?.next(details);
-    } else {
-      this.detailsSource?.next(null);
+  public updateCarAccessories(carAccessories: CarAccessory[]): void {
+    if (carAccessories) {
+      this.carAccessoriesSource?.next(carAccessories);
     }
   }
 
@@ -103,15 +96,37 @@ export class ReservationService {
   }
 
   /**
-   * Updates the car accessories.
+   * Returns the latest value for the reservation details.
+   *
+   * @public
+   */
+  public getReservationDetails(): ReservationDetails {
+    return this.detailsSource?.getValue();
+  }
+
+  /**
+   * Updates the reservation details.
    *
    * @public
    *
-   * @param carAccessories  The car accessories
+   * @param details  The reservation details
    */
-  public updateCarAccessories(carAccessories: CarAccessory[]): void {
-    if (carAccessories) {
-      this.carAccessoriesSource?.next(carAccessories);
+  public updateDetails(details: ReservationDetails): void {
+    if (details) {
+      this.detailsSource?.next(details);
+    } else {
+      this.detailsSource?.next(null);
     }
+  }
+
+  /**
+   * Updates the invalid same day reservation.
+   *
+   * @public
+   *
+   * @param invalidSameDayReservation  Flag for the invalid same day reservation
+   */
+  public updateInvalidSameDayReservation(invalidSameDayReservation: boolean): void {
+    this.invalidSameDayReservationSource?.next(invalidSameDayReservation);
   }
 }

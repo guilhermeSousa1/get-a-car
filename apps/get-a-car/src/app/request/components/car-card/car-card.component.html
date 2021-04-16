@@ -30,12 +30,12 @@
             type="button"
             class="w-11/12 flex justify-center"
             data-testid="book-button"
-            [disabled]="form?.invalid"
+            [disabled]="(reservationDetails$ | async) === null"
             (click)="requestCar?.emit()">
       Book now
     </button>
     <span class="text-gray-500" data-testid="accessories-message"
-          *ngIf="!form?.errors?.invalidSameDayReservation; else invalidSameDayReservation">
+          *ngIf="(invalidSameDayReservation$ | async) === false; else invalidSameDayReservation">
       Choose accessories in the next step
     </span>
     <ng-template #invalidSameDayReservation>

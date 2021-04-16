@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { differenceInCalendarDays, fromUnixTime, getTime, setHours, startOfToday, startOfTomorrow } from 'date-fns';
+import { differenceInCalendarDays, fromUnixTime, getHours, getTime, setHours, startOfToday, startOfTomorrow } from 'date-fns';
 
 /**
  * Service providing utility functions to work with dates.
@@ -87,5 +87,17 @@ export class DateService {
    */
   public setHours(date: Date, hours: number): Date {
     return setHours(date, hours);
+  }
+
+  /**
+   * Returns the hours for a given date.
+   *
+   * @public
+   *
+   * @param date   The date to get the hour from
+   * @returns      {number}
+   */
+  public getHours(date: Date): number {
+    return getHours(date);
   }
 }
