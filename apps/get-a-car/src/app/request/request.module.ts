@@ -7,14 +7,16 @@ import { ComponentsModule } from '@guilhermeSousa1/shared/components/components.
 import { MaterialModule } from '@guilhermeSousa1/material.module';
 import { RequestPageComponent } from '@guilhermeSousa1/request/page/request-page.component';
 import { CarAccessoryComponent, CarCardComponent } from '@guilhermeSousa1/request/components';
+import { DialogsModule } from '@guilhermeSousa1/shared/dialogs/dialogs.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RequestRoutingModule,
-    ComponentsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule,
+    DialogsModule
   ],
   declarations: [
     RequestPageComponent,

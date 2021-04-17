@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Car } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
 
 /**
  * Component responsible for the page to request a car.
@@ -26,11 +28,13 @@ export class RequestPageComponent implements OnInit {
    *
    * @public
    *
-   * @param dataService  Injection of the Data service
-   * @param dialog       Injection of the Dialog service
+   * @param dataService         Injection of the Data service
+   * @param dialog              Injection of the Dialog service
+   * @param reservationService  Injection of the reservation service
    */
   constructor(private dataService: DataService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private reservationService: ReservationService) {
   }
 
   /**
@@ -49,42 +53,28 @@ export class RequestPageComponent implements OnInit {
    * @param requestedCar  The requested car
    */
   public showRequestCarDialog(requestedCar: Car): void {
-    // const startDate = +this.dateService?.setHours(this.form?.get('startDate')?.value, this.form?.get('deliveryTime')?.value);
-    // const endDate = +this.dateService?.setHours(this.form?.get('endDate')?.value, this.form?.get('collectionTime')?.value);
-    // const drivingDays = this.dateService?.differenceInDays(this.form?.get('startDate')?.value, this.form?.get('endDate')?.value) + 1;
-    //
-    // const reservationDetails: ReservationDetails = {
-    //   address: this.form?.get('address')?.value,
-    //   startDate,
-    //   endDate,
-    //   drivingDays
-    // };
-    //
-    // const config: MatDialogConfig = {
-    //   width:     '800px',
-    //   autoFocus: false,
-    //   data:      {
-    //     car: requestedCar,
-    //     reservationDetails
-    //   }
-    // };
-    //
-    // const dialogRef = this.dialog?.open(CarRequestDialogComponent, config);
-    //
-    // dialogRef.afterClosed()
-    //   .pipe(take(1))
-    //   .subscribe(({ selectedAccessories, additionalCharge }) => {
-    //     if (selectedAccessories != null && additionalCharge != null) {
-    //       const reservation: Reservation = {
-    //         details:        reservationDetails,
-    //         car:            requestedCar,
-    //         carPreferences: null,
-    //         accessories:    selectedAccessories,
-    //         additionalCharge,
-    //         status:         ReservationStatus.PLANNED
-    //       };
-    //     }
-    //   });
+    const reservationDetails = this.reservationService?.getReservationDetails();
+
+    const config: MatDialogConfig = {
+      width:     '800px',
+      autoFocus: false,
+      data:      {
+        car: requestedCar,
+        reservationDetails
+      }
+    };
+
+    const dialogRef = this.dialog?.open(CarRequestDialogComponent, config);
+
+    dialogRef.afterClosed()
+      .pipe(take(1))
+      .subscribe(({ selectedAccessories, additionalCharge }) => {
+        if (selectedAccessories != null && additionalCharge != null) {
+          this.reservationService?.updateCar(requestedCar);
+          this.reservationService?.updateCarAccessories(selectedAccessories);
+          this.reservationService?.submitReservation();
+        }
+      });
   }
 
   /**

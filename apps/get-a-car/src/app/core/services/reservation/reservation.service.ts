@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Car, CarAccessory, CarPreferences, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 
 /**
@@ -128,5 +128,44 @@ export class ReservationService {
    */
   public updateInvalidSameDayReservation(invalidSameDayReservation: boolean): void {
     this.invalidSameDayReservationSource?.next(invalidSameDayReservation);
+  }
+
+  /**
+   * Submits the reservation.
+   *
+   * @public
+   */
+  public submitReservation(): void {
+    const reservation: Reservation = this.transformReservationData();
+    console.log(reservation);
+  }
+
+  /**
+   * Transform the reservation data.
+   *
+   * @private
+   *
+   * @return  {Reservation}
+   */
+  private transformReservationData(): Reservation {
+    const details = this.detailsSource?.getValue();
+    const car = this.carSource?.getValue();
+    const carPreferences = this.carPreferencesSource?.getValue();
+    const carAccessories = this.carAccessoriesSource?.getValue();
+    const additionalCharge = carAccessories.reduce((accumulator, { price }) => accumulator + price, 0);
+
+
+    if (details == null || car == null || carPreferences == null || carAccessories == null) {
+      return null;
+    }
+
+    return {
+      details,
+      car,
+      carPreferences,
+      accessories:      carAccessories,
+      additionalCharge: additionalCharge,
+      status:           ReservationStatus.PLANNED
+    };
   }
 }
