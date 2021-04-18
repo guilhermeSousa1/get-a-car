@@ -62,7 +62,7 @@ export class PlannedTripsComponent implements OnInit {
    */
   public showEditTripDialog(trip: Reservation): void {
     const config: MatDialogConfig = {
-      width:     '800px',
+      width:     '850px',
       autoFocus: false,
       data:      {
         trip

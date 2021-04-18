@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { EMPTY } from 'rxjs';
 import { MockComponent, MockProvider } from 'ng-mocks';
 import { Car, DriveSystem, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
-import { CarAccessoryComponent } from '@guilhermeSousa1/request/components';
+import { CarAccessoryComponent } from '@guilhermeSousa1/shared/components';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';

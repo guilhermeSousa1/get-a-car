@@ -6,14 +6,16 @@ import { MaterialModule } from '@guilhermeSousa1/material.module';
 import { ReservationDetailsFormComponent } from '@guilhermeSousa1/shared/components/reservation-details-form/reservation-details-form.component';
 import { CarPreferencesComponent } from '@guilhermeSousa1/shared/components/car-preferences/car-preferences.component';
 import { DialogsModule } from '@guilhermeSousa1/shared/dialogs/dialogs.module';
+import { CarAccessoryComponent } from '@guilhermeSousa1/shared/components/car-accessory/car-accessory.component';
 import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const COMPONENTS = [
-  SidebarNavComponent,
-  ToolbarComponent,
+  CarAccessoryComponent,
+  CarPreferencesComponent,
   ReservationDetailsFormComponent,
-  CarPreferencesComponent
+  SidebarNavComponent,
+  ToolbarComponent
 ];
 
 @NgModule({

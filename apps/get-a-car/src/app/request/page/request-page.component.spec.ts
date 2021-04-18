@@ -15,9 +15,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { EMPTY } from 'rxjs';
 import { MockComponent, MockProvider } from 'ng-mocks';
-import { DataService, DateService } from '@guilhermeSousa1/core/services';
-import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/request/dialogs';
-import { CarCardComponent } from '@guilhermeSousa1/request/components';
+import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
+import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
+import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
 import { RequestPageComponent } from './request-page.component';
 
 describe('RequestPageComponent', () => {

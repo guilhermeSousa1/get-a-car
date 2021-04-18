@@ -9,6 +9,7 @@ import { PastTripsComponent } from './components/past-trips/past-trips.component
 import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 import { PlannedTripsComponent } from '@guilhermeSousa1/my-trips/components/planned-trips/planned-trips.component';
 import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
+import { CarBannerComponent } from '@guilhermeSousa1/my-trips/components/car-banner/car-banner.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-
     MyTripsPageComponent,
     PlannedTripsComponent,
     PastTripsComponent,
+    CarBannerComponent,
     TripDetailsDialogComponent,
     EditTripDialogComponent
   ]

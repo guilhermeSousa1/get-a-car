@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MockService } from 'ng-mocks';
 import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
-import { CarCardComponent } from '@guilhermeSousa1/request/components';
+import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
 
 describe('CarCardComponent', () => {
   let component: CarCardComponent;

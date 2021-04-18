@@ -1,0 +1,13 @@
+<div class="flex flex-row flex-nowrap items-center justify-between
+            p-4 border-solid border border-gray-300 mb-3 sm:mb-0">
+  <div class="flex flex-row items-center">
+    <div class="w-28 h-16 bg-contain bg-no-repeat"
+         [class]="'bg-' + car?.brand + '-' + car?.model">
+    </div>
+    <div class="ml-4 flex flex-col">
+      <span class="font-bold capitalize" data-testid="accessory-name">{{car?.brand + ' ' + car?.model}}</span>
+      <span class="text-gray-500 text-sm" data-testid="accessory-price">Available</span>
+    </div>
+  </div>
+  <mat-checkbox color="primary"></mat-checkbox>
+</div>

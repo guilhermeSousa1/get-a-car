@@ -6,8 +6,8 @@ import { RequestRoutingModule } from '@guilhermeSousa1/request/request-routing.m
 import { ComponentsModule } from '@guilhermeSousa1/shared/components/components.module';
 import { MaterialModule } from '@guilhermeSousa1/material.module';
 import { RequestPageComponent } from '@guilhermeSousa1/request/page/request-page.component';
-import { CarAccessoryComponent, CarCardComponent } from '@guilhermeSousa1/request/components';
 import { DialogsModule } from '@guilhermeSousa1/shared/dialogs/dialogs.module';
+import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
 
 @NgModule({
   imports: [
@@ -21,7 +21,6 @@ import { DialogsModule } from '@guilhermeSousa1/shared/dialogs/dialogs.module';
   declarations: [
     RequestPageComponent,
     CarCardComponent,
-    CarAccessoryComponent,
     CarRequestDialogComponent
   ]
 })

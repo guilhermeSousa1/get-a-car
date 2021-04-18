@@ -4,7 +4,7 @@
   <div class="flex flex-col 2xl:flex-row justify-between">
     <div class="w-full 2xl:w-4/12">
       <reservation-details-form></reservation-details-form>
-      <car-preferences class="mt-1"></car-preferences>
+      <car-preferences></car-preferences>
     </div>
     <div class="lg:w-full 2xl:w-7/12 flex flex-col lg:flex-row flex-nowrap justify-center 2xl:justify-between">
       <car-card *ngFor="let car of (allCars$ | async)"
