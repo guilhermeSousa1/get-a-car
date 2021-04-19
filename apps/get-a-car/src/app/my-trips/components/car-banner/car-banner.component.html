@@ -4,10 +4,22 @@
     <div class="w-28 h-16 bg-contain bg-no-repeat"
          [class]="'bg-' + car?.brand + '-' + car?.model">
     </div>
-    <div class="ml-4 flex flex-col">
+    <div class="ml-4 flex flex-col max-w-36">
       <span class="font-bold capitalize" data-testid="accessory-name">{{car | carName}}</span>
-      <span class="text-gray-500 text-sm" data-testid="accessory-price">Available</span>
+      <span class="text-gray-500 text-sm"
+            *ngIf="(invalidSameDayReservation$ | async) === false; else invalidSameDayReservation"
+            data-testid="accessory-price">
+        Available
+      </span>
+      <ng-template #invalidSameDayReservation>
+        <span class="text-red-500 text-sm" data-testid="invalid-same-day-reservation-message">
+          Collection time must be superior to delivery time
+        </span>
+      </ng-template>
     </div>
   </div>
-  <mat-checkbox color="primary"></mat-checkbox>
+  <mat-radio-button color="primary"
+                    [disabled]="(reservationDetails$ | async) === null"
+                    [checked]="(isCarSelected$ | async)">
+  </mat-radio-button>
 </div>

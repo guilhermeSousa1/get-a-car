@@ -4,6 +4,8 @@ import { DriveSystem } from './drive-system.enum';
  * Interface that models the car stats.
  */
 export interface Car {
+  /** The id of the car */
+  id: number;
   /** The car brand */
   brand: string;
   /** The car model */

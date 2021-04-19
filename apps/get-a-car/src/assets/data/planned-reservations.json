@@ -2,11 +2,12 @@
   {
     "details": {
       "address": "Westminster, London SW1A 0AA, United Kingdom",
-      "startDate": 1612692000000,
-      "endDate": 1612821600000,
+      "startDate": 1612692000,
+      "endDate": 1612821600,
       "drivingDays": 2
     },
     "car": {
+      "id": 2,
       "brand": "toyota",
       "model": "prius",
       "seats": 5,
@@ -37,11 +38,12 @@
   {
     "details": {
       "address": "London HA9 0WS, United Kingdom",
-      "startDate": 1614585600000,
-      "endDate": 1615388400000,
+      "startDate": 1614585600,
+      "endDate": 1615388400,
       "drivingDays": 11
     },
     "car": {
+      "id": 1,
       "brand": "jeep",
       "model": "wrangler",
       "seats": 5,

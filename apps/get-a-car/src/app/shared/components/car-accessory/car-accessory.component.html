@@ -4,5 +4,8 @@
     <span class="font-bold" data-testid="accessory-name">{{accessory?.name}}</span>
     <span class="text-gray-500 text-sm" data-testid="accessory-price">Price: ${{accessory?.price}}</span>
   </div>
-  <mat-checkbox color="primary" [checked]="isAccessorySelected" (change)="toggleCarAccessory()"></mat-checkbox>
+  <mat-checkbox color="primary"
+                [checked]="(isAccessorySelected$ | async)"
+                (change)="toggleCarAccessory()">
+  </mat-checkbox>
 </div>

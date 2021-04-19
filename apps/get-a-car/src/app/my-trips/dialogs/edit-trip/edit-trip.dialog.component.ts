@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Car, CarAccessory, Reservation } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
@@ -17,6 +17,8 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
   public allAccessories$: Observable<CarAccessory[]>;
   /** Observable for the list of available cars */
   public allCars$: Observable<Car[]>;
+  /** Observable for the list of selected accessories */
+  public selectedAccessories$: Observable<CarAccessory[]>;
 
   /**
    * Class constructor.
@@ -24,10 +26,12 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    * @param dialogData          Data passed to the dialog
    * @param dataService         Injection of the Data service
+   * @param dialogRef           Reference to the dialog
    * @param reservationService  Injection of the reservation service
    */
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { trip: Reservation },
               private dataService: DataService,
+              private dialogRef: MatDialogRef<EditTripDialogComponent>,
               private reservationService: ReservationService) {
   }
 
@@ -37,6 +41,7 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    */
   public ngOnInit(): void {
+    this.reservationService?.resetSourceValues(this.dialogData?.trip);
     this.setupComponentObservables();
   }
 
@@ -50,6 +55,16 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Submits the edited reservation
+   *
+   * @public
+   */
+  public submitReservation(): void {
+    this.reservationService?.submitReservation();
+    this.dialogRef?.close();
+  }
+
+  /**
    * Sets up the component observables.
    *
    * @private
@@ -57,5 +72,6 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
   private setupComponentObservables(): void {
     this.allAccessories$ = this.dataService?.getAccessories();
     this.allCars$ = this.dataService?.getCars();
+    this.selectedAccessories$ = this.reservationService?.carAccessories$;
   }
 }

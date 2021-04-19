@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "brand": "jeep",
     "model": "wrangler",
     "seats": 5,
@@ -7,6 +8,7 @@
     "fuelMileage": 24
   },
   {
+    "id": 2,
     "brand": "toyota",
     "model": "prius",
     "seats": 5,

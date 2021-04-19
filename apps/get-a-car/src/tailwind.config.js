@@ -10,6 +10,9 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
+      maxWidth: {
+        '36': '9rem',
+      },
       screens: {
         'sm': '640px',
         'md': '768px',

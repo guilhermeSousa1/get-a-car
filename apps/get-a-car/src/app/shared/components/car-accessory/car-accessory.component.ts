@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
+
 
 /**
  * Component responsible for the car accessory.
@@ -19,8 +22,8 @@ export class CarAccessoryComponent implements OnInit {
   /** The car accessory */
   @Input() public accessory: CarAccessory;
 
-  /** Flag indicating if the accessory is selected */
-  public isAccessorySelected = false;
+  /** Observable indicating if the accessory is selected */
+  public isAccessorySelected$: Observable<boolean>;
 
   /**
    * Class constructor.
@@ -47,7 +50,7 @@ export class CarAccessoryComponent implements OnInit {
    * @public
    */
   public toggleCarAccessory(): void {
-    this.reservationService?.updateCarAccessories(this.accessory);
+    this.reservationService?.updateCarAccessories([this.accessory]);
   }
 
   /**
@@ -56,10 +59,10 @@ export class CarAccessoryComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.reservationService?.carAccessories$
-      .pipe(untilDestroyed(this))
-      .subscribe((selectedAccessories) => {
-        this.isAccessorySelected = selectedAccessories.some((selectedAccessory) => selectedAccessory.id === this.accessory?.id);
-      });
+    this.isAccessorySelected$ = this.reservationService?.carAccessories$
+      .pipe(
+        untilDestroyed(this),
+        map((selectedAccessories) => selectedAccessories?.some((selectedAccessory) => selectedAccessory?.id === this.accessory?.id))
+      );
   }
 }

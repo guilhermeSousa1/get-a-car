@@ -60,3 +60,10 @@ td.mat-footer-cell {
     cursor: pointer;
   }
 }
+
+// MAT-CHECKBOX
+.mat-checkbox-disabled {
+  &:hover {
+    cursor: not-allowed;
+  }
+}

@@ -58,16 +58,18 @@ export class ReservationService {
    *
    * @public
    *
-   * @param carAccessory  The car accessory
+   * @param carAccessories  The car accessories
    */
-  public updateCarAccessories(carAccessory: CarAccessory): void {
+  public updateCarAccessories(carAccessories: CarAccessory[]): void {
     const selectedCarAccessories = this.carAccessoriesSource?.getValue();
 
-    if (selectedCarAccessories?.some((selectedAccessory) => selectedAccessory.id === carAccessory.id)) {
-      this.carAccessoriesSource?.next(selectedCarAccessories?.filter((selectedAccessory) => selectedAccessory.id !== carAccessory.id));
-    } else {
-      this.carAccessoriesSource?.next([...selectedCarAccessories, carAccessory]);
-    }
+    carAccessories?.forEach((accessory) => {
+      if (selectedCarAccessories?.some((selectedAccessory) => selectedAccessory.id === accessory.id)) {
+        this.carAccessoriesSource?.next(selectedCarAccessories?.filter((selectedAccessory) => selectedAccessory.id !== accessory.id));
+      } else {
+        this.carAccessoriesSource?.next([...selectedCarAccessories, accessory]);
+      }
+    });
   }
 
   /**
@@ -146,21 +148,30 @@ export class ReservationService {
    * @param invalidSameDayReservation  Flag for the invalid same day reservation
    */
   public updateInvalidSameDayReservation(invalidSameDayReservation: boolean): void {
-    this.invalidSameDayReservationSource?.next(invalidSameDayReservation);
+    this.invalidSameDayReservationSource?.next(!!invalidSameDayReservation);
   }
 
   /**
    * Resets the values for the source subjects.
+   * If no reservation is provided then the values are changed to the default ones.
    *
    * @public
+   * @param reservation  The reservation
    */
-  public resetSourceValues(): void {
-    this.carAccessoriesSource?.next([]);
-    this.carPreferencesSource?.next(this.defaultCarPreferences);
-    this.carSource?.next(null);
-    this.detailsSource?.next(null);
-    this.invalidSameDayReservationSource?.next(false);
-    console.log('cleared');
+  public resetSourceValues(reservation?: Reservation): void {
+    if (reservation) {
+      this.carAccessoriesSource?.next(reservation?.accessories);
+      this.carSource?.next(reservation?.car);
+      this.detailsSource?.next(reservation?.details);
+      this.carPreferencesSource?.next(reservation?.carPreferences);
+    } else {
+      this.carAccessoriesSource?.next([]);
+      this.carPreferencesSource?.next(this.defaultCarPreferences);
+      this.carSource?.next(null);
+      this.detailsSource?.next(null);
+      this.invalidSameDayReservationSource?.next(false);
+      console.log('cleared');
+    }
   }
 
   /**
@@ -186,7 +197,6 @@ export class ReservationService {
     const carPreferences = this.carPreferencesSource?.getValue();
     const carAccessories = this.carAccessoriesSource?.getValue();
     const additionalCharge = carAccessories.reduce((accumulator, { price }) => accumulator + price, 0);
-
 
     if (details == null || car == null || carPreferences == null || carAccessories == null) {
       return null;
