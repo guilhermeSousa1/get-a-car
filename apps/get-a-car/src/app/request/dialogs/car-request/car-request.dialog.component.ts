@@ -21,6 +21,8 @@ export class CarRequestDialogComponent implements OnInit {
   public allAccessories$: Observable<CarAccessory[]>;
   /** Observable for the reservation details. */
   public reservationDetails$: Observable<ReservationDetails>;
+  /** Observable for the list of selected accessories */
+  public selectedAccessories$: Observable<CarAccessory[]>;
 
   /**
    * Class constructor.
@@ -61,7 +63,8 @@ export class CarRequestDialogComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.reservationDetails$ = this.reservationService?.details$;
     this.allAccessories$ = this.dataService?.getAccessories();
+    this.reservationDetails$ = this.reservationService?.details$;
+    this.selectedAccessories$ = this.reservationService?.carAccessories$;
   }
 }

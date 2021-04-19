@@ -5,7 +5,7 @@
          [class]="'bg-' + car?.brand + '-' + car?.model">
     </div>
     <div class="ml-4 flex flex-col">
-      <span class="font-bold capitalize" data-testid="accessory-name">{{car?.brand + ' ' + car?.model}}</span>
+      <span class="font-bold capitalize" data-testid="accessory-name">{{car | carName}}</span>
       <span class="text-gray-500 text-sm" data-testid="accessory-price">Available</span>
     </div>
   </div>

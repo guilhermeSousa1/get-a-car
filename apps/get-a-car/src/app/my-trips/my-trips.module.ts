@@ -10,14 +10,16 @@ import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 import { PlannedTripsComponent } from '@guilhermeSousa1/my-trips/components/planned-trips/planned-trips.component';
 import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
 import { CarBannerComponent } from '@guilhermeSousa1/my-trips/components/car-banner/car-banner.component';
+import { PipesModule } from '@guilhermeSousa1/shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MyTripsRoutingModule,
-    ComponentsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [
     MyTripsPageComponent,

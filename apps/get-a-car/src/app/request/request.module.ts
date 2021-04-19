@@ -8,6 +8,7 @@ import { MaterialModule } from '@guilhermeSousa1/material.module';
 import { RequestPageComponent } from '@guilhermeSousa1/request/page/request-page.component';
 import { DialogsModule } from '@guilhermeSousa1/shared/dialogs/dialogs.module';
 import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
+import { PipesModule } from '@guilhermeSousa1/shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/c
     MaterialModule,
     ReactiveFormsModule,
     ComponentsModule,
-    DialogsModule
+    DialogsModule,
+    PipesModule
   ],
   declarations: [
     RequestPageComponent,

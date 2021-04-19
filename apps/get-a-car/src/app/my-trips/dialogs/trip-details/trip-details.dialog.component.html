@@ -42,7 +42,7 @@
       <div class="col-span-2 flex flex-col">
         <h3 class="section-title">Car</h3>
         <span class="stat-title">MODEL</span>
-        <span class="capitalize">{{dialogData?.trip?.car?.brand + ' ' + dialogData?.trip?.car?.model}}</span>
+        <span class="capitalize">{{dialogData?.trip?.car | carName}}</span>
         <ng-container *ngIf="dialogData?.trip?.accessories?.length > 0 ">
           <span class="mt-2 stat-title">ACCESSORIES</span>
           <span class="w-4/5">
