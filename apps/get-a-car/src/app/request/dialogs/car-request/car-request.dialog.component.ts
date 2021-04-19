@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Car, CarAccessory, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
 /**
  * Component responsible for the dialog to request a car.
@@ -18,23 +19,22 @@ export class CarRequestDialogComponent implements OnInit {
 
   /** Observable for the list of available accessories */
   public allAccessories$: Observable<CarAccessory[]>;
-  /** Charging value for the accessories */
-  public additionalCharge = 0;
-
-  /** The list of selected accessories */
-  private selectedAccessories: CarAccessory[] = [];
+  /** Observable for the reservation details. */
+  public reservationDetails$: Observable<ReservationDetails>;
 
   /**
    * Class constructor.
    *
    * @public
-   * @param dialogRef    Reference to the dialog
-   * @param dataService  Injection of the Data service
-   * @param dialogData   Data passed to the dialog
+   * @param dialogRef           Reference to the dialog
+   * @param dataService         Injection of the Data service
+   * @param dialogData          Data passed to the dialog
+   * @param reservationService  Injection of the reservation service
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { car: Car, reservationDetails: ReservationDetails },
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { car: Car },
               private dataService: DataService,
-              private dialogRef: MatDialogRef<CarRequestDialogComponent>) {
+              private dialogRef: MatDialogRef<CarRequestDialogComponent>,
+              private reservationService: ReservationService) {
   }
 
   /**
@@ -47,27 +47,12 @@ export class CarRequestDialogComponent implements OnInit {
   }
 
   /**
-   * Toggles the selection of an accessory
-   *
-   * @public
-   */
-  public toggleAccessory(accessory: CarAccessory): void {
-    if (this.selectedAccessories?.includes(accessory)) {
-      this.selectedAccessories = this.selectedAccessories?.filter((selectedAccessory) => selectedAccessory.id !== accessory.id);
-      this.additionalCharge -= accessory.price;
-    } else {
-      this.selectedAccessories?.push(accessory);
-      this.additionalCharge += accessory.price;
-    }
-  }
-
-  /**
    * Closes the dialog and submits the list of accessories
    *
    * @public
    */
   public submitAccessories(): void {
-    this.dialogRef?.close({ selectedAccessories: this.selectedAccessories, additionalCharge: this.additionalCharge });
+    this.dialogRef?.close(true);
   }
 
   /**
@@ -76,6 +61,7 @@ export class CarRequestDialogComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
+    this.reservationDetails$ = this.reservationService?.details$;
     this.allAccessories$ = this.dataService?.getAccessories();
   }
 }

@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
+import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
 /**
  * Component responsible for the dialog to edit the car preferences.
@@ -30,13 +31,13 @@ export class EditCarPreferencesDialogComponent implements OnInit {
    *
    * @public
    *
-   * @param dialogData          Data passed to the dialog
    * @param dialogRef           Reference to the dialog
    * @param formBuilder         Injection of the FormBuilder service
+   * @param reservationService  Injection of the reservation service
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { carPreferences: CarPreferences },
-              private dialogRef: MatDialogRef<EditCarPreferencesDialogComponent>,
-              private formBuilder: FormBuilder) {
+  constructor(private dialogRef: MatDialogRef<EditCarPreferencesDialogComponent>,
+              private formBuilder: FormBuilder,
+              private reservationService: ReservationService) {
   }
 
   /**
@@ -55,13 +56,14 @@ export class EditCarPreferencesDialogComponent implements OnInit {
    */
   public submit(): void {
     const carPreferences: CarPreferences = {
-      radioStation:  this.form?.get('radioStation')?.value ?? this.dialogData?.carPreferences?.radioStation,
-      temperature:   this.form?.get('temperature')?.value ?? this.dialogData?.carPreferences?.temperature,
-      driveMode:     this.form?.get('driveMode')?.value ?? this.dialogData?.carPreferences?.driveMode,
-      chargingCable: this.form?.get('chargingCable')?.value ?? this.dialogData?.carPreferences?.chargingCable
+      radioStation:  this.form?.get('radioStation')?.value,
+      temperature:   this.form?.get('temperature')?.value,
+      driveMode:     this.form?.get('driveMode')?.value,
+      chargingCable: this.form?.get('chargingCable')?.value
     };
 
-    this.dialogRef?.close(carPreferences);
+    this.reservationService?.updateCarPreferences(carPreferences);
+    this.dialogRef?.close();
   }
 
   /**
@@ -70,11 +72,13 @@ export class EditCarPreferencesDialogComponent implements OnInit {
    * @private
    */
   private initializeForm(): void {
+    const currentCarPreferences = this.reservationService?.getCarPreferences();
+
     this.form = this.formBuilder?.group({
-      radioStation:  [this.dialogData?.carPreferences?.radioStation, Validators.required],
-      temperature:   [this.dialogData?.carPreferences?.temperature, [Validators.required, Validators.min(15), Validators.max(27)]],
-      driveMode:     [this.dialogData?.carPreferences?.driveMode, Validators.required],
-      chargingCable: [this.dialogData?.carPreferences?.chargingCable, Validators.required]
+      radioStation:  [currentCarPreferences?.radioStation, Validators.required],
+      temperature:   [currentCarPreferences?.temperature, [Validators.required, Validators.min(15), Validators.max(27)]],
+      driveMode:     [currentCarPreferences?.driveMode, Validators.required],
+      chargingCable: [currentCarPreferences?.chargingCable, Validators.required]
     });
   }
 

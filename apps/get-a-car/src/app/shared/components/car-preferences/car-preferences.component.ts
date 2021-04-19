@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
@@ -57,21 +56,10 @@ export class CarPreferencesComponent implements OnInit {
   public showEditCarPreferencesDialog(): void {
     const config: MatDialogConfig = {
       width:     '550px',
-      autoFocus: false,
-      data:      {
-        carPreferences: this.reservationService?.getCarPreferences()
-      }
+      autoFocus: false
     };
 
-    const dialogRef = this.dialog?.open(EditCarPreferencesDialogComponent, config);
-
-    dialogRef.afterClosed()
-      .pipe(take(1))
-      .subscribe((carPreferences) => {
-        if (carPreferences) {
-          this.reservationService?.updateCarPreferences(carPreferences);
-        }
-      });
+    this.dialog?.open(EditCarPreferencesDialogComponent, config);
   }
 
   /**

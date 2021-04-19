@@ -7,8 +7,13 @@ import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 /**
  * Service used to manage the data for the creation, edition and cancellation of a reservation.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ReservationService {
+
+  /** The default car preferences */
+  private defaultCarPreferences: CarPreferences;
 
   /** The source for the car accessories */
   private readonly carAccessoriesSource = new BehaviorSubject<CarAccessory[]>([]);
@@ -43,6 +48,7 @@ export class ReservationService {
     this.dataService?.getDefaultCarPreferences()
       .pipe(take(1))
       .subscribe((defaultCarPreferences) => {
+        this.defaultCarPreferences = defaultCarPreferences;
         this.carPreferencesSource?.next(defaultCarPreferences);
       });
   }
@@ -52,12 +58,25 @@ export class ReservationService {
    *
    * @public
    *
-   * @param carAccessories  The car accessories
+   * @param carAccessory  The car accessory
    */
-  public updateCarAccessories(carAccessories: CarAccessory[]): void {
-    if (carAccessories) {
-      this.carAccessoriesSource?.next(carAccessories);
+  public updateCarAccessories(carAccessory: CarAccessory): void {
+    const selectedCarAccessories = this.carAccessoriesSource?.getValue();
+
+    if (selectedCarAccessories?.some((selectedAccessory) => selectedAccessory.id === carAccessory.id)) {
+      this.carAccessoriesSource?.next(selectedCarAccessories?.filter((selectedAccessory) => selectedAccessory.id !== carAccessory.id));
+    } else {
+      this.carAccessoriesSource?.next([...selectedCarAccessories, carAccessory]);
     }
+  }
+
+  /**
+   * Resets the source subject of the car accessories.
+   *
+   * @public
+   */
+  public resetAccessories(): void {
+    return this.carAccessoriesSource?.next([]);
   }
 
   /**
@@ -131,6 +150,20 @@ export class ReservationService {
   }
 
   /**
+   * Resets the values for the source subjects.
+   *
+   * @public
+   */
+  public resetSourceValues(): void {
+    this.carAccessoriesSource?.next([]);
+    this.carPreferencesSource?.next(this.defaultCarPreferences);
+    this.carSource?.next(null);
+    this.detailsSource?.next(null);
+    this.invalidSameDayReservationSource?.next(false);
+    console.log('cleared');
+  }
+
+  /**
    * Submits the reservation.
    *
    * @public
@@ -163,9 +196,9 @@ export class ReservationService {
       details,
       car,
       carPreferences,
-      accessories:      carAccessories,
-      additionalCharge: additionalCharge,
-      status:           ReservationStatus.PLANNED
+      additionalCharge,
+      accessories: carAccessories,
+      status:      ReservationStatus.PLANNED
     };
   }
 }

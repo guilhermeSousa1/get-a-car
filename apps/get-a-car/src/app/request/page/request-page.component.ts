@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -15,10 +15,9 @@ import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-
 @Component({
   selector:    'request-page',
   templateUrl: './request-page.component.html',
-  styleUrls:   ['./request-page.component.scss'],
-  providers:   [ReservationService]
+  styleUrls:   ['./request-page.component.scss']
 })
-export class RequestPageComponent implements OnInit {
+export class RequestPageComponent implements OnInit, OnDestroy {
 
   /** Observable for the list of available cars */
   public allCars$: Observable<Car[]>;
@@ -47,20 +46,26 @@ export class RequestPageComponent implements OnInit {
   }
 
   /**
+   * Lifecycle hook that is executed when the component is destroyed.
+   *
+   * @public
+   */
+  public ngOnDestroy(): void {
+    this.reservationService?.resetSourceValues();
+  }
+
+  /**
    * Displays the modal to request a car
    *
    * @public
    * @param requestedCar  The requested car
    */
   public showRequestCarDialog(requestedCar: Car): void {
-    const reservationDetails = this.reservationService?.getReservationDetails();
-
     const config: MatDialogConfig = {
       width:     '800px',
       autoFocus: false,
       data:      {
-        car: requestedCar,
-        reservationDetails
+        car: requestedCar
       }
     };
 
@@ -68,11 +73,12 @@ export class RequestPageComponent implements OnInit {
 
     dialogRef.afterClosed()
       .pipe(take(1))
-      .subscribe(({ selectedAccessories, additionalCharge }) => {
-        if (selectedAccessories != null && additionalCharge != null) {
+      .subscribe((res) => {
+        if (res) {
           this.reservationService?.updateCar(requestedCar);
-          this.reservationService?.updateCarAccessories(selectedAccessories);
           this.reservationService?.submitReservation();
+        } else {
+          this.reservationService?.resetAccessories();
         }
       });
   }

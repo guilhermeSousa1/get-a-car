@@ -15,26 +15,26 @@
       <span class="text-gray-500">Start</span>
       <span class="font-bold"
             data-testid="reservation-start-date">
-        {{dialogData?.reservationDetails?.startDate | date:'EEEE, MMMM d, y' }}
+        {{(reservationDetails$ | async)?.startDate | date:'EEEE, MMMM d, y' }}
       </span>
     </div>
     <div class="flex flex-col mb-4">
       <span class="text-gray-500">End</span>
       <span class="font-bold"
             data-testid="reservation-end-date">
-        {{dialogData?.reservationDetails?.endDate | date:'EEEE, MMMM d, y' }}
+        {{(reservationDetails$ | async)?.endDate | date:'EEEE, MMMM d, y' }}
       </span>
     </div>
     <div class="flex flex-col mb-4">
       <span class="text-gray-500">Delivery/Return</span>
       <span class="font-bold break-words inline-block w-52" data-testid="reservation-address">
-        {{dialogData?.reservationDetails?.address}}
+        {{(reservationDetails$ | async)?.address}}
       </span>
     </div>
     <div class="flex flex-col">
       <span class="text-gray-500">Driving days</span>
       <span class="font-bold" data-testid="reservation-driving-days">
-        {{dialogData?.reservationDetails?.drivingDays}}
+        {{(reservationDetails$ | async)?.drivingDays}}
       </span>
     </div>
   </div>
@@ -43,8 +43,7 @@
     <h3 class="text-xl mb-4 font-bold">Accessories</h3>
     <div class="h-full flex flex-col justify-between">
       <car-accessory *ngFor="let accessory of (allAccessories$ | async)"
-                     [accessory]="accessory"
-                     (toggleAccessory)="toggleAccessory($event)">
+                     [accessory]="accessory">
       </car-accessory>
     </div>
   </div>
@@ -53,7 +52,7 @@
 <div mat-dialog-actions
      class="flex flex-col sm:flex-row flex-nowrap justify-between mt-4 border-solid border-t border-gray-300">
     <span class="text-gray-500 mb-2 sm:mb-0">Additional charge:
-      <span class="text-black font-bold">${{additionalCharge}}</span>
+      <span class="text-black font-bold">${{25}}</span>
     </span>
   <div>
     <button mat-raised-button type="button" color="primary" mat-dialog-close>Cancel</button>
