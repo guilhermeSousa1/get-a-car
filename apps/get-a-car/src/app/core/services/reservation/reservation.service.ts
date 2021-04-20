@@ -203,6 +203,7 @@ export class ReservationService {
     }
 
     return {
+      id:          10,
       details,
       car,
       carPreferences,

@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Car, CarAccessory, CarPreferences, Reservation } from '@guilhermeSousa1/shared/data-models';
-import { environment } from '../../../../environments/environment';
 
 /**
- * Service used to get static data from the .json files.
+ * Service used to get static data.
  */
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ import { environment } from '../../../../environments/environment';
 export class DataService {
 
   /** Base path for the data files */
-  private baseUrl = environment.url;
+  private baseUrl = 'api';
 
   /**
    * Class constructor.
@@ -32,7 +31,7 @@ export class DataService {
    * @returns  {Observable<Car[]>}
    */
   public getCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(`${ this.baseUrl }/cars.json`);
+    return this.http.get<Car[]>(`${ this.baseUrl }/cars`);
   }
 
   /**
@@ -43,7 +42,7 @@ export class DataService {
    * @returns  {Observable<CarAccessory[]>}
    */
   public getAccessories(): Observable<CarAccessory[]> {
-    return this.http.get<CarAccessory[]>(`${ this.baseUrl }/accessories.json`);
+    return this.http.get<CarAccessory[]>(`${ this.baseUrl }/accessories`);
   }
 
   /**
@@ -54,7 +53,7 @@ export class DataService {
    * @returns  {Observable<CarPreferences[]>}
    */
   public getDefaultCarPreferences(): Observable<CarPreferences> {
-    return this.http.get<CarPreferences>(`${ this.baseUrl }/default-car-preferences.json`);
+    return this.http.get<CarPreferences>(`${ this.baseUrl }/defaultCarPreferences`);
   }
 
   /**
@@ -65,7 +64,7 @@ export class DataService {
    * @returns  {Observable<Reservation[]>}
    */
   public getPastReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${ this.baseUrl }/past-reservations.json`);
+    return this.http.get<Reservation[]>(`${ this.baseUrl }/pastReservations`);
   }
 
   /**
@@ -76,6 +75,6 @@ export class DataService {
    * @returns  {Observable<Reservation[]>}
    */
   public getPlannedReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${ this.baseUrl }/planned-reservations.json`);
+    return this.http.get<Reservation[]>(`${ this.baseUrl }/plannedReservations`);
   }
 }

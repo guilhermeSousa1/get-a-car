@@ -4,6 +4,8 @@ import { Car, CarAccessory, CarPreferences, ReservationDetails, ReservationStatu
  * Interface that models a reservation.
  */
 export interface Reservation {
+  /** The id of the reservation */
+  id: number;
   /** The details of the reservation */
   details: ReservationDetails;
   /** The reserved car */
