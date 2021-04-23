@@ -34,7 +34,10 @@ export class ReservationAPI {
   public getPastReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(`${ this.baseUrl }/reservations`)
       .pipe(
-        map((reservations) => reservations.filter((reservation) => reservation?.status !== ReservationStatus.PLANNED))
+        map((reservations) => {
+          const filteredReservations = reservations.filter((reservation) => reservation?.status !== ReservationStatus.PLANNED);
+          return filteredReservations.sort((a, b) => (a.details?.startDate > b.details?.startDate ? 1 : -1));
+        })
       );
   }
 
@@ -48,7 +51,10 @@ export class ReservationAPI {
   public getPlannedReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(`${ this.baseUrl }/reservations`)
       .pipe(
-        map((reservations) => reservations.filter((reservation) => reservation?.status === ReservationStatus.PLANNED))
+        map((reservations) => {
+          const filteredReservations = reservations.filter((reservation) => reservation?.status === ReservationStatus.PLANNED);
+          return filteredReservations.sort((a, b) => (a.details?.startDate > b.details?.startDate ? 1 : -1));
+        })
       );
   }
 
