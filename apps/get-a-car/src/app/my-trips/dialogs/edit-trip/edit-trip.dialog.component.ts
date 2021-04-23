@@ -5,6 +5,7 @@ import { take } from 'rxjs/operators';
 import { Car, CarAccessory, Reservation } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 
 /* eslint-disable no-multi-spaces */
 @Component({
@@ -28,11 +29,13 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @param dialogData          Data passed to the dialog
    * @param dataService         Injection of the Data service
    * @param dialogRef           Reference to the dialog
+   * @param reservationAPI      Injection of the Reservation API service
    * @param reservationService  Injection of the reservation service
    */
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { trip: Reservation },
               private dataService: DataService,
               private dialogRef: MatDialogRef<EditTripDialogComponent>,
+              private reservationAPI: ReservationAPI,
               private reservationService: ReservationService) {
   }
 
@@ -56,7 +59,7 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Submits the edited reservation
+   * Updates the reservation
    *
    * @public
    */
@@ -64,6 +67,19 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
     const reservationId = this.dialogData?.trip?.id;
 
     this.reservationService?.updateReservation(reservationId)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.dialogRef?.close(true);
+      });
+  }
+
+  /**
+   * Cancels the reservation
+   *
+   * @public
+   */
+  public cancelReservation(): void {
+    this.reservationAPI?.cancelReservation(this.dialogData?.trip)
       .pipe(take(1))
       .subscribe(() => {
         this.dialogRef?.close(true);

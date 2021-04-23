@@ -35,7 +35,7 @@
 </div>
 
 <div mat-dialog-actions class="mt-4 flex flex-row flex-nowrap justify-between items-center">
-  <button mat-raised-button type="button" color="warn" mat-dialog-close>Cancel trip</button>
+  <button mat-raised-button type="button" color="warn" (click)="cancelReservation()">Cancel trip</button>
   <div class="flex flex-row flex-nowrap items-center">
     <div class="mr-4">
       <span class="text-gray-500 mb-2 sm:mb-0">Additional charge:</span>

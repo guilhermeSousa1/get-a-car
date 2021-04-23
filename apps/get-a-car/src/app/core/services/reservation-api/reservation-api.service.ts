@@ -81,4 +81,16 @@ export class ReservationAPI {
   public updateReservation(reservation: Reservation): Observable<any> {
     return this.http.put<any>(`${ this.baseUrl }/reservations`, reservation);
   }
+
+  /**
+   * Cancels an existing reservation.
+   *
+   * @public
+   *
+   * @param reservation  The reservation to cancel
+   * @returns            {Observable<any>}
+   */
+  public cancelReservation(reservation: Reservation): Observable<any> {
+    return this.http.put<any>(`${ this.baseUrl }/reservations`, { ...reservation, status: ReservationStatus.CANCELLED });
+  }
 }

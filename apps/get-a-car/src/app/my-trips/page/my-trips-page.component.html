@@ -3,10 +3,14 @@
 <div class="content-container">
   <mat-tab-group>
     <mat-tab label="Planned Trips">
-      <planned-trips></planned-trips>
+      <ng-template matTabContent>
+        <planned-trips></planned-trips>
+      </ng-template>
     </mat-tab>
     <mat-tab label="Past Trips">
-      <past-trips></past-trips>
+      <ng-template matTabContent>
+        <past-trips></past-trips>
+      </ng-template>
     </mat-tab>
   </mat-tab-group>
 </div>
