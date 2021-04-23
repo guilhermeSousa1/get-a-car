@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { filter, finalize, switchMap, take, tap } from 'rxjs/operators';
 import { Car } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
@@ -30,10 +31,12 @@ export class RequestPageComponent implements OnInit, OnDestroy {
    * @param dataService         Injection of the Data service
    * @param dialog              Injection of the Dialog service
    * @param reservationService  Injection of the reservation service
+   * @param router              Injection of the router service
    */
   constructor(private dataService: DataService,
               private dialog: MatDialog,
-              private reservationService: ReservationService) {
+              private reservationService: ReservationService,
+              private router: Router) {
   }
 
   /**
@@ -72,13 +75,16 @@ export class RequestPageComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog?.open(CarRequestDialogComponent, config);
 
     dialogRef.afterClosed()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        filter((res) => !!res),
+        tap(() => this.reservationService?.updateCar(requestedCar)),
+        switchMap(() => this.reservationService?.createReservation()),
+        finalize(() => this.reservationService?.resetAccessories())
+      )
       .subscribe((res) => {
         if (res) {
-          this.reservationService?.updateCar(requestedCar);
-          this.reservationService?.submitReservation();
-        } else {
-          this.reservationService?.resetAccessories();
+          this.router?.navigate(['/my-trips']);
         }
       });
   }

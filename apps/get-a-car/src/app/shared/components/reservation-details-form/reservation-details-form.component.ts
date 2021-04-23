@@ -31,6 +31,8 @@ export class ReservationDetailsFormComponent implements OnInit {
     ...Array.from({ length: 12 }).map((_, hr) => ({ display: `${ hr === 0 ? 12 : hr }:00 AM`, value: hr })),
     ...Array.from({ length: 12 }).map((_, hr) => ({ display: `${ hr === 0 ? 12 : hr }:00 PM`, value: hr + 12 }))
   ]
+  /** The current day date. */
+  public today = new Date();
 
   /**
    * Class constructor.
@@ -90,7 +92,6 @@ export class ReservationDetailsFormComponent implements OnInit {
         collectionTime: [null, Validators.required]
       }, { validators: sameDayReservationValidator() });
     }
-
   }
 
   /**

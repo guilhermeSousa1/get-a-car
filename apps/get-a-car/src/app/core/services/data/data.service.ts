@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Car, CarAccessory, CarPreferences, Reservation } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/shared/data-models';
 
 /**
  * Service used to get static data.
@@ -11,7 +11,7 @@ import { Car, CarAccessory, CarPreferences, Reservation } from '@guilhermeSousa1
 })
 export class DataService {
 
-  /** Base path for the data files */
+  /** Base path for the in memory data */
   private baseUrl = 'api';
 
   /**
@@ -54,27 +54,5 @@ export class DataService {
    */
   public getDefaultCarPreferences(): Observable<CarPreferences> {
     return this.http.get<CarPreferences>(`${ this.baseUrl }/defaultCarPreferences`);
-  }
-
-  /**
-   * Returns the list of past trips.
-   *
-   * @public
-   *
-   * @returns  {Observable<Reservation[]>}
-   */
-  public getPastReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${ this.baseUrl }/pastReservations`);
-  }
-
-  /**
-   * Returns the list of planned trips.
-   *
-   * @public
-   *
-   * @returns  {Observable<Reservation[]>}
-   */
-  public getPlannedReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${ this.baseUrl }/plannedReservations`);
   }
 }

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMap, take } from 'rxjs/operators';
 import { Reservation } from '@guilhermeSousa1/shared/data-models';
 import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 
 /**
  * Component responsible for the planned-trips.
@@ -32,6 +33,9 @@ export class PlannedTripsComponent implements OnInit {
   /** The end index to slice the reservation list */
   public endSlice = 5;
 
+  /** Behaviour subject to force the http request for the list of planned trips */
+  private plannedReservationsRequest$: BehaviorSubject<void> = new BehaviorSubject(undefined);
+
   /**
    * Class constructor.
    *
@@ -40,10 +44,12 @@ export class PlannedTripsComponent implements OnInit {
    * @param breakPointObserver  Injection of the breakpoint observer utility
    * @param dataService         Injection of the Data service
    * @param dialog              Injection of the Dialog service
+   * @param reservationAPI      Injection of the Reservation API service
    */
   constructor(private breakPointObserver: BreakpointObserver,
               private dataService: DataService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private reservationAPI: ReservationAPI) {
   }
 
   /**
@@ -70,6 +76,14 @@ export class PlannedTripsComponent implements OnInit {
     };
 
     const dialogRef = this.dialog?.open(EditTripDialogComponent, config);
+
+    dialogRef.afterClosed()
+      .pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          this.plannedReservationsRequest$.next();
+        }
+      });
   }
 
   /**
@@ -95,7 +109,10 @@ export class PlannedTripsComponent implements OnInit {
         map(((result) => result.matches))
       );
 
-    this.plannedReservations$ = this.dataService?.getPlannedReservations();
+    this.plannedReservations$ = this.plannedReservationsRequest$
+      .pipe(
+        switchMap(() => this.reservationAPI?.getPlannedReservations())
+      );
   }
 
 }

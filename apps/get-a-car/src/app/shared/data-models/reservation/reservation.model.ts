@@ -5,7 +5,7 @@ import { Car, CarAccessory, CarPreferences, ReservationDetails, ReservationStatu
  */
 export interface Reservation {
   /** The id of the reservation */
-  id: number;
+  id?: number;
   /** The details of the reservation */
   details: ReservationDetails;
   /** The reserved car */

@@ -15,6 +15,10 @@ const routes: Routes = [
     path:       '',
     redirectTo: 'request',
     pathMatch:  'full'
+  },
+  {
+    path:       '**',
+    redirectTo: 'request'
   }
 ];
 

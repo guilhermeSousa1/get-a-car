@@ -14,7 +14,7 @@
 
   <mat-form-field class="w-full">
     <mat-label>Reservation period</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
+    <mat-date-range-input [rangePicker]="picker" [min]="today">
       <input type="text"
              matStartDate
              placeholder="Start date"

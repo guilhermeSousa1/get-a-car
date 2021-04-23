@@ -19,6 +19,7 @@
     </div>
   </div>
   <mat-radio-button color="primary"
+                    (change)="toggleCarSelection()"
                     [disabled]="(reservationDetails$ | async) === null"
                     [checked]="(isCarSelected$ | async)">
   </mat-radio-button>

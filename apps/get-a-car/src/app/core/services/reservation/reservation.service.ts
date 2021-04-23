@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Car, CarAccessory, CarPreferences, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 
 /**
  * Service used to manage the data for the creation, edition and cancellation of a reservation.
@@ -42,9 +43,11 @@ export class ReservationService {
    *
    * @public
    *
-   * @param dataService  Injection of the Data service
+   * @param dataService     Injection of the Data service
+   * @param reservationAPI  Injection of the Reservation API service
    */
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private reservationAPI: ReservationAPI) {
     this.dataService?.getDefaultCarPreferences()
       .pipe(take(1))
       .subscribe((defaultCarPreferences) => {
@@ -170,18 +173,29 @@ export class ReservationService {
       this.carSource?.next(null);
       this.detailsSource?.next(null);
       this.invalidSameDayReservationSource?.next(false);
-      console.log('cleared');
     }
   }
 
   /**
-   * Submits the reservation.
+   * Creates a new reservation.
    *
    * @public
+   * @return  {Observable<Reservation>}
    */
-  public submitReservation(): void {
-    const reservation: Reservation = this.transformReservationData();
-    console.log(reservation);
+  public createReservation(): Observable<Reservation> {
+    return this.reservationAPI?.createReservation(this.transformReservationData());
+  }
+
+  /**
+   * Updates an existing reservation.
+   *
+   * @public
+   *
+   * @param id  The id of the existing reservation
+   * @return    {Observable<any>}
+   */
+  public updateReservation(id: number): Observable<any> {
+    return this.reservationAPI?.updateReservation({ ...this.transformReservationData(), id });
   }
 
   /**
@@ -203,7 +217,6 @@ export class ReservationService {
     }
 
     return {
-      id:          10,
       details,
       car,
       carPreferences,

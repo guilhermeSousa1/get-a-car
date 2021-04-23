@@ -1,10 +1,10 @@
 <mat-card>
   <mat-card-content class="flex flex-col text-base">
     <mat-card-title class="text-xl">Car preferences</mat-card-title>
-    <span class="text-gray-500 mb-1">Radio station: {{RADIO_STATIONS[(carPreferences$ | async)?.radioStation]}}</span>
+    <span class="text-gray-500 mb-1">Radio station: {{(carPreferences$ | async)?.radioStation}}</span>
     <span class="text-gray-500 mb-1">Temperature: {{(carPreferences$ | async)?.temperature}} Cº</span>
-    <span class="text-gray-500 mb-1">Drive mode: {{DRIVE_MODES[(carPreferences$ | async)?.driveMode]}}</span>
-    <span class="text-gray-500">Charging cable: {{CHARGING_CABLES[(carPreferences$ | async)?.chargingCable]}}</span>
+    <span class="text-gray-500 mb-1">Drive mode: {{(carPreferences$ | async)?.driveMode}}</span>
+    <span class="text-gray-500">Charging cable: {{(carPreferences$ | async)?.chargingCable}}</span>
   </mat-card-content>
   <mat-card-actions>
     <button type="button"

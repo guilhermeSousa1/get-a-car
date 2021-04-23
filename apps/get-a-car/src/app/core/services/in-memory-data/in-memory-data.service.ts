@@ -2,11 +2,19 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Car, CarAccessory, CarPreferences, ChargingCable, DriveMode, DriveSystem, RadioStation, Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 
+/**
+ * Service used for the in memory data.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryDataService implements InMemoryDbService {
-  createDb() {
+  /**
+   * Generates the in memory database
+   *
+   * @public
+   */
+  public createDb() {
     const accessories: CarAccessory[] = [
       {
         name:  'Dog seat hammock',
@@ -56,13 +64,13 @@ export class InMemoryDataService implements InMemoryDbService {
       chargingCable: ChargingCable.LIGHTNING
     };
 
-    const pastReservations: Reservation[] = [
+    const reservations: Reservation[] = [
       {
         id:      1,
         details: {
           address:     'Westminster, London SW1A 0AA, United Kingdom',
-          startDate:   1612692000,
-          endDate:     1612821600,
+          startDate:   1612692000000,
+          endDate:     1612821600000,
           drivingDays: 2
         },
         car: {
@@ -98,8 +106,8 @@ export class InMemoryDataService implements InMemoryDbService {
         id:      2,
         details: {
           address:     'London HA9 0WS, United Kingdom',
-          startDate:   1614585600,
-          endDate:     1615388400,
+          startDate:   1614585600000,
+          endDate:     1615388400000,
           drivingDays: 11
         },
         car: {
@@ -130,8 +138,8 @@ export class InMemoryDataService implements InMemoryDbService {
         id:      3,
         details: {
           address:     'Museumstraat 1, 1071 XX Amsterdam, Netherlands',
-          startDate:   1609484400,
-          endDate:     1609538400,
+          startDate:   1609484400000,
+          endDate:     1609538400000,
           drivingDays: 1
         },
         car: {
@@ -177,8 +185,8 @@ export class InMemoryDataService implements InMemoryDbService {
         id:      4,
         details: {
           address:     'Viale di Vedano, 5, 20900 Monza MB, Italy',
-          startDate:   1609768800,
-          endDate:     1611172800,
+          startDate:   1609768800000,
+          endDate:     1611172800000,
           drivingDays: 17
         },
         car: {
@@ -214,16 +222,13 @@ export class InMemoryDataService implements InMemoryDbService {
         ],
         additionalCharge: 50,
         status:           ReservationStatus.FINISHED
-      }
-    ];
-
-    const plannedReservations: Reservation[] = [
+      },
       {
         id:      5,
         details: {
           address:     'Westminster, London SW1A 0AA, United Kingdom',
-          startDate:   1612692000,
-          endDate:     1612821600,
+          startDate:   1634889600000,
+          endDate:     1635184800000,
           drivingDays: 2
         },
         car: {
@@ -259,8 +264,8 @@ export class InMemoryDataService implements InMemoryDbService {
         id:      6,
         details: {
           address:     'London HA9 0WS, United Kingdom',
-          startDate:   1614585600,
-          endDate:     1615388400,
+          startDate:   1631685600000,
+          endDate:     1632146400000,
           drivingDays: 11
         },
         car: {
@@ -289,7 +294,18 @@ export class InMemoryDataService implements InMemoryDbService {
       }
     ];
 
-    return { accessories, cars, defaultCarPreferences, pastReservations, plannedReservations };
+    return { accessories, cars, defaultCarPreferences, reservations };
+  }
+
+  /**
+   * Id generator for the reservations.
+   *
+   * @public
+   *
+   * @returns {number}
+   */
+  public genId(reservations: Reservation[]): number {
+    return reservations.length + 1;
   }
 
   constructor() {

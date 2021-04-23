@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
 import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 
 /**
  * Component responsible for the past-trips.
@@ -42,10 +43,12 @@ export class PastTripsComponent implements OnInit {
    * @param breakPointObserver  Injection of the breakpoint observer utility
    * @param dataService         Injection of the Data service
    * @param dialog              Injection of the Dialog service
+   * @param reservationAPI      Injection of the Reservation API service
    */
   constructor(private breakPointObserver: BreakpointObserver,
               private dataService: DataService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private reservationAPI: ReservationAPI) {
   }
 
   /**
@@ -97,7 +100,7 @@ export class PastTripsComponent implements OnInit {
         map(((result) => result.matches))
       );
 
-    this.pastReservations$ = this.dataService?.getPastReservations();
+    this.pastReservations$ = this.reservationAPI?.getPastReservations();
   }
 
 }

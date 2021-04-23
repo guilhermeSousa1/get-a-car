@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Car, CarAccessory, Reservation } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
@@ -60,8 +61,13 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    */
   public submitReservation(): void {
-    this.reservationService?.submitReservation();
-    this.dialogRef?.close();
+    const reservationId = this.dialogData?.trip?.id;
+
+    this.reservationService?.updateReservation(reservationId)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.dialogRef?.close(true);
+      });
   }
 
   /**

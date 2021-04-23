@@ -5,7 +5,7 @@
     <mat-form-field>
       <mat-label>Radio Station</mat-label>
       <mat-select placeholder="Radio Station" formControlName="radioStation" data-testid="radio-station">
-        <mat-option *ngFor="let radioStation of RADIO_STATIONS | keyvalue" [value]="radioStation?.key">
+        <mat-option *ngFor="let radioStation of RADIO_STATIONS | keyvalue" [value]="radioStation?.value">
           {{radioStation?.value}}
         </mat-option>
       </mat-select>
@@ -31,7 +31,7 @@
     <mat-form-field>
       <mat-label>Drive Mode</mat-label>
       <mat-select placeholder="Drive Mode" formControlName="driveMode" data-testid="drive-mode">
-        <mat-option *ngFor="let driveMode of DRIVE_MODES | keyvalue" [value]="driveMode?.key">
+        <mat-option *ngFor="let driveMode of DRIVE_MODES | keyvalue" [value]="driveMode?.value">
           {{driveMode?.value}}
         </mat-option>
       </mat-select>
@@ -41,7 +41,7 @@
     <mat-form-field>
       <mat-label>Charging Cable</mat-label>
       <mat-select placeholder="Charging Cable" formControlName="chargingCable" data-testid="charging-cable">
-        <mat-option *ngFor="let chargingCable of CHARGING_CABLES | keyvalue" [value]="chargingCable?.key">
+        <mat-option *ngFor="let chargingCable of CHARGING_CABLES | keyvalue" [value]="chargingCable?.value">
           {{chargingCable?.value}}
         </mat-option>
       </mat-select>
