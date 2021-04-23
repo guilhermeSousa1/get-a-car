@@ -5,7 +5,12 @@ import { MyTripsPageComponent } from './page/my-trips-page.component';
 const routes: Routes = [
   {
     path:      '',
-    component: MyTripsPageComponent
+    component: MyTripsPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:       '**',
+    redirectTo: ''
   }
 ];
 

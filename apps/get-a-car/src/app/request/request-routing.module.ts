@@ -5,7 +5,12 @@ import { RequestPageComponent } from './page/request-page.component';
 const routes: Routes = [
   {
     path:      '',
-    component: RequestPageComponent
+    component: RequestPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:       '**',
+    redirectTo: ''
   }
 ];
 
