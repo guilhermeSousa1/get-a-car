@@ -11,17 +11,17 @@
     </div>
     <div class="w-11/12 flex flex-row justify-between">
       <div class="stat-container">
-        <mat-icon color="primary" class="stat-icon">groups</mat-icon>
+        <mat-icon color="primary" class="stat-icon material-icons-outlined">groups</mat-icon>
         <span class="stat-description" data-testid="car-seats">{{car?.seats}} seats</span>
       </div>
       <div class="stat-container">
-        <mat-icon color="primary" class="stat-icon" data-testid="car-drive-system-icon">
+        <mat-icon color="primary" class="stat-icon material-icons-outlined" data-testid="car-drive-system-icon">
           {{car?.driveSystem === DRIVE_SYSTEM.AWD ? 'terrain' : 'apartment'}}
         </mat-icon>
         <span class="stat-description" data-testid="car-drive-system">{{car?.driveSystem}}</span>
       </div>
       <div class="stat-container">
-        <mat-icon color="primary" class="stat-icon">local_gas_station</mat-icon>
+        <mat-icon color="primary" class="stat-icon material-icons-outlined">local_gas_station</mat-icon>
         <span class="stat-description" data-testid="car-fuel-mileage">{{car?.fuelMileage}} MPG</span>
       </div>
     </div>
