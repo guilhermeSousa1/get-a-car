@@ -6,13 +6,13 @@
   </button>
 </div>
 
-<div mat-dialog-content class="grid grid-cols-2 grid-rows-1 gap-12">
+<div mat-dialog-content class="flex flex-col md:grid md:grid-cols-2 md:grid-rows-1 md:gap-12">
   <div>
     <h3 class="mb-2 section-title">Date & Address</h3>
     <reservation-details-form></reservation-details-form>
     <car-preferences></car-preferences>
   </div>
-  <div class="flex flex-col">
+  <div class="mt-5 md:mt-0 flex flex-col">
     <div>
       <h3 class="section-title">Car</h3>
       <div class="flex flex-col">
@@ -34,14 +34,13 @@
   </div>
 </div>
 
-<div mat-dialog-actions class="mt-4 flex flex-row flex-nowrap justify-between items-center">
-  <button mat-raised-button type="button" color="warn" (click)="cancelReservation()">Cancel trip</button>
-  <div class="flex flex-row flex-nowrap items-center">
-    <div class="mr-4">
-      <span class="text-gray-500 mb-2 sm:mb-0">Additional charge:</span>
-      <br>
-      <span class="flex justify-end font-bold">${{ (selectedAccessories$ | async) | additionalCharge }}</span>
-    </div>
+<div mat-dialog-actions
+     class="mt-4 flex flex-col sm:flex-row flex-nowrap justify-between border-solid border-t border-gray-300">
+  <span class="text-gray-500 mb-2 sm:mb-0">Additional charge:
+    <span class="text-black font-bold">${{ (selectedAccessories$ | async) | additionalCharge }}</span>
+  </span>
+  <div>
+    <button mat-raised-button type="button" color="warn" (click)="cancelReservation()">Cancel trip</button>
     <button mat-raised-button type="button" color="primary" (click)="submitReservation()">Request change</button>
   </div>
 </div>

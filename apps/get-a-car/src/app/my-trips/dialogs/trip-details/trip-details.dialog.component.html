@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="pb-4 text-2xl font-bold border-solid border-b-2 border-gray-300">Trip details</h1>
 
 <div mat-dialog-content class="flex flex-col justify-between">
-  <div class="mb-5">
+  <div class="mb-2 sm:mb-5">
     <h3 class="section-title">Trip start</h3>
     <div class="section-container">
       <div class="stat-container">
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="mb-5">
+  <div class="mb-2 sm:mb-5">
     <h3 class="section-title">Trip end</h3>
     <div class="section-container">
       <div class="stat-container">
@@ -37,15 +37,14 @@
       </div>
     </div>
   </div>
-  <div>
-    <div class="section-container">
-      <div class="col-span-2 flex flex-col">
-        <h3 class="section-title">Car</h3>
-        <span class="stat-title">MODEL</span>
-        <span class="capitalize">{{dialogData?.trip?.car | carName}}</span>
-        <ng-container *ngIf="dialogData?.trip?.accessories?.length > 0 ">
-          <span class="mt-2 stat-title">ACCESSORIES</span>
-          <span class="w-4/5">
+  <div class="section-container items-start grid-rows-2 sm:grid-rows-1 border-b-0">
+    <div class="col-span-2 flex flex-col">
+      <h3 class="section-title">Car</h3>
+      <span class="stat-title">MODEL</span>
+      <span class="capitalize">{{dialogData?.trip?.car | carName}}</span>
+      <ng-container *ngIf="dialogData?.trip?.accessories?.length > 0 ">
+        <span class="mt-2 stat-title">ACCESSORIES</span>
+        <span class="w-4/5">
           <ng-container *ngFor="let accessory of dialogData?.trip?.accessories; let last = last">
             <ng-template [ngIf]="!last">
               {{accessory.name + ', '}}
@@ -55,24 +54,23 @@
             </ng-template>
           </ng-container>
         </span>
-        </ng-container>
-      </div>
-      <div class="flex flex-col" *ngIf="dialogData?.trip?.accessories?.length > 0 ">
-        <h3 class="section-title">Extra charge</h3>
-        <div class="flex flex-col">
-          <div class="extra-charge-row-container mb-2">
-            <span class="stat-title">ITEM</span>
-            <span class="stat-title">CHARGE</span>
-          </div>
-          <div *ngFor="let accessory of dialogData?.trip?.accessories" class="extra-charge-row-container">
-            <span>{{accessory?.name}}</span>
-            <span>${{accessory?.price}}</span>
-          </div>
-          <mat-divider class="border-black mt-2 mb-2"></mat-divider>
-          <div class="extra-charge-row-container">
-            <span class="font-bold">Total amount</span>
-            <span class="font-bold">${{dialogData?.trip?.additionalCharge}}</span>
-          </div>
+      </ng-container>
+    </div>
+    <div class="flex flex-col" *ngIf="dialogData?.trip?.accessories?.length > 0 ">
+      <h3 class="section-title">Extra charge</h3>
+      <div class="flex flex-col">
+        <div class="extra-charge-row-container mb-2">
+          <span class="stat-title">ITEM</span>
+          <span class="stat-title">CHARGE</span>
+        </div>
+        <div *ngFor="let accessory of dialogData?.trip?.accessories" class="extra-charge-row-container">
+          <span>{{accessory?.name}}</span>
+          <span>${{accessory?.price}}</span>
+        </div>
+        <mat-divider class="border-black mt-2 mb-2"></mat-divider>
+        <div class="extra-charge-row-container">
+          <span class="font-bold">Total amount</span>
+          <span class="font-bold">${{dialogData?.trip?.additionalCharge}}</span>
         </div>
       </div>
     </div>
