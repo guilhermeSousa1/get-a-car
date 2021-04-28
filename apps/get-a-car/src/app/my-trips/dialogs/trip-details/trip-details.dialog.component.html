@@ -6,16 +6,19 @@
     <div class="section-container">
       <div class="stat-container">
         <span class="stat-title">START DATE</span>
-        <span>{{dialogData?.trip?.details?.startDate | date: 'd/M/yy'}}</span>
-        <span class="text-sm text-gray-500">{{dialogData?.trip?.details?.startDate | date: 'EEEE'}}</span>
+        <span data-testid="start-date">{{dialogData?.trip?.details?.startDate | date: 'd/M/yy'}}</span>
+        <span class="text-sm text-gray-500"
+              data-testid="start-day-week">
+          {{dialogData?.trip?.details?.startDate | date: 'EEEE'}}
+        </span>
       </div>
       <div class="stat-container">
         <span class="stat-title">START TIME</span>
-        <span>{{dialogData?.trip?.details?.startDate | date: 'hh:mm a'}}</span>
+        <span data-testid="start-time">{{dialogData?.trip?.details?.startDate | date: 'hh:mm a'}}</span>
       </div>
       <div class="stat-container">
         <span class="stat-title">START LOCATION</span>
-        <span>{{dialogData?.trip?.details?.address}}</span>
+        <span data-testid="start-location">{{dialogData?.trip?.details?.address}}</span>
       </div>
     </div>
   </div>
@@ -24,16 +27,19 @@
     <div class="section-container">
       <div class="stat-container">
         <span class="stat-title">END DATE</span>
-        <span>{{dialogData?.trip?.details?.endDate | date: 'd/M/yy'}}</span>
-        <span class="text-sm text-gray-500">{{dialogData?.trip?.details?.startDate | date: 'EEEE'}}</span>
+        <span data-testid="end-date">{{dialogData?.trip?.details?.endDate | date: 'd/M/yy'}}</span>
+        <span class="text-sm text-gray-500"
+              data-testid="end-day-week">
+          {{dialogData?.trip?.details?.endDate | date: 'EEEE'}}
+        </span>
       </div>
       <div class="stat-container">
         <span class="stat-title">START TIME</span>
-        <span>{{dialogData?.trip?.details?.endDate | date: 'hh:mm a'}}</span>
+        <span data-testid="end-time">{{dialogData?.trip?.details?.endDate | date: 'hh:mm a'}}</span>
       </div>
       <div class="stat-container">
         <span class="stat-title">END LOCATION</span>
-        <span>{{dialogData?.trip?.details?.address}}</span>
+        <span data-testid="end-location">{{dialogData?.trip?.details?.address}}</span>
       </div>
     </div>
   </div>
@@ -41,10 +47,10 @@
     <div class="col-span-2 flex flex-col">
       <h3 class="section-title">Car</h3>
       <span class="stat-title">MODEL</span>
-      <span class="capitalize">{{dialogData?.trip?.car | carName}}</span>
+      <span class="capitalize" data-testid="car-name">{{dialogData?.trip?.car | carName}}</span>
       <ng-container *ngIf="dialogData?.trip?.accessories?.length > 0 ">
         <span class="mt-2 stat-title">ACCESSORIES</span>
-        <span class="w-4/5">
+        <span class="w-4/5" data-testid="accessories">
           <ng-container *ngFor="let accessory of dialogData?.trip?.accessories; let last = last">
             <ng-template [ngIf]="!last">
               {{accessory.name + ', '}}
@@ -63,14 +69,16 @@
           <span class="stat-title">ITEM</span>
           <span class="stat-title">CHARGE</span>
         </div>
-        <div *ngFor="let accessory of dialogData?.trip?.accessories" class="extra-charge-row-container">
+        <div *ngFor="let accessory of dialogData?.trip?.accessories"
+             class="extra-charge-row-container"
+             data-testid="accessory-list-item">
           <span>{{accessory?.name}}</span>
           <span>${{accessory?.price}}</span>
         </div>
         <mat-divider class="border-black mt-2 mb-2"></mat-divider>
         <div class="extra-charge-row-container">
           <span class="font-bold">Total amount</span>
-          <span class="font-bold">${{dialogData?.trip?.additionalCharge}}</span>
+          <span class="font-bold" data-testid="additional-charge">${{dialogData?.trip?.additionalCharge}}</span>
         </div>
       </div>
     </div>

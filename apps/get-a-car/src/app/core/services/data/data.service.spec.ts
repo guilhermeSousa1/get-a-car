@@ -1,12 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { first } from 'rxjs/operators';
 import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/shared/data-models';
+import { testAccessories, testCar, testCarPreferences } from '@guilhermeSousa1/shared/test-utils';
 import { DataService } from './data.service';
-import { environment } from '../../../../environments/environment';
-import defaultCars from 'src/assets/data/cars.json';
-import defaultAccessories from 'src/assets/data/accessories.json';
-import defaultCarPreferences from 'src/assets/data/default-car-preferences.json';
 
 describe('DataService', () => {
   let service: DataService;
@@ -30,72 +28,77 @@ describe('DataService', () => {
   });
 
   it('should get the list of cars', () => {
-    const expectedUrl = `${ environment.url }/cars.json`;
+    const expectedUrl = 'api/cars';
     let actualCars: Car[] | undefined;
 
     service.getCars()
+      .pipe(first())
       .subscribe((cars) => {
         actualCars = cars;
       });
 
     const request = controller.expectOne({ method: 'GET', url: expectedUrl });
-    request.flush(defaultCars);
+    request.flush(testCar);
     controller.verify();
 
-    expect(actualCars).toEqual(defaultCars);
+    expect(actualCars).toEqual(testCar);
   });
 
   it('should get the list of car accessories', () => {
-    const expectedUrl = `${ environment.url }/accessories.json`;
+    const expectedUrl = 'api/accessories';
     let actualAccessories: CarAccessory[] | undefined;
 
     service.getAccessories()
+      .pipe(first())
       .subscribe((accessories) => {
         actualAccessories = accessories;
       });
 
     const request = controller.expectOne({ method: 'GET', url: expectedUrl });
-    request.flush(defaultAccessories);
+    request.flush(testAccessories);
     controller.verify();
 
-    expect(actualAccessories).toEqual(defaultAccessories);
+    expect(actualAccessories).toEqual(testAccessories);
   });
 
   it('should get the car preferences', () => {
-    const expectedUrl = `${ environment.url }/default-car-preferences.json`;
+    const expectedUrl = 'api/defaultCarPreferences';
     let actualCarPreferences: CarPreferences | undefined;
 
     service.getDefaultCarPreferences()
+      .pipe(first())
       .subscribe((carPreferences) => {
         actualCarPreferences = carPreferences;
       });
 
     const request = controller.expectOne({ method: 'GET', url: expectedUrl });
-    request.flush(defaultCarPreferences);
+    request.flush(testCarPreferences);
     controller.verify();
 
-    expect(actualCarPreferences).toEqual(defaultCarPreferences);
+    expect(actualCarPreferences).toEqual(testCarPreferences);
   });
 
   it('should return errors when getting the list of cars', () => {
-    const expectedUrl = `${ environment.url }/cars.json`;
+    const expectedUrl = 'api/cars';
     const status = 500;
     const statusText = 'Fetching error';
     const errorEvent = new ErrorEvent('Error');
 
     let actualError: HttpErrorResponse | undefined;
 
-    service.getCars().subscribe(
-      () => {
-        fail('next handler must not be called');
-      },
-      (error) => {
-        actualError = error;
-      },
-      () => {
-        fail('complete handler must not be called');
-      }
-    );
+    service.getCars()
+      .pipe(first())
+      .subscribe(
+        () => {
+          fail('next handler must not be called');
+        },
+        (error) => {
+          actualError = error;
+        },
+        () => {
+          fail('complete handler must not be called');
+        }
+      );
 
     controller.expectOne({ method: 'GET', url: expectedUrl }).error(
       errorEvent,
@@ -109,24 +112,26 @@ describe('DataService', () => {
   });
 
   it('should return errors when getting the list of accessories', () => {
-    const expectedUrl = `${ environment.url }/accessories.json`;
+    const expectedUrl = 'api/accessories';
     const status = 500;
     const statusText = 'Fetching error';
     const errorEvent = new ErrorEvent('Error');
 
     let actualError: HttpErrorResponse | undefined;
 
-    service.getAccessories().subscribe(
-      () => {
-        fail('next handler must not be called');
-      },
-      (error) => {
-        actualError = error;
-      },
-      () => {
-        fail('complete handler must not be called');
-      }
-    );
+    service.getAccessories()
+      .pipe(first())
+      .subscribe(
+        () => {
+          fail('next handler must not be called');
+        },
+        (error) => {
+          actualError = error;
+        },
+        () => {
+          fail('complete handler must not be called');
+        }
+      );
 
     controller.expectOne({ method: 'GET', url: expectedUrl }).error(
       errorEvent,
@@ -140,24 +145,26 @@ describe('DataService', () => {
   });
 
   it('should return errors when getting the car preferences', () => {
-    const expectedUrl = `${ environment.url }/default-car-preferences.json`;
+    const expectedUrl = 'api/defaultCarPreferences';
     const status = 500;
     const statusText = 'Fetching error';
     const errorEvent = new ErrorEvent('Error');
 
     let actualError: HttpErrorResponse | undefined;
 
-    service.getDefaultCarPreferences().subscribe(
-      () => {
-        fail('next handler must not be called');
-      },
-      (error) => {
-        actualError = error;
-      },
-      () => {
-        fail('complete handler must not be called');
-      }
-    );
+    service.getDefaultCarPreferences()
+      .pipe(first())
+      .subscribe(
+        () => {
+          fail('next handler must not be called');
+        },
+        (error) => {
+          actualError = error;
+        },
+        () => {
+          fail('complete handler must not be called');
+        }
+      );
 
     controller.expectOne({ method: 'GET', url: expectedUrl }).error(
       errorEvent,

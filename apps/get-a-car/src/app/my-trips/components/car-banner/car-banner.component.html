@@ -5,10 +5,10 @@
          [class]="'bg-' + car?.brand + '-' + car?.model">
     </div>
     <div class="ml-4 flex flex-col max-w-36">
-      <span class="font-bold capitalize" data-testid="accessory-name">{{car | carName}}</span>
+      <span class="font-bold capitalize" data-testid="car-name">{{car | carName}}</span>
       <span class="text-gray-500 text-sm"
             *ngIf="(invalidSameDayReservation$ | async) === false; else invalidSameDayReservation"
-            data-testid="accessory-price">
+            data-testid="available-message">
         Available
       </span>
       <ng-template #invalidSameDayReservation>
@@ -19,6 +19,7 @@
     </div>
   </div>
   <mat-radio-button color="primary"
+                    data-testid="radio-button"
                     (change)="toggleCarSelection()"
                     [disabled]="(reservationDetails$ | async) === null"
                     [checked]="(isCarSelected$ | async)">

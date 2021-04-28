@@ -64,9 +64,9 @@ export class ReservationService {
    * @param carAccessories  The car accessories
    */
   public updateCarAccessories(carAccessories: CarAccessory[]): void {
-    const selectedCarAccessories = this.carAccessoriesSource?.getValue();
-
     carAccessories?.forEach((accessory) => {
+      const selectedCarAccessories = this.carAccessoriesSource?.getValue();
+
       if (selectedCarAccessories?.some((selectedAccessory) => selectedAccessory.id === accessory.id)) {
         this.carAccessoriesSource?.next(selectedCarAccessories?.filter((selectedAccessory) => selectedAccessory.id !== accessory.id));
       } else {
@@ -167,6 +167,7 @@ export class ReservationService {
       this.carSource?.next(reservation?.car);
       this.detailsSource?.next(reservation?.details);
       this.carPreferencesSource?.next(reservation?.carPreferences);
+      this.invalidSameDayReservationSource?.next(false);
     } else {
       this.carAccessoriesSource?.next([]);
       this.carPreferencesSource?.next(this.defaultCarPreferences);

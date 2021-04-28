@@ -4,10 +4,10 @@
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Date</th>
       <td mat-cell *matCellDef="let reservation">
         <div class="flex flex-col">
-          <span class="text-base">
+          <span class="text-base" data-testid="date-interval">
             {{reservation?.details?.startDate | date:'d/M/yy'}} - {{reservation?.details?.endDate | date:'d/M/yy'}}
           </span>
-          <span class="text-gray-500">
+          <span class="text-gray-500" data-testid="week-days-interval">
             {{reservation?.details?.startDate | date:'EEEE'}} - {{reservation?.details?.endDate | date:'EEEE'}}
           </span>
         </div>
@@ -16,28 +16,28 @@
 
     <ng-container matColumnDef="days">
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Days</th>
-      <td mat-cell *matCellDef="let reservation" class="text-base">
+      <td mat-cell *matCellDef="let reservation" class="text-base" data-testid="driving-days">
         {{reservation?.details?.drivingDays}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="car">
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Car</th>
-      <td mat-cell *matCellDef="let reservation" class="text-base capitalize">
+      <td mat-cell *matCellDef="let reservation" class="text-base capitalize" data-testid="car-name">
         {{reservation?.car | carName}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="extra-charge">
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Extra Charge</th>
-      <td mat-cell *matCellDef="let reservation" class="text-base">
+      <td mat-cell *matCellDef="let reservation" class="text-base" data-testid="additional-charge">
         ${{reservation?.additionalCharge}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef class="col-header-cell">Status</th>
-      <td mat-cell *matCellDef="let reservation" class="text-base">
+      <td mat-cell *matCellDef="let reservation" class="text-base" data-testid="reservation-status">
         {{reservation?.status}}
       </td>
     </ng-container>
@@ -51,24 +51,24 @@
   <mat-card *ngFor="let reservation of (pastReservations$ | async | slice: startSlice : endSlice)"
             class="mt-4 border-solid border border-gray-200">
     <mat-card-content class="flex flex-col text-base">
-      <mat-card-title>
+      <mat-card-title data-testid="date-interval">
         {{reservation?.details?.startDate | date:'d/M/yy'}} - {{reservation?.details?.endDate | date:'d/M/yy'}}
       </mat-card-title>
-      <mat-card-subtitle>
+      <mat-card-subtitle data-testid="week-days-interval">
         {{reservation?.details?.startDate | date:'EEEE'}} - {{reservation?.details?.endDate | date:'EEEE'}}
       </mat-card-subtitle>
-      <span class="text-gray-500 mb-1">Days: {{reservation?.details?.drivingDays}}</span>
-      <span class="text-gray-500 mb-1 capitalize">
-        Car: {{reservation?.car | carName}}
-      </span>
-      <span class="text-gray-500 mb-1">Extra Charge: ${{reservation?.additionalCharge}}</span>
-      <span class="text-gray-500">Status: {{reservation?.status}}</span>
+      <span class="text-gray-500 mb-1" data-testid="driving-days">Days: {{reservation?.details?.drivingDays}}</span>
+      <span class="text-gray-500 mb-1 capitalize" data-testid="car-name">Car: {{reservation?.car | carName}}</span>
+      <span class="text-gray-500 mb-1"
+            data-testid="additional-charge">Extra Charge: ${{reservation?.additionalCharge}}</span>
+      <span class="text-gray-500" data-testid="reservation-status">Status: {{reservation?.status}}</span>
     </mat-card-content>
     <mat-card-actions>
       <button type="button"
               mat-button
               color="primary"
               class="flex ml-auto"
+              data-testid="details-button"
               (click)="showTripDetailsDialog(reservation)">
         DETAILS
       </button>
@@ -76,8 +76,8 @@
   </mat-card>
 </ng-template>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]"
-               pageSize="5"
+<mat-paginator pageSize="5"
+               [pageSizeOptions]="[5, 10, 20]"
                [length]="(pastReservations$ | async)?.length"
                (page)="sliceReservationsList($event)">
 </mat-paginator>
