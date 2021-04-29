@@ -37,10 +37,23 @@
 <div mat-dialog-actions
      class="mt-4 flex flex-col sm:flex-row flex-nowrap justify-between border-solid border-t border-gray-300">
   <span class="text-gray-500 mb-2 sm:mb-0">Additional charge:
-    <span class="text-black font-bold">${{ (selectedAccessories$ | async) | additionalCharge }}</span>
+    <span class="text-black font-bold" data-testid="additional-charge">
+      ${{ (selectedAccessories$ | async) | additionalCharge }}
+    </span>
   </span>
   <div>
-    <button mat-raised-button type="button" color="warn" (click)="cancelReservation()">Cancel trip</button>
-    <button mat-raised-button type="button" color="primary" (click)="submitReservation()">Request change</button>
+    <button mat-raised-button
+            type="button"
+            color="warn"
+            data-testid="cancel-trip-button"
+            (click)="cancelReservation()">Cancel trip
+    </button>
+    <button mat-raised-button
+            type="button"
+            color="primary"
+            data-testid="request-changes-button"
+            (click)="submitReservation()">
+      Request change
+    </button>
   </div>
 </div>

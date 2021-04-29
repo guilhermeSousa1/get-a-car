@@ -29,7 +29,7 @@ describe('PlannedTripsComponent', () => {
     mockTransform = jest.fn();
     mockMatDialog = {
       open: jest.fn().mockImplementation(() => ({
-        afterClosed: () => EMPTY
+        afterClosed: () => of(true)
       }))
     };
   });
@@ -82,7 +82,7 @@ describe('PlannedTripsComponent', () => {
     fixture.detectChanges();
     buttonPaginatorNext.nativeElement.click();
 
-    expect(sliceReservationsListSpy).toBeCalledTimes(1);
+    expect(sliceReservationsListSpy).toHaveBeenCalledTimes(1);
     expect(component.startSlice).toBe(initialStartSlice + 5);
     expect(component.endSlice).toBe(component.startSlice + 5);
   });
@@ -146,7 +146,7 @@ describe('PlannedTripsComponent', () => {
 
       firstTableRow.click();
 
-      expect(mockMatDialog.open).toBeCalledTimes(1);
+      expect(mockMatDialog.open).toHaveBeenCalledTimes(1);
       expect(mockMatDialog.open).toHaveBeenCalledWith(EditTripDialogComponent, expect.anything());
     });
   });
@@ -185,7 +185,7 @@ describe('PlannedTripsComponent', () => {
 
       editButton.nativeElement.click();
 
-      expect(mockMatDialog.open).toBeCalledTimes(1);
+      expect(mockMatDialog.open).toHaveBeenCalledTimes(1);
       expect(mockMatDialog.open).toHaveBeenCalledWith(EditTripDialogComponent, expect.anything());
     });
   });

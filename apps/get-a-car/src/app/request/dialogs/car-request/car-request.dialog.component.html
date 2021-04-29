@@ -7,7 +7,7 @@
       <div class="w-52 h-28 bg-contain bg-no-repeat"
            [class]="'bg-' + dialogData?.car?.brand + '-' + dialogData?.car?.model">
       </div>
-      <span class="mt-2 text-lg font-bold capitalize" data-testid="car-brand-model">
+      <span class="mt-2 text-lg font-bold capitalize" data-testid="car-name">
         {{dialogData?.car | carName}}
       </span>
     </div>
@@ -52,11 +52,16 @@
 <div mat-dialog-actions
      class="flex flex-col sm:flex-row flex-nowrap justify-between mt-4 border-solid border-t border-gray-300">
     <span class="text-gray-500 mb-2 sm:mb-0">Additional charge:
-      <span class="text-black font-bold">${{ (selectedAccessories$ | async) | additionalCharge }}</span>
+      <span class="text-black font-bold" data-testid="additional-charge">${{ (selectedAccessories$ | async) | additionalCharge }}</span>
     </span>
   <div>
     <button mat-raised-button type="button" color="primary" mat-dialog-close>Cancel</button>
-    <button mat-raised-button type="button" color="primary" class="ml-4" (click)="submitAccessories()">
+    <button mat-raised-button
+            data-testid="confirm-button"
+            type="button"
+            color="primary"
+            class="ml-4"
+            (click)="submitAccessories()">
       Confirm & book
     </button>
   </div>

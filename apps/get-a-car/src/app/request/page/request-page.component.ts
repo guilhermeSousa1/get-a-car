@@ -54,7 +54,7 @@ export class RequestPageComponent implements OnInit, OnDestroy {
    * @public
    */
   public ngOnDestroy(): void {
-    this.reservationService?.resetSourceValues();
+    this.reservationService.resetSourceValues();
   }
 
   /**
@@ -72,19 +72,19 @@ export class RequestPageComponent implements OnInit, OnDestroy {
       }
     };
 
-    const dialogRef = this.dialog?.open(CarRequestDialogComponent, config);
+    const dialogRef = this.dialog.open(CarRequestDialogComponent, config);
 
     dialogRef.afterClosed()
       .pipe(
         take(1),
         filter((res) => !!res),
-        tap(() => this.reservationService?.updateCar(requestedCar)),
-        switchMap(() => this.reservationService?.createReservation()),
-        finalize(() => this.reservationService?.resetAccessories())
+        tap(() => this.reservationService.updateCar(requestedCar)),
+        switchMap(() => this.reservationService.createReservation()),
+        finalize(() => this.reservationService.resetAccessories())
       )
       .subscribe((res) => {
         if (res) {
-          this.router?.navigate(['/my-trips']);
+          this.router.navigate(['/my-trips']);
         }
       });
   }
@@ -95,6 +95,6 @@ export class RequestPageComponent implements OnInit, OnDestroy {
    * @private
    */
   private setupComponentObservables(): void {
-    this.allCars$ = this.dataService?.getCars();
+    this.allCars$ = this.dataService.getCars();
   }
 }

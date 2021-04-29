@@ -1,17 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
-
 
 /**
  * Component responsible for the car accessory.
  */
 
 /* eslint-disable no-multi-spaces */
-@UntilDestroy()
 @Component({
   selector:    'car-accessory',
   templateUrl: './car-accessory.component.html',
@@ -61,7 +58,6 @@ export class CarAccessoryComponent implements OnInit {
   private setupComponentObservables(): void {
     this.isAccessorySelected$ = this.reservationService?.carAccessories$
       .pipe(
-        untilDestroyed(this),
         map((selectedAccessories) => selectedAccessories?.some((selectedAccessory) => selectedAccessory?.id === this.accessory?.id))
       );
   }

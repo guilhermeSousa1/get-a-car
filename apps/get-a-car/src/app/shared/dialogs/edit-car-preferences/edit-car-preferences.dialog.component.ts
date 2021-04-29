@@ -56,14 +56,14 @@ export class EditCarPreferencesDialogComponent implements OnInit {
    */
   public submit(): void {
     const carPreferences: CarPreferences = {
-      radioStation:  this.form?.get('radioStation')?.value,
-      temperature:   this.form?.get('temperature')?.value,
-      driveMode:     this.form?.get('driveMode')?.value,
-      chargingCable: this.form?.get('chargingCable')?.value
+      radioStation:  this.form.get('radioStation')?.value,
+      temperature:   this.form.get('temperature')?.value,
+      driveMode:     this.form.get('driveMode')?.value,
+      chargingCable: this.form.get('chargingCable')?.value
     };
 
-    this.reservationService?.updateCarPreferences(carPreferences);
-    this.dialogRef?.close();
+    this.reservationService.updateCarPreferences(carPreferences);
+    this.dialogRef.close();
   }
 
   /**
@@ -74,7 +74,7 @@ export class EditCarPreferencesDialogComponent implements OnInit {
   private initializeForm(): void {
     const currentCarPreferences = this.reservationService?.getCarPreferences();
 
-    this.form = this.formBuilder?.group({
+    this.form = this.formBuilder.group({
       radioStation:  [currentCarPreferences?.radioStation, Validators.required],
       temperature:   [currentCarPreferences?.temperature, [Validators.required, Validators.min(15), Validators.max(27)]],
       driveMode:     [currentCarPreferences?.driveMode, Validators.required],

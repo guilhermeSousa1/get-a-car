@@ -1,152 +1,93 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { DebugElement } from '@angular/core';
-// import { BreakpointObserver } from '@angular/cdk/layout';
-// import { By } from '@angular/platform-browser';
-// import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatSelectModule } from '@angular/material/select';
-// import { MatInputModule } from '@angular/material/input';
-// import { MatDialog } from '@angular/material/dialog';
-// import { MatDatepickerModule } from '@angular/material/datepicker';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatNativeDateModule } from '@angular/material/core';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatCardModule } from '@angular/material/card';
-// import { EMPTY } from 'rxjs';
-// import { MockComponent, MockProvider } from 'ng-mocks';
-// import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
-// import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
-// import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
-// import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
-// import { RequestPageComponent } from './request-page.component';
-//
-// describe('RequestPageComponent', () => {
-//   let component: RequestPageComponent;
-//   let fixture: ComponentFixture<RequestPageComponent>;
-//   let debugElement: DebugElement;
-//
-//   const mockMatDialog = {
-//     open: jest.fn().mockImplementation(() => ({
-//       afterClosed: () => EMPTY
-//     }))
-//   };
-//
-//   const dateService = new DateService();
-//
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [
-//         ReactiveFormsModule,
-//         MatFormFieldModule,
-//         MatInputModule,
-//         MatDatepickerModule,
-//         MatSelectModule,
-//         MatButtonModule,
-//         MatIconModule,
-//         MatCardModule,
-//         MatNativeDateModule,
-//         BrowserAnimationsModule
-//       ],
-//       declarations: [
-//         RequestPageComponent,
-//         MockComponent(CarCardComponent)
-//       ],
-//       providers: [
-//         FormBuilder,
-//         { provide: MatDialog, useValue: mockMatDialog },
-//         MockProvider(BreakpointObserver, {
-//           observe: () => EMPTY
-//         }),
-//         MockProvider(DateService),
-//         MockProvider(DataService, {
-//           getDefaultCarPreferences: () => EMPTY,
-//           getCars:                  () => EMPTY
-//         })
-//       ]
-//     })
-//       .compileComponents();
-//   });
-//
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(RequestPageComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//     debugElement = fixture.debugElement;
-//   });
-//
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-//
-//   it('form should be valid', () => {
-//     const inputAddress = debugElement.query(By.css('[data-testid="address"]')).nativeElement;
-//     const inputStartDate = debugElement.query(By.css('[data-testid="start-date"]')).nativeElement;
-//     const inputEndDate = debugElement.query(By.css('[data-testid="end-date"]')).nativeElement;
-//     const matSelectCollectionTime = debugElement.query(By.css('[data-testid="collection-time"] .mat-select-trigger')).nativeElement;
-//     const matSelectDeliveryTime = debugElement.query(By.css('[data-testid="delivery-time"] .mat-select-trigger')).nativeElement;
-//
-//     inputAddress.value = 'John Doe Street';
-//     inputAddress.dispatchEvent(new Event('input'));
-//
-//     inputStartDate.value = dateService.getTodayDate();
-//     inputStartDate.dispatchEvent(new Event('input'));
-//
-//     inputEndDate.value = dateService.getTomorrowDate();
-//     inputEndDate.dispatchEvent(new Event('input'));
-//
-//     matSelectCollectionTime.click();
-//     fixture.detectChanges();
-//
-//     const matOptionsCollectionTime = debugElement.queryAll(By.css('.mat-option'));
-//     matOptionsCollectionTime[0].nativeElement.click();
-//     fixture.detectChanges();
-//
-//     matSelectDeliveryTime.click();
-//     fixture.detectChanges();
-//
-//     const matOptionsDeliveryTime = debugElement.queryAll(By.css('.mat-option'));
-//     matOptionsDeliveryTime[0].nativeElement.click();
-//     fixture.detectChanges();
-//
-//     expect(component.form.valid).toBeTruthy();
-//   });
-//
-//   it('should trigger invalid same day reservation', () => {
-//     const inputStartDate = debugElement.query(By.css('[data-testid="start-date"]')).nativeElement;
-//     const inputEndDate = debugElement.query(By.css('[data-testid="end-date"]')).nativeElement;
-//     const matSelectDeliveryTime = debugElement.query(By.css('[data-testid="delivery-time"] .mat-select-trigger')).nativeElement;
-//     const matSelectCollectionTime = debugElement.query(By.css('[data-testid="collection-time"] .mat-select-trigger')).nativeElement;
-//
-//     inputStartDate.value = dateService.getTodayDate();
-//     inputStartDate.dispatchEvent(new Event('input'));
-//
-//     inputEndDate.value = dateService.getTodayDate();
-//     inputEndDate.dispatchEvent(new Event('input'));
-//
-//     matSelectCollectionTime.click();
-//     fixture.detectChanges();
-//
-//     const matOptionsCollectionTime = debugElement.queryAll(By.css('.mat-option'));
-//     matOptionsCollectionTime[0].nativeElement.click();
-//     fixture.detectChanges();
-//
-//     matSelectDeliveryTime.click();
-//     fixture.detectChanges();
-//
-//     const matOptionsDeliveryTime = debugElement.queryAll(By.css('.mat-option'));
-//     matOptionsDeliveryTime[0].nativeElement.click();
-//     fixture.detectChanges();
-//
-//     expect(component.form.errors.invalidSameDayReservation).toBeTruthy();
-//   });
-//
-//   it('should open edit car preferences dialog', () => {
-//     const carPreferencesButton = debugElement.query(By.css('[data-testid="car-preferences-button"]')).nativeElement;
-//
-//     carPreferencesButton.click();
-//
-//     expect(mockMatDialog.open).toBeCalledTimes(1);
-//     expect(mockMatDialog.open.mock.calls[0][0]).toBe(EditCarPreferencesDialogComponent);
-//   });
-// });
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
+import { MockComponent, MockProvider } from 'ng-mocks';
+import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
+import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
+import { CarPreferencesComponent, ReservationDetailsFormComponent } from '@guilhermeSousa1/shared/components';
+import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
+import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
+import { RequestPageComponent } from './request-page.component';
+import { testCar } from '@guilhermeSousa1/shared/test-utils';
+
+describe('RequestPageComponent', () => {
+  let component: RequestPageComponent;
+  let fixture: ComponentFixture<RequestPageComponent>;
+  let debugElement: DebugElement;
+  let mockOpen;
+  let mockUpdateCar;
+  let mockCreateReservation;
+  let mockResetAccessories;
+  let mockNavigate;
+
+  beforeEach(() => {
+    mockUpdateCar = jest.fn();
+    mockCreateReservation = jest.fn().mockImplementation(() => of(true));
+    mockResetAccessories = jest.fn();
+    mockNavigate = jest.fn();
+    mockOpen = jest.fn().mockReturnValue({ afterClosed: () => of(true) });
+  });
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [
+        RequestPageComponent,
+        MockComponent(ReservationDetailsFormComponent),
+        MockComponent(CarPreferencesComponent),
+        MockComponent(CarCardComponent)
+      ],
+      providers: [
+        MockProvider(DataService, {
+          getCars: () => of([testCar])
+        }),
+        MockProvider(MatDialog, {
+          open: mockOpen
+        }),
+        MockProvider(ReservationService, {
+          updateCar:         mockUpdateCar,
+          createReservation: mockCreateReservation,
+          resetAccessories:  mockResetAccessories
+        }),
+        MockProvider(Router, {
+          navigate: mockNavigate
+        })
+      ]
+    })
+      .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(RequestPageComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    debugElement = fixture.debugElement;
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should open CarRequestDialogComponent on requestCar event', () => {
+    const carCardComponent = debugElement.query(By.directive(CarCardComponent)).componentInstance;
+
+    carCardComponent.requestCar.emit(testCar);
+
+    expect(mockOpen).toHaveBeenCalledTimes(1);
+    expect(mockOpen).toHaveBeenCalledWith(CarRequestDialogComponent, expect.anything());
+  });
+
+  it('should create reservation on CarRequestDialogComponent close', () => {
+    const carCardComponent = debugElement.query(By.directive(CarCardComponent)).componentInstance;
+
+    carCardComponent.requestCar.emit(testCar);
+
+    expect(mockUpdateCar).toHaveBeenCalledTimes(1);
+    expect(mockUpdateCar).toHaveBeenCalledWith(testCar);
+    expect(mockCreateReservation).toHaveBeenCalledTimes(1);
+    expect(mockResetAccessories).toHaveBeenCalledTimes(1);
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+  });
+});

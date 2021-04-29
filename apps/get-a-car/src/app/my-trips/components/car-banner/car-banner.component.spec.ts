@@ -15,12 +15,10 @@ describe('CarBannerComponent', () => {
   let debugElement: DebugElement;
   let mockUpdateCar;
   let mockTransform;
-  let mockCarNamePipe;
 
   beforeEach(() => {
     mockUpdateCar = jest.fn();
     mockTransform = jest.fn();
-    mockCarNamePipe = MockPipe(CarNamePipe, mockTransform);
   });
 
   beforeEach(async () => {
@@ -30,7 +28,7 @@ describe('CarBannerComponent', () => {
       ],
       declarations: [
         CarBannerComponent,
-        mockCarNamePipe
+        MockPipe(CarNamePipe, mockTransform)
       ],
       providers: [
         MockProvider(ReservationService, {

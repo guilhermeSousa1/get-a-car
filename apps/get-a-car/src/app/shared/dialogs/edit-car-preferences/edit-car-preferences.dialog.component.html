@@ -9,7 +9,7 @@
           {{radioStation?.value}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form?.get('radioStation')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('radioStation')?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -22,8 +22,8 @@
              formControlName="temperature"
              data-testid="temperature"
              matInput>
-      <mat-error *ngIf="form?.get('temperature')?.hasError('required')">This field is required</mat-error>
-      <mat-error *ngIf="form?.get('temperature')?.hasError('min') || form?.get('temperature')?.hasError('max')">
+      <mat-error *ngIf="form.get('temperature')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('temperature')?.hasError('min') || form.get('temperature')?.hasError('max')">
         Temperature must be between 15 and 27 Cº
       </mat-error>
     </mat-form-field>
@@ -35,7 +35,7 @@
           {{driveMode?.value}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form?.get('driveMode')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('driveMode')?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -45,7 +45,7 @@
           {{chargingCable?.value}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form?.get('chargingCable')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('chargingCable')?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
   </div>
 
@@ -56,7 +56,7 @@
             color="primary"
             class="ml-4"
             data-testid="submit-button"
-            [disabled]="form?.invalid">
+            [disabled]="form.invalid">
       Save
     </button>
   </div>

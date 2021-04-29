@@ -1,17 +1,17 @@
 <mat-card>
   <mat-card-content class="flex flex-col text-base">
     <mat-card-title class="text-xl">Car preferences</mat-card-title>
-    <span class="text-gray-500 mb-1">Radio station: {{(carPreferences$ | async)?.radioStation}}</span>
-    <span class="text-gray-500 mb-1">Temperature: {{(carPreferences$ | async)?.temperature}} Cº</span>
-    <span class="text-gray-500 mb-1">Drive mode: {{(carPreferences$ | async)?.driveMode}}</span>
-    <span class="text-gray-500">Charging cable: {{(carPreferences$ | async)?.chargingCable}}</span>
+    <span class="text-gray-500 mb-1" data-testid="radio-station">Radio station: {{(carPreferences$ | async)?.radioStation}}</span>
+    <span class="text-gray-500 mb-1" data-testid="temperature">Temperature: {{(carPreferences$ | async)?.temperature}} Cº</span>
+    <span class="text-gray-500 mb-1" data-testid="drive-mode">Drive mode: {{(carPreferences$ | async)?.driveMode}}</span>
+    <span class="text-gray-500" data-testid="charging-cable">Charging cable: {{(carPreferences$ | async)?.chargingCable}}</span>
   </mat-card-content>
   <mat-card-actions>
     <button type="button"
             mat-button
             color="primary"
             class="flex ml-auto"
-            data-testid="car-preferences-button"
+            data-testid="edit-button"
             (click)="showEditCarPreferencesDialog()">
       EDIT
     </button>

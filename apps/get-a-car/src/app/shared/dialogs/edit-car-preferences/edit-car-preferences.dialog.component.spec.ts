@@ -3,26 +3,26 @@ import { DebugElement } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MockProvider } from 'ng-mocks';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
-import defaultCarPreferences from 'src/assets/data/default-car-preferences.json';
+import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
+import { testCarPreferences } from '@guilhermeSousa1/shared/test-utils';
 
 describe('EditCarPreferencesComponent', () => {
   let component: EditCarPreferencesDialogComponent;
   let fixture: ComponentFixture<EditCarPreferencesDialogComponent>;
   let debugElement: DebugElement;
-  let mockMatDialogRef;
+  let mockClose;
+  let mockUpdateCarPreferences;
 
   beforeEach(() => {
-    mockMatDialogRef = {
-      close: jest.fn().mockImplementation(() => {
-      })
-    };
+    mockClose = jest.fn();
+    mockUpdateCarPreferences = jest.fn();
   });
 
   beforeEach(async () => {
@@ -40,10 +40,13 @@ describe('EditCarPreferencesComponent', () => {
         EditCarPreferencesDialogComponent
       ],
       providers: [
+        MockProvider(MatDialogRef, {
+          close: mockClose
+        }),
         FormBuilder,
-        { provide: MatDialogRef, useValue: mockMatDialogRef },
-        MockProvider(MAT_DIALOG_DATA, {
-          carPreferences: defaultCarPreferences
+        MockProvider(ReservationService, {
+          getCarPreferences:    () => testCarPreferences,
+          updateCarPreferences: mockUpdateCarPreferences
         })
       ]
     })
@@ -138,10 +141,10 @@ describe('EditCarPreferencesComponent', () => {
   });
 
   it('should close dialog when form is submitted', () => {
-    const dialogCloseSpy = jest.spyOn(mockMatDialogRef, 'close');
-
     component.submit();
 
-    expect(dialogCloseSpy).toHaveBeenCalledTimes(1);
+    expect(mockClose).toHaveBeenCalledTimes(1);
+    expect(mockUpdateCarPreferences).toHaveBeenCalledTimes(1);
+    expect(mockUpdateCarPreferences).toHaveBeenCalledWith(testCarPreferences);
   });
 });

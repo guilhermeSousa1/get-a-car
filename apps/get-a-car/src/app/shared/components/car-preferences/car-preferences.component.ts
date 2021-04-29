@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
+import { CarPreferences } from '@guilhermeSousa1/shared/data-models';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
@@ -16,13 +16,6 @@ import { ReservationService } from '@guilhermeSousa1/core/services/reservation/r
   styleUrls:   ['./car-preferences.component.scss']
 })
 export class CarPreferencesComponent implements OnInit {
-
-  /** Instantiation of the radio stations */
-  public RADIO_STATIONS = RadioStation;
-  /** Instantiation of the drive modes */
-  public DRIVE_MODES = DriveMode;
-  /** Instantiation of the charging cables */
-  public CHARGING_CABLES = ChargingCable;
 
   /** Observable for the car preferences */
   public carPreferences$: Observable<CarPreferences>;

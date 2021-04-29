@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isMediumScreen$ = this.breakPointObserver?.observe('(max-width: 767px)')
+    this.isMediumScreen$ = this.breakPointObserver.observe('(max-width: 767px)')
       .pipe(
         map(((result) => result.matches)),
         tap((matches) => {
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
         })
       );
 
-    this.router?.events
+    this.router.events
       .pipe(
         untilDestroyed(this),
         filter((event) => event instanceof NavigationEnd),
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
       )
       .subscribe(([_, isMediumScreen]) => {
         if (isMediumScreen) {
-          this.sidebarOpened$?.next(false);
+          this.sidebarOpened$.next(false);
         }
       });
   }

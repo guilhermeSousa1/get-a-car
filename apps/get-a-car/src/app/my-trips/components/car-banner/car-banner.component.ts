@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Car, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
@@ -10,7 +9,6 @@ import { ReservationService } from '@guilhermeSousa1/core/services/reservation/r
  */
 
 /* eslint-disable no-multi-spaces */
-@UntilDestroy()
 @Component({
   selector:    'car-banner',
   templateUrl: './car-banner.component.html',
@@ -66,7 +64,6 @@ export class CarBannerComponent implements OnInit {
 
     this.isCarSelected$ = this.reservationService?.car$
       .pipe(
-        untilDestroyed(this),
         map((selectedCar) => selectedCar?.id === this.car?.id)
       );
   }

@@ -1,8 +1,20 @@
-import { AdditionalChargePipe } from './additional-charge.pipe';
+import { AdditionalChargePipe } from '@guilhermeSousa1/shared/pipes/additional-charge/additional-charge.pipe';
+import { testAccessories } from '@guilhermeSousa1/shared/test-utils';
 
 describe('AdditionalChargePipe', () => {
+  let additionalChargePipe: AdditionalChargePipe;
+
+  beforeEach(() => {
+    additionalChargePipe = new AdditionalChargePipe();
+  });
+
   it('create an instance', () => {
-    const pipe = new AdditionalChargePipe();
-    expect(pipe).toBeTruthy();
+    expect(additionalChargePipe).toBeTruthy();
+  });
+
+  it('returns the additional charge', () => {
+    const additionalCharge = testAccessories.reduce((accumulator, { price }) => accumulator + price, 0);
+
+    expect(additionalChargePipe.transform(testAccessories)).toBe(additionalCharge);
   });
 });

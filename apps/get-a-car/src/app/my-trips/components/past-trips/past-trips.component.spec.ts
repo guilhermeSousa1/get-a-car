@@ -80,7 +80,7 @@ describe('PastTripsComponent', () => {
     fixture.detectChanges();
     buttonPaginatorNext.nativeElement.click();
 
-    expect(sliceReservationsListSpy).toBeCalledTimes(1);
+    expect(sliceReservationsListSpy).toHaveBeenCalledTimes(1);
     expect(component.startSlice).toBe(initialStartSlice + 5);
     expect(component.endSlice).toBe(component.startSlice + 5);
   });
@@ -150,7 +150,7 @@ describe('PastTripsComponent', () => {
 
       firstTableRow.click();
 
-      expect(mockOpen).toBeCalledTimes(1);
+      expect(mockOpen).toHaveBeenCalledTimes(1);
       expect(mockOpen).toHaveBeenCalledWith(TripDetailsDialogComponent, expect.anything());
     });
   });
@@ -191,7 +191,7 @@ describe('PastTripsComponent', () => {
 
       detailsButton.nativeElement.click();
 
-      expect(mockOpen).toBeCalledTimes(1);
+      expect(mockOpen).toHaveBeenCalledTimes(1);
       expect(mockOpen).toHaveBeenCalledWith(TripDetailsDialogComponent, expect.anything());
     });
   });

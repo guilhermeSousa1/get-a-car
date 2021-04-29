@@ -67,16 +67,16 @@ export class ReservationDetailsFormComponent implements OnInit {
    * @private
    */
   private initializeForm(): void {
-    const reservationDetails = this.reservationService?.getReservationDetails();
+    const reservationDetails = this.reservationService.getReservationDetails();
 
     if (reservationDetails) {
       const address = reservationDetails?.address;
-      const startDate = this.dateService?.formatTimestampToDate(reservationDetails?.startDate);
-      const endDate = this.dateService?.formatTimestampToDate(reservationDetails?.endDate);
-      const deliveryTime = this.dateService?.getHours(startDate);
-      const collectionTime = this.dateService?.getHours(endDate);
+      const startDate = this.dateService.formatTimestampToDate(reservationDetails?.startDate);
+      const endDate = this.dateService.formatTimestampToDate(reservationDetails?.endDate);
+      const deliveryTime = this.dateService.getHours(startDate);
+      const collectionTime = this.dateService.getHours(endDate);
 
-      this.form = this.formBuilder?.group({
+      this.form = this.formBuilder.group({
         address:        [address, Validators.required],
         startDate:      [startDate, Validators.required],
         endDate:        [endDate, Validators.required],
@@ -84,7 +84,7 @@ export class ReservationDetailsFormComponent implements OnInit {
         collectionTime: [collectionTime, Validators.required]
       }, { validators: sameDayReservationValidator() });
     } else {
-      this.form = this.formBuilder?.group({
+      this.form = this.formBuilder.group({
         address:        [null, Validators.required],
         startDate:      [null, Validators.required],
         endDate:        [null, Validators.required],
@@ -100,7 +100,7 @@ export class ReservationDetailsFormComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isSmallScreen$ = this.breakPointObserver?.observe('(max-width: 639px)')
+    this.isSmallScreen$ = this.breakPointObserver.observe('(max-width: 639px)')
       .pipe(
         map(((result) => result.matches))
       );
@@ -113,18 +113,18 @@ export class ReservationDetailsFormComponent implements OnInit {
    */
   private setupFormSubscriptions(): void {
     combineLatest([
-      this.form?.valueChanges,
-      this.form?.statusChanges
+      this.form.valueChanges,
+      this.form.statusChanges
     ])
       .pipe(untilDestroyed(this))
       .subscribe(([formData, status]) => {
         if (status === 'VALID') {
-          this.reservationService?.updateDetails(this.transformFormData(formData));
+          this.reservationService.updateDetails(this.transformFormData(formData));
         } else {
-          this.reservationService?.updateDetails(null);
+          this.reservationService.updateDetails(null);
         }
 
-        this.reservationService?.updateInvalidSameDayReservation(!!this.form?.errors?.invalidSameDayReservation);
+        this.reservationService.updateInvalidSameDayReservation(!!this.form.errors?.invalidSameDayReservation);
       });
   }
 
@@ -142,9 +142,9 @@ export class ReservationDetailsFormComponent implements OnInit {
     }
 
     const address = formData['address'];
-    const startDate = +this.dateService?.setHours(formData['startDate'], formData['deliveryTime']);
-    const endDate = +this.dateService?.setHours(formData['endDate'], formData['collectionTime']);
-    const drivingDays = this.dateService?.differenceInDays(formData['startDate'], formData['endDate']) + 1;
+    const startDate = +this.dateService.setHours(formData['startDate'], formData['deliveryTime']);
+    const endDate = +this.dateService.setHours(formData['endDate'], formData['collectionTime']);
+    const drivingDays = this.dateService.differenceInDays(formData['startDate'], formData['endDate']) + 1;
 
     return {
       address,
