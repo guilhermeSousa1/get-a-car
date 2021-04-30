@@ -28,15 +28,15 @@ export class ReservationService {
   private readonly invalidSameDayReservationSource = new BehaviorSubject<boolean>(false);
 
   /** Exposed observable for the car accessories */
-  public readonly carAccessories$ = this.carAccessoriesSource?.asObservable();
+  public readonly carAccessories$ = this.carAccessoriesSource.asObservable();
   /** Exposed observable for the car preferences */
-  public readonly carPreferences$ = this.carPreferencesSource?.asObservable();
+  public readonly carPreferences$ = this.carPreferencesSource.asObservable();
   /** Exposed observable for the car */
-  public readonly car$ = this.carSource?.asObservable();
+  public readonly car$ = this.carSource.asObservable();
   /** Exposed observable for the details */
-  public readonly details$ = this.detailsSource?.asObservable();
+  public readonly details$ = this.detailsSource.asObservable();
   /** Exposed observable for the invalid same day reservation */
-  public readonly invalidSameDayReservation$ = this.invalidSameDayReservationSource?.asObservable();
+  public readonly invalidSameDayReservation$ = this.invalidSameDayReservationSource.asObservable();
 
   /**
    * Class constructor.
@@ -48,11 +48,11 @@ export class ReservationService {
    */
   constructor(private dataService: DataService,
               private reservationAPI: ReservationAPI) {
-    this.dataService?.getDefaultCarPreferences()
+    this.dataService.getDefaultCarPreferences()
       .pipe(take(1))
       .subscribe((defaultCarPreferences) => {
         this.defaultCarPreferences = defaultCarPreferences;
-        this.carPreferencesSource?.next(defaultCarPreferences);
+        this.carPreferencesSource.next(defaultCarPreferences);
       });
   }
 
@@ -65,12 +65,12 @@ export class ReservationService {
    */
   public updateCarAccessories(carAccessories: CarAccessory[]): void {
     carAccessories?.forEach((accessory) => {
-      const selectedCarAccessories = this.carAccessoriesSource?.getValue();
+      const selectedCarAccessories = this.carAccessoriesSource.getValue();
 
       if (selectedCarAccessories?.some((selectedAccessory) => selectedAccessory.id === accessory.id)) {
-        this.carAccessoriesSource?.next(selectedCarAccessories?.filter((selectedAccessory) => selectedAccessory.id !== accessory.id));
+        this.carAccessoriesSource.next(selectedCarAccessories.filter((selectedAccessory) => selectedAccessory.id !== accessory.id));
       } else {
-        this.carAccessoriesSource?.next([...selectedCarAccessories, accessory]);
+        this.carAccessoriesSource.next([...selectedCarAccessories, accessory]);
       }
     });
   }
@@ -81,7 +81,7 @@ export class ReservationService {
    * @public
    */
   public resetAccessories(): void {
-    return this.carAccessoriesSource?.next([]);
+    return this.carAccessoriesSource.next([]);
   }
 
   /**
@@ -90,7 +90,7 @@ export class ReservationService {
    * @public
    */
   public getCarPreferences(): CarPreferences {
-    return this.carPreferencesSource?.getValue();
+    return this.carPreferencesSource.getValue();
   }
 
   /**
@@ -102,7 +102,7 @@ export class ReservationService {
    */
   public updateCarPreferences(carPreferences: CarPreferences): void {
     if (carPreferences) {
-      this.carPreferencesSource?.next(carPreferences);
+      this.carPreferencesSource.next(carPreferences);
     }
   }
 
@@ -115,7 +115,7 @@ export class ReservationService {
    */
   public updateCar(car: Car): void {
     if (car) {
-      this.carSource?.next(car);
+      this.carSource.next(car);
     }
   }
 
@@ -125,7 +125,7 @@ export class ReservationService {
    * @public
    */
   public getReservationDetails(): ReservationDetails {
-    return this.detailsSource?.getValue();
+    return this.detailsSource.getValue();
   }
 
   /**
@@ -137,9 +137,9 @@ export class ReservationService {
    */
   public updateDetails(details: ReservationDetails): void {
     if (details) {
-      this.detailsSource?.next(details);
+      this.detailsSource.next(details);
     } else {
-      this.detailsSource?.next(null);
+      this.detailsSource.next(null);
     }
   }
 
@@ -151,7 +151,7 @@ export class ReservationService {
    * @param invalidSameDayReservation  Flag for the invalid same day reservation
    */
   public updateInvalidSameDayReservation(invalidSameDayReservation: boolean): void {
-    this.invalidSameDayReservationSource?.next(!!invalidSameDayReservation);
+    this.invalidSameDayReservationSource.next(!!invalidSameDayReservation);
   }
 
   /**
@@ -162,18 +162,18 @@ export class ReservationService {
    * @param reservation  The reservation
    */
   public resetSourceValues(reservation?: Reservation): void {
-    if (reservation) {
-      this.carAccessoriesSource?.next(reservation?.accessories);
-      this.carSource?.next(reservation?.car);
-      this.detailsSource?.next(reservation?.details);
-      this.carPreferencesSource?.next(reservation?.carPreferences);
-      this.invalidSameDayReservationSource?.next(false);
+    if (reservation != null) {
+      this.carAccessoriesSource.next(reservation.accessories);
+      this.carSource.next(reservation.car);
+      this.detailsSource.next(reservation.details);
+      this.carPreferencesSource.next(reservation.carPreferences);
+      this.invalidSameDayReservationSource.next(false);
     } else {
-      this.carAccessoriesSource?.next([]);
-      this.carPreferencesSource?.next(this.defaultCarPreferences);
-      this.carSource?.next(null);
-      this.detailsSource?.next(null);
-      this.invalidSameDayReservationSource?.next(false);
+      this.carAccessoriesSource.next([]);
+      this.carPreferencesSource.next(this.defaultCarPreferences);
+      this.carSource.next(null);
+      this.detailsSource.next(null);
+      this.invalidSameDayReservationSource.next(false);
     }
   }
 
@@ -184,7 +184,7 @@ export class ReservationService {
    * @return  {Observable<Reservation>}
    */
   public createReservation(): Observable<Reservation> {
-    return this.reservationAPI?.createReservation(this.transformReservationData());
+    return this.reservationAPI.createReservation(this.transformReservationData());
   }
 
   /**
@@ -196,7 +196,7 @@ export class ReservationService {
    * @return    {Observable<any>}
    */
   public updateReservation(id: number): Observable<any> {
-    return this.reservationAPI?.updateReservation({ ...this.transformReservationData(), id });
+    return this.reservationAPI.updateReservation({ ...this.transformReservationData(), id });
   }
 
   /**
@@ -207,10 +207,10 @@ export class ReservationService {
    * @return  {Reservation}
    */
   private transformReservationData(): Reservation {
-    const details = this.detailsSource?.getValue();
-    const car = this.carSource?.getValue();
-    const carPreferences = this.carPreferencesSource?.getValue();
-    const carAccessories = this.carAccessoriesSource?.getValue();
+    const details = this.detailsSource.getValue();
+    const car = this.carSource.getValue();
+    const carPreferences = this.carPreferencesSource.getValue();
+    const carAccessories = this.carAccessoriesSource.getValue();
     const additionalCharge = carAccessories.reduce((accumulator, { price }) => accumulator + price, 0);
 
     if (details == null || car == null || carPreferences == null || carAccessories == null) {

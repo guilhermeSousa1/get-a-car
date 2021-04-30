@@ -45,7 +45,7 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    */
   public ngOnInit(): void {
-    this.reservationService?.resetSourceValues(this.dialogData?.trip);
+    this.reservationService.resetSourceValues(this.dialogData.trip);
     this.setupComponentObservables();
   }
 
@@ -55,7 +55,7 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    */
   public ngOnDestroy(): void {
-    this.reservationService?.resetSourceValues();
+    this.reservationService.resetSourceValues();
   }
 
   /**
@@ -64,12 +64,12 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    */
   public submitReservation(): void {
-    const reservationId = this.dialogData?.trip?.id;
+    const reservationId = this.dialogData.trip?.id;
 
-    this.reservationService?.updateReservation(reservationId)
+    this.reservationService.updateReservation(reservationId)
       .pipe(take(1))
       .subscribe(() => {
-        this.dialogRef?.close(true);
+        this.dialogRef.close(true);
       });
   }
 
@@ -79,10 +79,10 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @public
    */
   public cancelReservation(): void {
-    this.reservationAPI?.cancelReservation(this.dialogData?.trip)
+    this.reservationAPI.cancelReservation(this.dialogData.trip)
       .pipe(take(1))
       .subscribe(() => {
-        this.dialogRef?.close(true);
+        this.dialogRef.close(true);
       });
   }
 
@@ -92,8 +92,8 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
    * @private
    */
   private setupComponentObservables(): void {
-    this.allAccessories$ = this.dataService?.getAccessories();
-    this.allCars$ = this.dataService?.getCars();
-    this.selectedAccessories$ = this.reservationService?.carAccessories$;
+    this.allAccessories$ = this.dataService.getAccessories();
+    this.allCars$ = this.dataService.getCars();
+    this.selectedAccessories$ = this.reservationService.carAccessories$;
   }
 }

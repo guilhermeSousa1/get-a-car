@@ -54,7 +54,7 @@ export class CarCardComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.reservationDetails$ = this.reservationService?.details$;
-    this.invalidSameDayReservation$ = this.reservationService?.invalidSameDayReservation$;
+    this.reservationDetails$ = this.reservationService.details$;
+    this.invalidSameDayReservation$ = this.reservationService.invalidSameDayReservation$;
   }
 }

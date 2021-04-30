@@ -31,7 +31,7 @@
             class="w-11/12 flex justify-center"
             data-testid="book-button"
             [disabled]="(reservationDetails$ | async) === null"
-            (click)="requestCar?.emit()">
+            (click)="requestCar.emit()">
       Book now
     </button>
     <span class="text-gray-500" data-testid="accessories-message"

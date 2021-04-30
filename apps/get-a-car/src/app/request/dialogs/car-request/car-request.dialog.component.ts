@@ -54,7 +54,7 @@ export class CarRequestDialogComponent implements OnInit {
    * @public
    */
   public submitAccessories(): void {
-    this.dialogRef?.close(true);
+    this.dialogRef.close(true);
   }
 
   /**
@@ -63,8 +63,8 @@ export class CarRequestDialogComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.allAccessories$ = this.dataService?.getAccessories();
-    this.reservationDetails$ = this.reservationService?.details$;
-    this.selectedAccessories$ = this.reservationService?.carAccessories$;
+    this.allAccessories$ = this.dataService.getAccessories();
+    this.reservationDetails$ = this.reservationService.details$;
+    this.selectedAccessories$ = this.reservationService.carAccessories$;
   }
 }

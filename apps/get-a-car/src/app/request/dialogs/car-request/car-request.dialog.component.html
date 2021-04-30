@@ -5,10 +5,10 @@
     <div class="flex flex-col mb-6">
       <h3 class="text-xl mb-4 font-bold">Car</h3>
       <div class="w-52 h-28 bg-contain bg-no-repeat"
-           [class]="'bg-' + dialogData?.car?.brand + '-' + dialogData?.car?.model">
+           [class]="'bg-' + dialogData.car?.brand + '-' + dialogData.car?.model">
       </div>
       <span class="mt-2 text-lg font-bold capitalize" data-testid="car-name">
-        {{dialogData?.car | carName}}
+        {{dialogData.car | carName}}
       </span>
     </div>
     <div class="flex flex-col mb-4">

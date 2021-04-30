@@ -70,9 +70,9 @@ export class ReservationDetailsFormComponent implements OnInit {
     const reservationDetails = this.reservationService.getReservationDetails();
 
     if (reservationDetails) {
-      const address = reservationDetails?.address;
-      const startDate = this.dateService.formatTimestampToDate(reservationDetails?.startDate);
-      const endDate = this.dateService.formatTimestampToDate(reservationDetails?.endDate);
+      const address = reservationDetails.address;
+      const startDate = this.dateService.formatTimestampToDate(reservationDetails.startDate);
+      const endDate = this.dateService.formatTimestampToDate(reservationDetails.endDate);
       const deliveryTime = this.dateService.getHours(startDate);
       const collectionTime = this.dateService.getHours(endDate);
 

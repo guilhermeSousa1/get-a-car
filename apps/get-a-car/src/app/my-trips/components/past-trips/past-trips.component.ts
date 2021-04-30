@@ -71,7 +71,7 @@ export class PastTripsComponent implements OnInit {
       }
     };
 
-    this.dialog?.open(TripDetailsDialogComponent, config);
+    this.dialog.open(TripDetailsDialogComponent, config);
   }
 
   /**
@@ -92,12 +92,12 @@ export class PastTripsComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isLargeScreen$ = this.breakPointObserver?.observe('(max-width: 1059px)')
+    this.isLargeScreen$ = this.breakPointObserver.observe('(max-width: 1059px)')
       .pipe(
         map(((result) => result.matches))
       );
 
-    this.pastReservations$ = this.reservationAPI?.getPastReservations();
+    this.pastReservations$ = this.reservationAPI.getPastReservations();
   }
 
 }

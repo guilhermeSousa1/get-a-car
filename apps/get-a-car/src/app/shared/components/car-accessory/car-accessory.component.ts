@@ -47,7 +47,7 @@ export class CarAccessoryComponent implements OnInit {
    * @public
    */
   public toggleCarAccessory(): void {
-    this.reservationService?.updateCarAccessories([this.accessory]);
+    this.reservationService.updateCarAccessories([this.accessory]);
   }
 
   /**
@@ -56,7 +56,7 @@ export class CarAccessoryComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isAccessorySelected$ = this.reservationService?.carAccessories$
+    this.isAccessorySelected$ = this.reservationService.carAccessories$
       .pipe(
         map((selectedAccessories) => selectedAccessories?.some((selectedAccessory) => selectedAccessory?.id === this.accessory?.id))
       );

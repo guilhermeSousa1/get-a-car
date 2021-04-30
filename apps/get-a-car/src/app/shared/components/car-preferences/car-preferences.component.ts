@@ -52,7 +52,7 @@ export class CarPreferencesComponent implements OnInit {
       autoFocus: false
     };
 
-    this.dialog?.open(EditCarPreferencesDialogComponent, config);
+    this.dialog.open(EditCarPreferencesDialogComponent, config);
   }
 
   /**
@@ -61,6 +61,6 @@ export class CarPreferencesComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.carPreferences$ = this.reservationService?.carPreferences$;
+    this.carPreferences$ = this.reservationService.carPreferences$;
   }
 }

@@ -75,7 +75,7 @@ export class PlannedTripsComponent implements OnInit {
       }
     };
 
-    const dialogRef = this.dialog?.open(EditTripDialogComponent, config);
+    const dialogRef = this.dialog.open(EditTripDialogComponent, config);
 
     dialogRef.afterClosed()
       .pipe(take(1))
@@ -104,14 +104,14 @@ export class PlannedTripsComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.isLargeScreen$ = this.breakPointObserver?.observe('(max-width: 1059px)')
+    this.isLargeScreen$ = this.breakPointObserver.observe('(max-width: 1059px)')
       .pipe(
         map(((result) => result.matches))
       );
 
     this.plannedReservations$ = this.plannedReservationsRequest$
       .pipe(
-        switchMap(() => this.reservationAPI?.getPlannedReservations())
+        switchMap(() => this.reservationAPI.getPlannedReservations())
       );
   }
 

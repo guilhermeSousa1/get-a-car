@@ -50,7 +50,7 @@ export class CarBannerComponent implements OnInit {
    * @public
    */
   public toggleCarSelection(): void {
-    this.reservationService?.updateCar(this.car);
+    this.reservationService.updateCar(this.car);
   }
 
   /**
@@ -59,10 +59,10 @@ export class CarBannerComponent implements OnInit {
    * @private
    */
   private setupComponentObservables(): void {
-    this.reservationDetails$ = this.reservationService?.details$;
-    this.invalidSameDayReservation$ = this.reservationService?.invalidSameDayReservation$;
+    this.reservationDetails$ = this.reservationService.details$;
+    this.invalidSameDayReservation$ = this.reservationService.invalidSameDayReservation$;
 
-    this.isCarSelected$ = this.reservationService?.car$
+    this.isCarSelected$ = this.reservationService.car$
       .pipe(
         map((selectedCar) => selectedCar?.id === this.car?.id)
       );
