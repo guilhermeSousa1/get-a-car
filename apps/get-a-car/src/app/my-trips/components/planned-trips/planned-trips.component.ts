@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
-import { Reservation } from '@guilhermeSousa1/shared/data-models';
+import { Reservation } from '@guilhermeSousa1/core/data-models';
 import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';

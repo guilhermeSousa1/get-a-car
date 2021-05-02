@@ -9,7 +9,7 @@ import { MockProvider } from 'ng-mocks';
 import { CarPreferencesComponent } from '@guilhermeSousa1/shared/components';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
-import { testCarPreferences } from '@guilhermeSousa1/shared/test-utils';
+import { testCarPreferences } from '@guilhermeSousa1/core/test-utils';
 
 describe('CarPreferencesComponent', () => {
   let component: CarPreferencesComponent;

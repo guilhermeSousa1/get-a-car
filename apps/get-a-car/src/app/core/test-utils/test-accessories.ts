@@ -1,4 +1,4 @@
-import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
+import { CarAccessory } from '@guilhermeSousa1/core/data-models';
 
 export const testAccessories: CarAccessory[] = [
   {

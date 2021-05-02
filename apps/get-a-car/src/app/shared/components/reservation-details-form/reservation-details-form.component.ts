@@ -7,7 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
 import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
-import { ReservationDetails } from '@guilhermeSousa1/shared/data-models';
+import { ReservationDetails } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Component responsible for the form of the reservation details.

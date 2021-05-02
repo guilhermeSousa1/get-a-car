@@ -1,5 +1,5 @@
 import { AdditionalChargePipe } from '@guilhermeSousa1/shared/pipes/additional-charge/additional-charge.pipe';
-import { testAccessories } from '@guilhermeSousa1/shared/test-utils';
+import { testAccessories } from '@guilhermeSousa1/core/test-utils';
 
 describe('AdditionalChargePipe', () => {
   let additionalChargePipe: AdditionalChargePipe;

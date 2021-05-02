@@ -7,7 +7,7 @@ import { MockPipe, MockProvider } from 'ng-mocks';
 import { CarBannerComponent } from '@guilhermeSousa1/my-trips/components/car-banner/car-banner.component';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
-import { testCar, testReservationDetails } from '@guilhermeSousa1/shared/test-utils';
+import { testCar, testReservationDetails } from '@guilhermeSousa1/core/test-utils';
 
 describe('CarBannerComponent', () => {
   let component: CarBannerComponent;

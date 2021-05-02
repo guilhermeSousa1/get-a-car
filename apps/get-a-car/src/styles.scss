@@ -21,6 +21,16 @@ body {
   }
 }
 
+// Notifications
+.error-notification {
+  background-color: red;
+  color: white;
+
+  button {
+    color: white;
+  }
+}
+
 //  Material overrides
 
 // MAT-BUTTON

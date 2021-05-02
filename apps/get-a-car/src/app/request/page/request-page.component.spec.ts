@@ -11,7 +11,7 @@ import { CarPreferencesComponent, ReservationDetailsFormComponent } from '@guilh
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
 import { RequestPageComponent } from './request-page.component';
-import { testCar } from '@guilhermeSousa1/shared/test-utils';
+import { testCar } from '@guilhermeSousa1/core/test-utils';
 
 describe('RequestPageComponent', () => {
   let component: RequestPageComponent;

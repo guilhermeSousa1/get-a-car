@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { CarPreferences } from '@guilhermeSousa1/shared/data-models';
+import { CarPreferences } from '@guilhermeSousa1/core/data-models';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 

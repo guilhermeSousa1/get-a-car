@@ -1,5 +1,5 @@
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
-import { testCar } from '@guilhermeSousa1/shared/test-utils';
+import { testCar } from '@guilhermeSousa1/core/test-utils';
 
 describe('CarNamePipe', () => {
   let carNamePipe: CarNamePipe;

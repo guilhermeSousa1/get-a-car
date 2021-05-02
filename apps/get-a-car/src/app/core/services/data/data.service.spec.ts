@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { first } from 'rxjs/operators';
-import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/shared/data-models';
-import { testAccessories, testCar, testCarPreferences } from '@guilhermeSousa1/shared/test-utils';
+import { testAccessories, testCar, testCarPreferences } from '@guilhermeSousa1/core/test-utils';
+import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/core/data-models';
 import { DataService } from './data.service';
 
 describe('DataService', () => {

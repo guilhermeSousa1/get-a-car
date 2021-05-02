@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Car } from '@guilhermeSousa1/shared/data-models';
+import { Car } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Pipe that receives a car object and returns the name of the car.

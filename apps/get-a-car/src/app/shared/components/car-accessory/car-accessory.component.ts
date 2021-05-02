@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
+import { CarAccessory } from '@guilhermeSousa1/core/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
 /**

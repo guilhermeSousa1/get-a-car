@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Service used to get static data.

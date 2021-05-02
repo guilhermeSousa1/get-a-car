@@ -1,4 +1,4 @@
-import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/shared/data-models';
+import { CarPreferences, ChargingCable, DriveMode, RadioStation } from '@guilhermeSousa1/core/data-models';
 
 export const testCarPreferences: CarPreferences = {
   radioStation:  RadioStation.NEW_VEGAS,

@@ -1,4 +1,4 @@
-import { Car, DriveSystem } from '@guilhermeSousa1/shared/data-models';
+import { Car, DriveSystem } from '@guilhermeSousa1/core/data-models';
 
 export const testCar: Car = {
   id:          1,

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CarAccessory } from '@guilhermeSousa1/shared/data-models';
+import { CarAccessory } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Pipe that receives an array of accessories and returns the additional charge for those accessories.

@@ -3,11 +3,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EMPTY, of } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { MockProvider } from 'ng-mocks';
-import { Car, CarAccessory, CarPreferences, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences, Reservation, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/core/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
-import { testAccessories, testCar, testCarPreferences, testReservationDetails } from '@guilhermeSousa1/shared/test-utils';
+import { testAccessories, testCar, testCarPreferences, testReservationDetails } from '@guilhermeSousa1/core/test-utils';
 
 describe('ReservationService', () => {
   let service: ReservationService;

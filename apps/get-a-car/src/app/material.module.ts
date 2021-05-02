@@ -18,6 +18,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const MODULES = [
   MatToolbarModule,
@@ -41,7 +42,8 @@ const MODULES = [
   MatTabsModule,
   MatTableModule,
   MatPaginatorModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSnackBarModule
 ];
 
 /** Custom options to configure form field options */

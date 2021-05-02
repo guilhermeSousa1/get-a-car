@@ -13,10 +13,10 @@ import { EMPTY, of } from 'rxjs';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
-import { testReservations } from '@guilhermeSousa1/shared/test-utils';
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
 import { PlannedTripsComponent } from '@guilhermeSousa1/my-trips/components/planned-trips/planned-trips.component';
 import { EditTripDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/edit-trip/edit-trip.dialog.component';
+import { testReservations } from '@guilhermeSousa1/core/test-utils';
 
 describe('PlannedTripsComponent', () => {
   let component: PlannedTripsComponent;

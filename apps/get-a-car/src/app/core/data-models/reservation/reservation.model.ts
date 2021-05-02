@@ -1,4 +1,4 @@
-import { Car, CarAccessory, CarPreferences, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { Car, CarAccessory, CarPreferences, ReservationDetails, ReservationStatus } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Interface that models a reservation.

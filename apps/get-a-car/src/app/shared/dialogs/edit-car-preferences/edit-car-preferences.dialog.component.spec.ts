@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MockProvider } from 'ng-mocks';
 import { EditCarPreferencesDialogComponent } from '@guilhermeSousa1/shared/dialogs/edit-car-preferences/edit-car-preferences.dialog.component';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
-import { testCarPreferences } from '@guilhermeSousa1/shared/test-utils';
+import { testCarPreferences } from '@guilhermeSousa1/core/test-utils';
 
 describe('EditCarPreferencesComponent', () => {
   let component: EditCarPreferencesDialogComponent;

@@ -10,10 +10,10 @@ import { MockComponent, MockPipe, MockProvider } from 'ng-mocks';
 import { CarAccessoryComponent } from '@guilhermeSousa1/shared/components';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { CarRequestDialogComponent } from '@guilhermeSousa1/request/dialogs/car-request/car-request.dialog.component';
-import { testCar, testReservationDetails } from '@guilhermeSousa1/shared/test-utils';
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
 import { AdditionalChargePipe } from '@guilhermeSousa1/shared/pipes/additional-charge/additional-charge.pipe';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
+import { testCar, testReservationDetails } from '@guilhermeSousa1/core/test-utils';
 
 describe('CarRequestComponent', () => {
   let component: CarRequestDialogComponent;

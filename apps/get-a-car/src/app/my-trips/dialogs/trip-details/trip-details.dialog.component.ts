@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Reservation } from '@guilhermeSousa1/shared/data-models';
+import { Reservation } from '@guilhermeSousa1/core/data-models';
 
 /* eslint-disable no-multi-spaces */
 @Component({

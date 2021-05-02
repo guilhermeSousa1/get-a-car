@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car, DriveSystem, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
+import { Car, DriveSystem, ReservationDetails } from '@guilhermeSousa1/core/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 
 /**

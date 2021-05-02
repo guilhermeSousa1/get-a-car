@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Car, ReservationDetails } from '@guilhermeSousa1/shared/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
+import { Car, ReservationDetails } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Component responsible for the car banner.

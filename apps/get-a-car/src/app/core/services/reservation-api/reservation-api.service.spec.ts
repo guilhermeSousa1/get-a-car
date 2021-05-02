@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { first } from 'rxjs/operators';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
-import { Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
-import { testReservations } from '@guilhermeSousa1/shared/test-utils';
+import { Reservation, ReservationStatus } from '@guilhermeSousa1/core/data-models';
+import { testReservations } from '@guilhermeSousa1/core/test-utils';
 
 describe('ReservationAPIService', () => {
   let service: ReservationAPI;

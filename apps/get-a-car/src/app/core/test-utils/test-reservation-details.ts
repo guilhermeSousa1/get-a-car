@@ -1,4 +1,4 @@
-import { ReservationDetails } from '@guilhermeSousa1/shared/data-models';
+import { ReservationDetails } from '@guilhermeSousa1/core/data-models';
 
 export const testReservationDetails: ReservationDetails = {
   address:     'Random street 123',

@@ -13,7 +13,7 @@ import { CarAccessoryComponent, CarPreferencesComponent, ReservationDetailsFormC
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 import { AdditionalChargePipe } from '@guilhermeSousa1/shared/pipes/additional-charge/additional-charge.pipe';
-import { testReservations } from '@guilhermeSousa1/shared/test-utils';
+import { testReservations } from '@guilhermeSousa1/core/test-utils';
 
 describe('EditTripDialogComponent', () => {
   let component: EditTripDialogComponent;

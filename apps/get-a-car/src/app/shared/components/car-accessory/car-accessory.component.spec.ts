@@ -6,7 +6,7 @@ import { MockProvider } from 'ng-mocks';
 import { EMPTY, of } from 'rxjs';
 import { CarAccessoryComponent } from '@guilhermeSousa1/shared/components';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
-import { testAccessories } from '@guilhermeSousa1/shared/test-utils';
+import { testAccessories } from '@guilhermeSousa1/core/test-utils';
 
 describe('CarAccessoryComponent', () => {
   let component: CarAccessoryComponent;

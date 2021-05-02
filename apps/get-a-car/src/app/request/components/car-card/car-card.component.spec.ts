@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { EMPTY, of } from 'rxjs';
-import { DriveSystem } from '@guilhermeSousa1/shared/data-models';
+import { DriveSystem } from '@guilhermeSousa1/core/data-models';
 import { CarCardComponent } from '@guilhermeSousa1/request/components/car-card/car-card.component';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
-import { testCar, testReservationDetails } from '@guilhermeSousa1/shared/test-utils';
+import { testCar, testReservationDetails } from '@guilhermeSousa1/core/test-utils';
 
 describe('CarCardComponent', () => {
   let component: CarCardComponent;

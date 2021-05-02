@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
 import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
-import { testReservations } from '@guilhermeSousa1/shared/test-utils';
+import { testReservations } from '@guilhermeSousa1/core/test-utils';
 
 describe('TripDetailsComponent', () => {
   let component: TripDetailsDialogComponent;

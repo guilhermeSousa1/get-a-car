@@ -1,4 +1,4 @@
-import { ChargingCable, DriveMode, DriveSystem, RadioStation, Reservation, ReservationStatus } from '@guilhermeSousa1/shared/data-models';
+import { ChargingCable, DriveMode, DriveSystem, RadioStation, Reservation, ReservationStatus } from '@guilhermeSousa1/core/data-models';
 
 export const testReservations: Reservation[] = [
   {
