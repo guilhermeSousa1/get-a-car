@@ -16,13 +16,11 @@ describe('CarCardComponent', () => {
   let component: CarCardComponent;
   let fixture: ComponentFixture<CarCardComponent>;
   let debugElement: DebugElement;
-  let mockTransform;
-
-  beforeEach(() => {
-    mockTransform = jest.fn();
-  });
+  const mockTransform = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatCardModule,

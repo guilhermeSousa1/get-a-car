@@ -17,15 +17,12 @@ describe('EditCarPreferencesComponent', () => {
   let component: EditCarPreferencesDialogComponent;
   let fixture: ComponentFixture<EditCarPreferencesDialogComponent>;
   let debugElement: DebugElement;
-  let mockClose;
-  let mockUpdateCarPreferences;
-
-  beforeEach(() => {
-    mockClose = jest.fn();
-    mockUpdateCarPreferences = jest.fn();
-  });
+  const mockClose = jest.fn();
+  const mockUpdateCarPreferences = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,

@@ -19,17 +19,13 @@ describe('CarRequestComponent', () => {
   let component: CarRequestDialogComponent;
   let fixture: ComponentFixture<CarRequestDialogComponent>;
   let debugElement: DebugElement;
-  let mockTransformCarName;
-  let mockTransformAdditionalCharge;
-  let mockClose;
-
-  beforeEach(() => {
-    mockTransformCarName = jest.fn();
-    mockTransformAdditionalCharge = jest.fn();
-    mockClose = jest.fn();
-  });
+  const mockTransformCarName = jest.fn();
+  const mockTransformAdditionalCharge = jest.fn();
+  const mockClose = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatDialogModule,

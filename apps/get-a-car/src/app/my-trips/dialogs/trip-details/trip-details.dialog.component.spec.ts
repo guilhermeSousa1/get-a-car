@@ -14,13 +14,11 @@ describe('TripDetailsComponent', () => {
   let component: TripDetailsDialogComponent;
   let fixture: ComponentFixture<TripDetailsDialogComponent>;
   let debugElement: DebugElement;
-  let mockTransform;
-
-  beforeEach(() => {
-    mockTransform = jest.fn();
-  });
+  const mockTransform = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatDialogModule,

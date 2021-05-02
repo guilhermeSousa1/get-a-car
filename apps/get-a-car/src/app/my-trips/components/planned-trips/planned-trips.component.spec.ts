@@ -22,19 +22,17 @@ describe('PlannedTripsComponent', () => {
   let component: PlannedTripsComponent;
   let fixture: ComponentFixture<PlannedTripsComponent>;
   let debugElement: DebugElement;
-  let mockTransform;
-  let mockMatDialog;
 
-  beforeEach(() => {
-    mockTransform = jest.fn();
-    mockMatDialog = {
-      open: jest.fn().mockImplementation(() => ({
-        afterClosed: () => of(true)
-      }))
-    };
-  });
+  const mockTransform = jest.fn();
+  const mockMatDialog = {
+    open: jest.fn().mockImplementation(() => ({
+      afterClosed: () => of(true)
+    }))
+  };
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,

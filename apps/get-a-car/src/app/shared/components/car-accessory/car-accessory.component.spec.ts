@@ -12,13 +12,12 @@ describe('CarAccessoryComponent', () => {
   let component: CarAccessoryComponent;
   let fixture: ComponentFixture<CarAccessoryComponent>;
   let debugElement: DebugElement;
-  let mockUpdateCarAccessories;
 
-  beforeEach(() => {
-    mockUpdateCarAccessories = jest.fn();
-  });
+  const mockUpdateCarAccessories = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatCheckboxModule

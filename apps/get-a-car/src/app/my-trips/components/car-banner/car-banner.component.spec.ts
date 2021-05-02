@@ -13,15 +13,13 @@ describe('CarBannerComponent', () => {
   let component: CarBannerComponent;
   let fixture: ComponentFixture<CarBannerComponent>;
   let debugElement: DebugElement;
-  let mockUpdateCar;
-  let mockTransform;
 
-  beforeEach(() => {
-    mockUpdateCar = jest.fn();
-    mockTransform = jest.fn();
-  });
+  const mockUpdateCar = jest.fn();
+  const mockTransform = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatRadioModule

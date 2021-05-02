@@ -11,16 +11,14 @@ import { testAccessories, testCar, testCarPreferences, testReservationDetails } 
 
 describe('ReservationService', () => {
   let service: ReservationService;
-  let mockReservationAPI;
+  const mockReservationAPI = {
+    createReservation: jest.fn().mockImplementation((reservation: Reservation) => of(reservation)),
+    updateReservation: jest.fn().mockImplementation(() => EMPTY)
+  };
 
   beforeEach(() => {
-    mockReservationAPI = {
-      createReservation: jest.fn().mockImplementation((reservation: Reservation) => of(reservation)),
-      updateReservation: jest.fn().mockImplementation(() => EMPTY)
-    };
-  });
+    jest.clearAllMocks();
 
-  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule

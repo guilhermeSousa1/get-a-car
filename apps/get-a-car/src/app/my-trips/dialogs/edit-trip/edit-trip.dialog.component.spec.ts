@@ -19,17 +19,13 @@ describe('EditTripDialogComponent', () => {
   let component: EditTripDialogComponent;
   let fixture: ComponentFixture<EditTripDialogComponent>;
   let debugElement: DebugElement;
-  let mockTransform;
-  let mockUpdateReservation;
-  let mockCancelReservation;
-
-  beforeEach(() => {
-    mockTransform = jest.fn();
-    mockUpdateReservation = jest.fn().mockImplementation(() => EMPTY);
-    mockCancelReservation = jest.fn().mockImplementation(() => EMPTY);
-  });
+  const mockTransform = jest.fn();
+  const mockUpdateReservation = jest.fn().mockImplementation(() => EMPTY);
+  const mockCancelReservation = jest.fn().mockImplementation(() => EMPTY);
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatIconModule,

@@ -17,21 +17,15 @@ describe('RequestPageComponent', () => {
   let component: RequestPageComponent;
   let fixture: ComponentFixture<RequestPageComponent>;
   let debugElement: DebugElement;
-  let mockOpen;
-  let mockUpdateCar;
-  let mockCreateReservation;
-  let mockResetAccessories;
-  let mockNavigate;
-
-  beforeEach(() => {
-    mockUpdateCar = jest.fn();
-    mockCreateReservation = jest.fn().mockImplementation(() => of(true));
-    mockResetAccessories = jest.fn();
-    mockNavigate = jest.fn();
-    mockOpen = jest.fn().mockReturnValue({ afterClosed: () => of(true) });
-  });
+  const mockOpen = jest.fn().mockReturnValue({ afterClosed: () => of(true) });
+  const mockUpdateCar = jest.fn();
+  const mockCreateReservation = jest.fn().mockImplementation(() => of(true));
+  const mockResetAccessories = jest.fn();
+  const mockNavigate = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       declarations: [
         RequestPageComponent,

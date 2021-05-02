@@ -22,15 +22,13 @@ describe('PastTripsComponent', () => {
   let component: PastTripsComponent;
   let fixture: ComponentFixture<PastTripsComponent>;
   let debugElement: DebugElement;
-  let mockOpen;
-  let mockTransform;
 
-  beforeEach(() => {
-    mockTransform = jest.fn();
-    mockOpen = jest.fn();
-  });
+  const mockOpen = jest.fn();
+  const mockTransform = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,

@@ -15,13 +15,11 @@ describe('CarPreferencesComponent', () => {
   let component: CarPreferencesComponent;
   let fixture: ComponentFixture<CarPreferencesComponent>;
   let debugElement: DebugElement;
-  let mockOpen;
-
-  beforeEach(() => {
-    mockOpen = jest.fn();
-  });
+  const mockOpen = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [
         MatCardModule,
