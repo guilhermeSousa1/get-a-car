@@ -1,0 +1,9 @@
+@layer components {
+  .page-title {
+    @apply text-3xl font-bold mb-6 ml-1;
+  }
+
+  .content-container {
+    @apply bg-white p-8 border-solid border rounded-lg border-gray-300;
+  }
+}

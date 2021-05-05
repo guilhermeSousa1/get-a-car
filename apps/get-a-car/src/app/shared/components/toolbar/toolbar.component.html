@@ -6,10 +6,7 @@
           (click)="openSidebar.emit($event)">
     <mat-icon>menu</mat-icon>
   </button>
-  <img src="assets/img/angular.svg"
-       alt="user picture"
-       class="w-12 h-12 rounded-full object-cover ml-auto cursor-pointer"
-       [matMenuTriggerFor]="menu">
+  <mat-icon svgIcon="angular" class="w-12 h-12 rounded-full object-cover ml-auto cursor-pointer" [matMenuTriggerFor]="menu"></mat-icon>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>Log out</button>
   </mat-menu>

@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./my-trips/my-trips.module').then((m) => m.MyTripsModule)
   },
   {
+    path:         'referrals',
+    loadChildren: () => import('./referrals/referrals.module').then((m) => m.ReferralsModule)
+  },
+  {
     path:       '',
     redirectTo: 'request',
     pathMatch:  'full'

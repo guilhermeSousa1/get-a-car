@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { NavigationEnd, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, tap, withLatestFrom } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -18,6 +20,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class AppComponent implements OnInit {
 
+  /** Flag indicating if the component is ready to be rendered. */
+  public isComponentReady = false;
   /** Observable for the medium screen size. */
   public isMediumScreen$: Observable<boolean>;
   /** Behaviour subject for the opened state of the mat-sidenav. */
@@ -28,9 +32,13 @@ export class AppComponent implements OnInit {
    *
    * @public
    * @param breakPointObserver  Injection of the breakpoint observer utility
+   * @param matIconRegistry     Injection of the MatIconRegistry service
+   * @param domSanitizer        Injection of the DomSanitizer service
    * @param router              Injection of the Router service
    */
   constructor(private breakPointObserver: BreakpointObserver,
+              private domSanitizer: DomSanitizer,
+              private matIconRegistry: MatIconRegistry,
               private router: Router) {
   }
 
@@ -40,7 +48,30 @@ export class AppComponent implements OnInit {
    * @public
    */
   public ngOnInit(): void {
+    this.registerSvgIcons();
     this.setupComponentObservables();
+
+    this.isComponentReady = true;
+  }
+
+  /**
+   * Registers the svg icons
+   *
+   * @private
+   */
+  private registerSvgIcons(): void {
+    this.matIconRegistry.addSvgIcon(
+      'angular',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/angular.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'twitter',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/twitter.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'linkedin',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/linkedin.svg')
+    );
   }
 
   /**

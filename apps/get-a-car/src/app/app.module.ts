@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     ComponentsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false, delay: 0 }
+      InMemoryDataService, { dataEncapsulation: false, delay: 0, passThruUnknownUrl: true }
     ),
     MaterialModule
   ],

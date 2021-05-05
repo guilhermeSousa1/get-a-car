@@ -1,17 +1,19 @@
-<mat-sidenav-container fullscreen autosize>
+<ng-container *ngIf="isComponentReady">
+  <mat-sidenav-container fullscreen autosize>
 
-  <mat-sidenav class="w-60"
-               [opened]="(isMediumScreen$ | async) === false || (sidebarOpened$ | async)"
-               [mode]="(isMediumScreen$ | async) ? 'over' : 'side'"
-               (closedStart)="sidebarOpened$.next(false)">
-    <sidebar-nav></sidebar-nav>
-  </mat-sidenav>
+    <mat-sidenav class="w-60"
+                 [opened]="(isMediumScreen$ | async) === false || (sidebarOpened$ | async)"
+                 [mode]="(isMediumScreen$ | async) ? 'over' : 'side'"
+                 (closedStart)="sidebarOpened$.next(false)">
+      <sidebar-nav></sidebar-nav>
+    </mat-sidenav>
 
-  <mat-sidenav-content class="bg-gray-100">
-    <toolbar (openSidebar)="sidebarOpened$.next(true)"></toolbar>
-    <div class="container mx-auto p-6">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
+    <mat-sidenav-content class="bg-gray-100">
+      <toolbar (openSidebar)="sidebarOpened$.next(true)"></toolbar>
+      <div class="container mx-auto p-6">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
 
-</mat-sidenav-container>
+  </mat-sidenav-container>
+</ng-container>

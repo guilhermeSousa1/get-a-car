@@ -1,0 +1,64 @@
+<h1 class="page-title">Referrals</h1>
+
+<div class="content-container">
+  <div class="flex flex-col">
+    <span>Invite your friends to our app. If they sign up, you and your friend will get 2 driving days for free!</span>
+    <div class="mt-10 flex flex-row flex-nowrap justify-around">
+      <referral-step icon="forum"
+                     title="Send invitation"
+                     description="Send your referral link to friends and tell them how cool our app is!">
+      </referral-step>
+      <referral-step icon="contacts"
+                     title="Registration"
+                     description="Let them register to our services using your referral link.">
+      </referral-step>
+      <referral-step icon="emoji_transportation"
+                     title="Drive for free!"
+                     description="You and your friends get 2 driving days for free!">
+      </referral-step>
+    </div>
+    <h3 class="mt-10 font-bold text-xl">Invite your friends</h3>
+    <span class="mt-2">Insert your friends email addresses and send them invitations to join our app!</span>
+    <div class="mt-4 flex flex-row">
+      <mat-form-field class="w-full mr-6">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let email of emails"
+                    selected
+                    removable
+                    [color]="email.valid ? 'primary' : 'warn'"
+                    (removed)="remove(email.value)">
+            {{email.value}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Email addresses..."
+                 matChipInputAddOnBlur
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
+      <button mat-fab color="primary" class="mt-1" [disabled]="!isEmailListValid" (click)="sendEmailInvitations()">
+        <mat-icon class="material-icons-outlined">send</mat-icon>
+      </button>
+    </div>
+    <h3 class="mt-6 font-bold text-xl">Share the referral link</h3>
+    <span class="mt-2">You can also share your referral link by copying and sending it or sharing it on your social media.</span>
+    <div class="mt-3 flex flex-row justify-between">
+      <mat-chip selected color="primary" class="w-10/12 h-14">
+        {{referralLink}}
+        <button class="ml-auto" mat-icon-button (click)="copyReferralLink()">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-chip>
+      <button mat-fab color="primary">
+        <mat-icon>facebook</mat-icon>
+      </button>
+      <button mat-fab color="primary">
+        <mat-icon svgIcon="twitter"></mat-icon>
+      </button>
+      <button mat-fab color="primary">
+        <mat-icon svgIcon="linkedin"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

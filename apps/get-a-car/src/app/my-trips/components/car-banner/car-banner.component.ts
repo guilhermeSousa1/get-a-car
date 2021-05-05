@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { Car, ReservationDetails } from '@guilhermeSousa1/core/data-models';

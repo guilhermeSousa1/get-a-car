@@ -1,38 +1,3 @@
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-@layer components {
-  .page-title {
-    @apply text-3xl font-bold mb-6 ml-1;
-  }
-
-  .content-container {
-    @apply bg-white p-8 border-solid border rounded-lg border-gray-300;
-  }
-}
-
-// Notifications
-.error-notification {
-  background-color: red;
-  color: white;
-
-  button {
-    color: white;
-  }
-}
-
-//  Material overrides
-
 // MAT-BUTTON
 .mat-button-disabled {
   cursor: not-allowed !important;
@@ -75,5 +40,26 @@ td.mat-footer-cell {
 .mat-checkbox-disabled {
   &:hover {
     cursor: not-allowed;
+  }
+}
+
+// MAT-SNACKBAR
+.mat-snack-bar-container {
+  &.error-notification {
+    background-color: red;
+    color: white;
+
+    .mat-button {
+      color: white;
+    }
+  }
+
+  &.success-notification {
+    background-color: green;
+    color: white;
+
+    .mat-button {
+      color: white;
+    }
   }
 }
