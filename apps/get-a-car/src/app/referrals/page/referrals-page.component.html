@@ -22,7 +22,7 @@
     <h3 class="mt-10 font-bold text-xl">Invite your friends</h3>
     <span class="mt-2">Insert your friends email addresses and send them invitations to join our app!</span>
     <div class="mt-4 flex flex-row items-center">
-      <mat-form-field class="w-full mr-6">
+      <mat-form-field class="w-full mr-5">
         <mat-chip-list #chipList>
           <mat-chip *ngFor="let email of emails"
                     selected
@@ -39,7 +39,12 @@
                  (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
       </mat-form-field>
-      <button mat-fab color="primary" class="mb-5" [disabled]="!isEmailListValid" (click)="sendEmailInvitations()">
+      <button mat-fab
+              color="primary"
+              class="mb-7"
+              data-testid="send-button"
+              [disabled]="!isEmailListValid"
+              (click)="sendEmailInvitations()">
         <mat-icon class="material-icons-outlined">send</mat-icon>
       </button>
     </div>
@@ -48,7 +53,10 @@
     <div class="mt-6 flex flex-col sm:flex-row justify-between">
       <mat-chip selected color="primary" class="w-full h-14">
         {{referralLink}}
-        <button class="ml-auto" mat-icon-button (click)="copyReferralLink()">
+        <button class="ml-auto"
+                mat-icon-button
+                data-testid="copy-referral-button"
+                (click)="copyReferralLink()">
           <mat-icon>content_copy</mat-icon>
         </button>
       </mat-chip>
