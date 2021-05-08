@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./my-trips/my-trips.module').then((m) => m.MyTripsModule)
   },
   {
+    path:         'plan-payment',
+    loadChildren: () => import('./plan-payment/plan-payment.module').then((m) => m.PlanPaymentModule)
+  },
+  {
     path:         'referrals',
     loadChildren: () => import('./referrals/referrals.module').then((m) => m.ReferralsModule)
   },
