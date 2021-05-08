@@ -52,6 +52,7 @@
             type="button"
             color="primary"
             data-testid="request-changes-button"
+            [disabled]="(reservationDetails$ | async) === null"
             (click)="submitReservation()">
       Request change
     </button>

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { sameDayReservationValidator } from '@guilhermeSousa1/core/validators';
+import { sameDayReservationValidator, whitespaceValidator } from '@guilhermeSousa1/core/validators';
 import { DateService } from '@guilhermeSousa1/core/services/date/date.service';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { ReservationDetails } from '@guilhermeSousa1/core/data-models';
@@ -77,7 +77,7 @@ export class ReservationDetailsFormComponent implements OnInit {
       const collectionTime = this.dateService.getHours(endDate);
 
       this.form = this.formBuilder.group({
-        address:        [address, Validators.required],
+        address:        [address, [Validators.required, whitespaceValidator()]],
         startDate:      [startDate, Validators.required],
         endDate:        [endDate, Validators.required],
         deliveryTime:   [deliveryTime, Validators.required],
@@ -85,7 +85,7 @@ export class ReservationDetailsFormComponent implements OnInit {
       }, { validators: sameDayReservationValidator() });
     } else {
       this.form = this.formBuilder.group({
-        address:        [null, Validators.required],
+        address:        [null, [Validators.required, whitespaceValidator()]],
         startDate:      [null, Validators.required],
         endDate:        [null, Validators.required],
         deliveryTime:   [null, Validators.required],

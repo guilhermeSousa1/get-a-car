@@ -48,18 +48,14 @@ td.mat-footer-cell {
   &.error-notification {
     background-color: red;
     color: white;
-
-    .mat-button {
-      color: white;
-    }
   }
 
   &.success-notification {
     background-color: green;
     color: white;
+  }
 
-    .mat-button {
-      color: white;
-    }
+  .mat-button {
+    color: white;
   }
 }

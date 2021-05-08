@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { MockComponent, MockPipe, MockProvider } from 'ng-mocks';
 import { CarBannerComponent } from '@guilhermeSousa1/my-trips/components/car-banner/car-banner.component';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
@@ -13,7 +13,7 @@ import { CarAccessoryComponent, CarPreferencesComponent, ReservationDetailsFormC
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 import { AdditionalChargePipe } from '@guilhermeSousa1/shared/pipes/additional-charge/additional-charge.pipe';
-import { testReservations } from '@guilhermeSousa1/core/test-utils';
+import { testReservationDetails, testReservations } from '@guilhermeSousa1/core/test-utils';
 
 describe('EditTripDialogComponent', () => {
   let component: EditTripDialogComponent;
@@ -53,8 +53,8 @@ describe('EditTripDialogComponent', () => {
         MockProvider(ReservationService, {
           updateReservation: mockUpdateReservation,
           carAccessories$:   EMPTY,
-          resetSourceValues: () => {
-          }
+          resetSourceValues: jest.fn(),
+          details$:          of(testReservationDetails)
         })
       ]
     })
@@ -77,6 +77,22 @@ describe('EditTripDialogComponent', () => {
 
     expect(additionalCharge).toBeTruthy();
     expect(mockTransform).toHaveBeenCalled();
+  });
+
+  describe('invalid reservation details', () => {
+    beforeEach(() => {
+      component.reservationDetails$ = of(null);
+      fixture.detectChanges();
+    });
+
+    it('should not update reservation on Request Changes button click with invalid reservation details', () => {
+      const requestChangesButton = debugElement.query(By.css('[data-testid="request-changes-button"')).nativeElement;
+
+      requestChangesButton.click();
+
+      expect(requestChangesButton.disabled).toBeTruthy();
+      expect(mockUpdateReservation).toHaveBeenCalledTimes(0);
+    });
   });
 
   it('should update reservation on Request Changes button click', () => {

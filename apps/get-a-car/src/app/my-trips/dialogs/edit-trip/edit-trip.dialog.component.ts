@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Car, CarAccessory, Reservation } from '@guilhermeSousa1/core/data-models';
+import { Car, CarAccessory, Reservation, ReservationDetails } from '@guilhermeSousa1/core/data-models';
 import { ReservationService } from '@guilhermeSousa1/core/services/reservation/reservation.service';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
@@ -19,6 +19,8 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
   public allAccessories$: Observable<CarAccessory[]>;
   /** Observable for the list of available cars */
   public allCars$: Observable<Car[]>;
+  /** Observable for the reservation details. */
+  public reservationDetails$: Observable<ReservationDetails>;
   /** Observable for the list of selected accessories */
   public selectedAccessories$: Observable<CarAccessory[]>;
 
@@ -94,6 +96,7 @@ export class EditTripDialogComponent implements OnInit, OnDestroy {
   private setupComponentObservables(): void {
     this.allAccessories$ = this.dataService.getAccessories();
     this.allCars$ = this.dataService.getCars();
+    this.reservationDetails$ = this.reservationService.details$;
     this.selectedAccessories$ = this.reservationService.carAccessories$;
   }
 }
