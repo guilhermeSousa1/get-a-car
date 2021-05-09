@@ -10,7 +10,7 @@
            matInput>
     <mat-icon matSuffix class="opacity-70 material-icons-outlined">room</mat-icon>
     <mat-error *ngIf="form.get('address')?.hasError('required')">This field is required</mat-error>
-    <mat-error *ngIf="!form.get('address')?.hasError('required') && form.get('address')?.hasError('whitespace')">This field is empty</mat-error>
+    <mat-error *ngIf="form.get('address')?.hasError('whitespace')">This field is empty</mat-error>
   </mat-form-field>
 
   <mat-form-field class="w-full">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Car, CarAccessory, CarPreferences, ChargingCable, DriveMode, DriveSystem, RadioStation, Reservation, ReservationStatus } from '@guilhermeSousa1/core/data-models';
+import { BillingInfo, Car, CarAccessory, CarPreferences, ChargingCable, DriveMode, DriveSystem, RadioStation, Reservation, ReservationStatus } from '@guilhermeSousa1/core/data-models';
 
 /**
  * Service used for the in memory data.
@@ -504,7 +504,15 @@ export class InMemoryDataService implements InMemoryDbService {
       }
     ];
 
-    return { accessories, cars, defaultCarPreferences, reservations };
+    const billingInfo: BillingInfo = {
+      postalCode:         '20900',
+      cardHolderName:     'John Doe',
+      cardNumber:         5105105105105100,
+      cardExpirationDate: '12 / 22',
+      cardCCV:            223
+    };
+
+    return { accessories, cars, defaultCarPreferences, reservations, billingInfo };
   }
 
   /**

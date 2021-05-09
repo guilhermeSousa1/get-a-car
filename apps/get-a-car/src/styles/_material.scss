@@ -43,6 +43,11 @@ td.mat-footer-cell {
   }
 }
 
+// MAT-ERROR
+mat-error:not(:first-of-type) {
+  display: none;
+}
+
 // MAT-SNACKBAR
 .mat-snack-bar-container {
   &.error-notification {

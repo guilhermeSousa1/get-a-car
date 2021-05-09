@@ -141,7 +141,7 @@ export class ReservationDetailsFormComponent implements OnInit {
       return null;
     }
 
-    const address = formData['address'];
+    const address = formData['address'].trim();
     const startDate = +this.dateService.setHours(formData['startDate'], formData['deliveryTime']);
     const endDate = +this.dateService.setHours(formData['endDate'], formData['collectionTime']);
     const drivingDays = this.dateService.differenceInDays(formData['startDate'], formData['endDate']) + 1;

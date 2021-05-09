@@ -41,6 +41,7 @@
     "@angular/router": "^11.2.0",
     "@ngneat/until-destroy": "^8.0.4",
     "@nrwl/angular": "11.4.0",
+    "angular-cc-library": "^2.1.2",
     "angular-in-memory-web-api": "^0.11.0",
     "date-fns": "^2.19.0",
     "ng-mocks": "^11.9.1",

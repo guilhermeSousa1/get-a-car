@@ -1,0 +1,83 @@
+<h1 mat-dialog-title class="text-2xl font-bold">Edit billing info</h1>
+
+<form [formGroup]="form">
+  <div mat-dialog-content class="flex flex-col">
+    <mat-form-field>
+      <mat-label>Postal Code</mat-label>
+      <input placeholder="Postal Code"
+             autocomplete="off"
+             formControlName="postalCode"
+             matInput>
+      <mat-error *ngIf="form.get('postalCode')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('postalCode')?.hasError('pattern')">Invalid postal code</mat-error>
+      <mat-error *ngIf="form.get('postalCode')?.hasError('minlength') || form.get('postalCode')?.hasError('maxlength')">
+        Postal code must be between 5 and 7 digits long
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Card Holder</mat-label>
+      <input class="overflow-ellipsis"
+             type="text"
+             placeholder="Card Holder"
+             autocomplete="off"
+             formControlName="cardHolderName"
+             matInput>
+      <mat-error *ngIf="form.get('cardHolderName')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('cardHolderName')?.hasError('whitespace')">This field is empty</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Credit Card Number</mat-label>
+      <input type="tel"
+             placeholder="Credit Card Number"
+             autocomplete="cc-number"
+             ccNumber
+             formControlName="cardNumber"
+             matInput
+             #ccNumber="ccNumber">
+      <span matSuffix class="align-text-super capitalize" *ngIf="form.get('cardNumber')?.valid">
+        ({{ccNumber.resolvedScheme$ | async}})
+      </span>
+      <mat-error *ngIf="form.get('cardNumber')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('cardNumber')?.hasError('ccNumber')">Invalid credit card number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Credit Card Expiration Date (MM/YY)</mat-label>
+      <input type="tel"
+             placeholder="Credit Card Expiration Date (MM/YY)"
+             autocomplete="cc-exp"
+             ccExp
+             formControlName="cardExpirationDate"
+             matInput>
+      <mat-error *ngIf="form.get('cardExpirationDate')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('cardExpirationDate')?.hasError('expDate')">Invalid expiration date</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Credit Card CCV</mat-label>
+      <input type="tel"
+             placeholder="Credit Card CCV"
+             autocomplete="off"
+             ccCVC
+             formControlName="cardCCV"
+             matInput>
+      <mat-error *ngIf="form.get('cardCCV')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="form.get('cardCCV')?.hasError('minlength') || form.get('cardCCV')?.hasError('maxlength')">
+        Credit card CCV must be between 3 and 4 digits long
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="flex flex-row flex-nowrap justify-end">
+    <button mat-raised-button type="button" color="primary" mat-dialog-close>Cancel</button>
+    <button mat-raised-button
+            type="submit"
+            color="primary"
+            class="ml-4"
+            [disabled]="form.invalid">
+      Save
+    </button>
+  </div>
+</form>

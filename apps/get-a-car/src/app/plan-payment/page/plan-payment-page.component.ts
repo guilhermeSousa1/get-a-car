@@ -13,7 +13,7 @@ export class PlanPaymentPageComponent {
    *
    * @public
    */
-  public constructor() {
+  constructor() {
   }
 
 }

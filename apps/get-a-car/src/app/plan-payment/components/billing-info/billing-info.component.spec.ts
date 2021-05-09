@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BillingInfoComponent } from './billing-info.component';
 
 describe('BillingInfoComponent', () => {
