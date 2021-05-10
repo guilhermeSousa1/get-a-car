@@ -7,6 +7,7 @@ import { PlanPaymentRoutingModule } from '@guilhermeSousa1/plan-payment/plan-pay
 import { EditBillingInfoDialogComponent } from '@guilhermeSousa1/plan-payment/dialogs/edit-billing-info/edit-billing-info.dialog.component';
 import { PlanPaymentPageComponent } from './page/plan-payment-page.component';
 import { BillingInfoComponent } from './components/billing-info/billing-info.component';
+import { PipesModule } from '@guilhermeSousa1/shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { BillingInfoComponent } from './components/billing-info/billing-info.com
     PlanPaymentRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    CreditCardDirectivesModule
+    CreditCardDirectivesModule,
+    PipesModule
   ],
   declarations: [
     PlanPaymentPageComponent,

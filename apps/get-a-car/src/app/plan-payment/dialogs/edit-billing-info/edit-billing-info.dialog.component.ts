@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CreditCardValidators } from 'angular-cc-library';
-import { Reservation } from '@guilhermeSousa1/core/data-models';
+import { BillingInfo } from '@guilhermeSousa1/core/data-models';
 import { whitespaceValidator } from '@guilhermeSousa1/core/validators';
 
 /* eslint-disable no-multi-spaces */
@@ -24,7 +24,7 @@ export class EditBillingInfoDialogComponent implements OnInit {
    * @param dialogRef    Reference to the dialog
    * @param formBuilder  Injection of the FormBuilder service
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { trip: Reservation },
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: { billingInfo: BillingInfo },
               private dialogRef: MatDialogRef<EditBillingInfoDialogComponent>,
               private formBuilder: FormBuilder) {
   }
@@ -39,17 +39,37 @@ export class EditBillingInfoDialogComponent implements OnInit {
   }
 
   /**
+   * Submits the form
+   *
+   * @public
+   */
+  public submit(): void {
+    const billingInfo: BillingInfo = {
+      postalCode:         this.form.get('postalCode')?.value.trim() ?? this.dialogData.billingInfo?.postalCode,
+      cardHolderName:     this.form.get('cardHolderName')?.value.trim() ?? this.dialogData.billingInfo?.cardHolderName,
+      cardNumber:         this.form.get('cardNumber')?.value ?? this.dialogData.billingInfo?.cardNumber,
+      cardExpirationDate: this.form.get('cardExpirationDate')?.value ?? this.dialogData.billingInfo?.cardExpirationDate,
+      cardCCV:            this.form.get('cardCCV')?.value ?? this.dialogData.billingInfo?.cardCCV
+    };
+
+    this.dialogRef.close(billingInfo);
+  }
+
+  /**
    * Initializes the form
    *
    * @private
    */
   private initializeForm(): void {
     this.form = this.formBuilder.group({
-      postalCode:         [null, [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern('[0-9]*')]],
-      cardHolderName:     [null, [Validators.required, whitespaceValidator()]],
-      cardNumber:         [null, [Validators.required, CreditCardValidators.validateCCNumber]],
-      cardExpirationDate: [null, [Validators.required, CreditCardValidators.validateExpDate]],
-      cardCCV:            [null, [Validators.required, Validators.minLength(3), Validators.maxLength(4)]]
+      postalCode: [
+        this.dialogData.billingInfo?.postalCode,
+        [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern('[0-9]*')]
+      ],
+      cardHolderName:     [this.dialogData.billingInfo?.cardHolderName, [Validators.required, whitespaceValidator()]],
+      cardNumber:         [this.dialogData.billingInfo?.cardNumber, [Validators.required, CreditCardValidators.validateCCNumber]],
+      cardExpirationDate: [this.dialogData.billingInfo?.cardExpirationDate, [Validators.required, CreditCardValidators.validateExpDate]],
+      cardCCV:            [this.dialogData.billingInfo?.cardCCV, [Validators.required, Validators.minLength(3), Validators.maxLength(4)]]
     });
   }
 }

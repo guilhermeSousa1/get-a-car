@@ -504,13 +504,16 @@ export class InMemoryDataService implements InMemoryDbService {
       }
     ];
 
-    const billingInfo: BillingInfo = {
-      postalCode:         '20900',
-      cardHolderName:     'John Doe',
-      cardNumber:         5105105105105100,
-      cardExpirationDate: '12 / 22',
-      cardCCV:            223
-    };
+    const billingInfo: BillingInfo[] = [
+      {
+        id:                 1,
+        postalCode:         '20900',
+        cardHolderName:     'John Doe',
+        cardNumber:         5105105105105100,
+        cardExpirationDate: '12 / 22',
+        cardCCV:            223
+      }
+    ];
 
     return { accessories, cars, defaultCarPreferences, reservations, billingInfo };
   }
