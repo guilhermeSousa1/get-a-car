@@ -16,7 +16,7 @@ export class HideCreditCardNumberPipe implements PipeTransform {
    */
   transform(value: number): unknown {
     const creditCardNumber = value.toString();
-    return `************${ creditCardNumber.slice(creditCardNumber.length - 4) }`;
+    return `****${ creditCardNumber.slice(creditCardNumber.length - 4) }`;
   }
 
 }

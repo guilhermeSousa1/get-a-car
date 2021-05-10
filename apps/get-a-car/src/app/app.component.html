@@ -2,6 +2,7 @@
   <mat-sidenav-container fullscreen autosize>
 
     <mat-sidenav class="w-60"
+                 autoFocus="false"
                  [opened]="(isMediumScreen$ | async) === false || (sidebarOpened$ | async)"
                  [mode]="(isMediumScreen$ | async) ? 'over' : 'side'"
                  (closedStart)="sidebarOpened$.next(false)">

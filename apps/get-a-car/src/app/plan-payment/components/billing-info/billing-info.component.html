@@ -1,26 +1,26 @@
 <div *ngIf="(billingInfo$ | async) as billingInfo" class="flex flex-col">
-  <div class="w-3/12 py-5 flex flex-row justify-between items-center">
-    <span class="w-4/12 font-bold">Postal Code</span>
-    <span class="w-3/12">{{billingInfo?.postalCode}}</span>
+  <div class="py-5 flex flex-row items-center">
+    <span class="w-32 mr-20 sm:mr-28 font-bold">Postal Code</span>
+    <span class="w-32">{{billingInfo?.postalCode}}</span>
   </div>
   <mat-divider></mat-divider>
-  <div class="w-3/12 py-5 flex flex-row justify-between items-center">
-    <span class="w-4/12 font-bold">Card Holder</span>
-    <span class="w-3/12">{{billingInfo?.cardHolderName}}</span>
+  <div class="py-5 flex flex-row items-center">
+    <span class="w-32 mr-20 sm:mr-28 font-bold">Card Holder</span>
+    <span class="w-32">{{billingInfo?.cardHolderName}}</span>
   </div>
   <mat-divider></mat-divider>
-  <div class="w-3/12 py-5 flex flex-row justify-between items-center">
-    <span class="w-4/12 font-bold">Card Number</span>
-    <span class="w-3/12">{{billingInfo?.cardNumber | hideCreditCardNumber}}</span>
+  <div class="py-5 flex flex-row items-center">
+    <span class="w-32 mr-20 sm:mr-28 font-bold">Card Number</span>
+    <span class="w-32">{{billingInfo?.cardNumber | hideCreditCardNumber}}</span>
   </div>
   <mat-divider></mat-divider>
-  <div class="w-3/12 py-5 flex flex-row justify-between items-center">
-    <span class="w-4/12 font-bold">Expiration date</span>
-    <span class="w-3/12">{{billingInfo?.cardExpirationDate}}</span>
+  <div class="py-5 flex flex-row items-center">
+    <span class="w-32 mr-20 sm:mr-28 font-bold">Expiration date</span>
+    <span class="w-32">{{billingInfo?.cardExpirationDate}}</span>
   </div>
   <mat-divider></mat-divider>
   <button mat-raised-button
-          class="w-1/12 mt-4"
+          class="w-32 mt-4"
           type="button"
           color="primary"
           (click)="showEditBillingInfoDialog(billingInfo)">

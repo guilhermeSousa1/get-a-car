@@ -36,7 +36,9 @@
              formControlName="cardNumber"
              matInput
              #ccNumber="ccNumber">
-      <span matSuffix class="align-text-super capitalize" *ngIf="form.get('cardNumber')?.valid">
+      <span matSuffix
+            class="hidden sm:inline-block align-text-super capitalize"
+            *ngIf="form.get('cardNumber')?.valid">
         ({{ccNumber.resolvedScheme$ | async}})
       </span>
       <mat-error *ngIf="form.get('cardNumber')?.hasError('required')">This field is required</mat-error>
