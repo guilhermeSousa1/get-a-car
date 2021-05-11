@@ -1,0 +1,13 @@
+@layer components {
+  .info-line {
+    @apply py-5 flex flex-row items-center;
+  }
+
+  .info-title {
+    @apply w-32 mr-20 sm:mr-28 font-bold;
+  }
+
+  .info-value {
+    @apply w-32;
+  }
+}

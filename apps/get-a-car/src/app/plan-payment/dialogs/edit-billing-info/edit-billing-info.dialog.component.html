@@ -11,7 +11,7 @@
       <mat-error *ngIf="form.get('postalCode')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('postalCode')?.hasError('pattern')">Invalid postal code</mat-error>
       <mat-error *ngIf="form.get('postalCode')?.hasError('minlength') || form.get('postalCode')?.hasError('maxlength')">
-        Postal code must be between 5 and 7 digits long
+        Must be between 5 and 7 digits long
       </mat-error>
     </mat-form-field>
 
@@ -67,7 +67,7 @@
              matInput>
       <mat-error *ngIf="form.get('cardCCV')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('cardCCV')?.hasError('minlength') || form.get('cardCCV')?.hasError('maxlength')">
-        Credit card CCV must be between 3 and 4 digits long
+        Must be between 3 and 4 digits long
       </mat-error>
     </mat-form-field>
   </div>

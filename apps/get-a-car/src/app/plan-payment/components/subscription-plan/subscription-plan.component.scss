@@ -1,0 +1,25 @@
+@layer components {
+  .subscription-container {
+    @apply w-64 sm:w-72 pb-10 flex flex-col items-center;
+  }
+
+  .subscription-title {
+    @apply mb-2 text-xl font-bold;
+  }
+
+  .subscription-duration {
+    @apply text-2xl font-bold text-blue-700;
+  }
+
+  .subscription-month {
+    @apply text-base font-normal text-black;
+  }
+
+  .subscription-price {
+    @apply text-xl font-bold text-blue-700;
+  }
+
+  .subscription-button {
+    @apply w-48 mt-9;
+  }
+}

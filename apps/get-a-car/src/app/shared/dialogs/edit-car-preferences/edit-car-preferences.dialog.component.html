@@ -24,7 +24,7 @@
              matInput>
       <mat-error *ngIf="form.get('temperature')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('temperature')?.hasError('min') || form.get('temperature')?.hasError('max')">
-        Temperature must be between 15 and 27 Cº
+        Must be between 15 and 27 Cº
       </mat-error>
     </mat-form-field>
 
