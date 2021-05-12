@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@guilhermeSousa1/material.module';
-import { ReservationDetailsFormComponent } from '@guilhermeSousa1/shared/components/reservation-details-form/reservation-details-form.component';
-import { CarPreferencesComponent } from '@guilhermeSousa1/shared/components/car-preferences/car-preferences.component';
+import { CarAccessoryComponent, CarPreferencesComponent, ReservationDetailsFormComponent, SidebarNavComponent, ToolbarComponent } from '@guilhermeSousa1/shared/components';
 import { DialogsModule } from '@guilhermeSousa1/shared/dialogs/dialogs.module';
-import { CarAccessoryComponent } from '@guilhermeSousa1/shared/components/car-accessory/car-accessory.component';
-import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const COMPONENTS = [
   CarAccessoryComponent,

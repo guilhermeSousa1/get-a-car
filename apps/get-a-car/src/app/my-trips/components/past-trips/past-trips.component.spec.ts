@@ -11,11 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { EMPTY, of } from 'rxjs';
 import { MockPipe, MockProvider } from 'ng-mocks';
+import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/trip-details/trip-details.dialog.component';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 import { CarNamePipe } from '@guilhermeSousa1/shared/pipes/car-name/car-name.pipe';
 import { testReservations } from '@guilhermeSousa1/core/test-utils';
-import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 import { PastTripsComponent } from './past-trips.component';
 
 describe('PastTripsComponent', () => {

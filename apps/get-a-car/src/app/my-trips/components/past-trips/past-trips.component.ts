@@ -4,8 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs/trip-details/trip-details.dialog.component';
 import { Reservation } from '@guilhermeSousa1/core/data-models';
-import { TripDetailsDialogComponent } from '@guilhermeSousa1/my-trips/dialogs';
 import { DataService } from '@guilhermeSousa1/core/services/data/data.service';
 import { ReservationAPI } from '@guilhermeSousa1/core/services/reservation-api/reservation-api.service';
 

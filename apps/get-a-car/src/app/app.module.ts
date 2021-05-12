@@ -6,7 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ComponentsModule } from '@guilhermeSousa1/shared/components/components.module';
 import { MaterialModule } from '@guilhermeSousa1/material.module';
 import { InMemoryDataService } from '@guilhermeSousa1/core/services/in-memory-data/in-memory-data.service';
-import { HttpErrorInterceptor } from '@guilhermeSousa1/core/interceptors';
+import { HttpErrorInterceptor } from '@guilhermeSousa1/core/interceptors/http-error/http-error.interceptor';
 import { GlobalErrorHandlerService } from '@guilhermeSousa1/core/services/global-error-handler/global-error-handler.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
