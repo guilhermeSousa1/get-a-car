@@ -71,9 +71,9 @@ export class DataService {
    *
    * @public
    * @param billingInfo  The billing info
-   * @returns            {Observable<any>}
+   * @returns            {Observable<BillingInfo>}
    */
-  public updateBillingInfo(billingInfo: BillingInfo): Observable<any> {
-    return this.http.put<any>(`${ this.baseUrl }/billingInfo`, { ...billingInfo, id: 1 });
+  public updateBillingInfo(billingInfo: BillingInfo): Observable<BillingInfo> {
+    return this.http.put<BillingInfo>(`${ this.baseUrl }/billingInfo`, { ...billingInfo, id: 1 });
   }
 }

@@ -1,28 +1,29 @@
 <div *ngIf="(billingInfo$ | async) as billingInfo" class="flex flex-col">
   <div class="info-line">
     <span class="info-title">Postal Code</span>
-    <span class="info-value">{{billingInfo?.postalCode}}</span>
+    <span class="info-value" data-testid="postal-code">{{billingInfo?.postalCode}}</span>
   </div>
   <mat-divider></mat-divider>
   <div class="info-line">
     <span class="info-title">Card Holder</span>
-    <span class="info-value">{{billingInfo?.cardHolderName}}</span>
+    <span class="info-value" data-testid="card-holder-name">{{billingInfo?.cardHolderName}}</span>
   </div>
   <mat-divider></mat-divider>
   <div class="info-line">
     <span class="info-title">Card Number</span>
-    <span class="info-value">{{billingInfo?.cardNumber | hideCreditCardNumber}}</span>
+    <span class="info-value" data-testid="card-number">{{billingInfo?.cardNumber | hideCreditCardNumber}}</span>
   </div>
   <mat-divider></mat-divider>
   <div class="info-line">
     <span class="info-title">Expiration date</span>
-    <span class="info-value">{{billingInfo?.cardExpirationDate}}</span>
+    <span class="info-value" data-testid="card-expiration-date">{{billingInfo?.cardExpirationDate}}</span>
   </div>
   <mat-divider></mat-divider>
   <button mat-raised-button
           class="w-32 mt-4"
           type="button"
           color="primary"
+          data-testid="edit-data-button"
           (click)="showEditBillingInfoDialog(billingInfo)">
     Edit data
   </button>

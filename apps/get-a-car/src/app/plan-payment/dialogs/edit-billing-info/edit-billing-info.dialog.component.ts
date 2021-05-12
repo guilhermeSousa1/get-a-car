@@ -45,8 +45,8 @@ export class EditBillingInfoDialogComponent implements OnInit {
    */
   public submit(): void {
     const billingInfo: BillingInfo = {
-      postalCode:         this.form.get('postalCode')?.value.trim() ?? this.dialogData.billingInfo?.postalCode,
-      cardHolderName:     this.form.get('cardHolderName')?.value.trim() ?? this.dialogData.billingInfo?.cardHolderName,
+      postalCode:         this.form.get('postalCode')?.value?.trim() ?? this.dialogData.billingInfo?.postalCode,
+      cardHolderName:     this.form.get('cardHolderName')?.value?.trim() ?? this.dialogData.billingInfo?.cardHolderName,
       cardNumber:         this.form.get('cardNumber')?.value ?? this.dialogData.billingInfo?.cardNumber,
       cardExpirationDate: this.form.get('cardExpirationDate')?.value ?? this.dialogData.billingInfo?.cardExpirationDate,
       cardCCV:            this.form.get('cardCCV')?.value ?? this.dialogData.billingInfo?.cardCCV

@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { first } from 'rxjs/operators';
-import { testAccessories, testCar, testCarPreferences } from '@guilhermeSousa1/core/test-utils';
-import { Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/core/data-models';
+import { testAccessories, testBillingInfo, testCar, testCarPreferences } from '@guilhermeSousa1/core/test-utils';
+import { BillingInfo, Car, CarAccessory, CarPreferences } from '@guilhermeSousa1/core/data-models';
 import { DataService } from './data.service';
 
 describe('DataService', () => {
@@ -76,6 +76,41 @@ describe('DataService', () => {
     controller.verify();
 
     expect(actualCarPreferences).toEqual(testCarPreferences);
+  });
+
+  it('should get the billing info', () => {
+    const expectedUrl = 'api/billingInfo';
+    let actualBillingInfo: BillingInfo[] | undefined;
+
+    service.getBillingInfo()
+      .pipe(first())
+      .subscribe((billingInfo) => {
+        actualBillingInfo = billingInfo;
+      });
+
+    const request = controller.expectOne({ method: 'GET', url: expectedUrl });
+    request.flush([testBillingInfo]);
+    controller.verify();
+
+    expect(actualBillingInfo).toEqual([testBillingInfo]);
+  });
+
+  it('should update the billing info', () => {
+    const expectedUrl = 'api/billingInfo';
+    let actualUpdatedBillingInfo: BillingInfo | undefined;
+
+    service.updateBillingInfo(testBillingInfo)
+      .pipe(first())
+      .subscribe((billingInfo) => {
+        actualUpdatedBillingInfo = billingInfo;
+      });
+
+    const request = controller.expectOne({ method: 'PUT', url: expectedUrl });
+    request.flush(testBillingInfo);
+    controller.verify();
+
+    expect(request.request.body).toEqual(testBillingInfo);
+    expect(actualUpdatedBillingInfo).toEqual(testBillingInfo);
   });
 
   it('should return errors when getting the list of cars', () => {
@@ -167,6 +202,72 @@ describe('DataService', () => {
       );
 
     controller.expectOne({ method: 'GET', url: expectedUrl }).error(
+      errorEvent,
+      { status, statusText }
+    );
+    controller.verify();
+
+    expect(actualError.error).toBe(errorEvent);
+    expect(actualError.status).toBe(status);
+    expect(actualError.statusText).toBe(statusText);
+  });
+
+  it('should return errors when getting the billing info', () => {
+    const expectedUrl = 'api/billingInfo';
+    const status = 500;
+    const statusText = 'Fetching error';
+    const errorEvent = new ErrorEvent('Error');
+
+    let actualError: HttpErrorResponse | undefined;
+
+    service.getBillingInfo()
+      .pipe(first())
+      .subscribe(
+        () => {
+          fail('next handler must not be called');
+        },
+        (error) => {
+          actualError = error;
+        },
+        () => {
+          fail('complete handler must not be called');
+        }
+      );
+
+    controller.expectOne({ method: 'GET', url: expectedUrl }).error(
+      errorEvent,
+      { status, statusText }
+    );
+    controller.verify();
+
+    expect(actualError.error).toBe(errorEvent);
+    expect(actualError.status).toBe(status);
+    expect(actualError.statusText).toBe(statusText);
+  });
+
+  it('should return errors when updating the billing info', () => {
+    const expectedUrl = 'api/billingInfo';
+    const status = 500;
+    const statusText = 'Fetching error';
+    const errorEvent = new ErrorEvent('Error');
+
+    let actualError: HttpErrorResponse | undefined;
+
+    service.updateBillingInfo(testBillingInfo)
+      .pipe(first())
+      .subscribe(
+        () => {
+          fail('next handler must not be called');
+        },
+        (error) => {
+          actualError = error;
+        },
+        () => {
+          fail('complete handler must not be called');
+        }
+      );
+
+    controller.expectOne({ method: 'PUT', url: expectedUrl }).error(
       errorEvent,
       { status, statusText }
     );

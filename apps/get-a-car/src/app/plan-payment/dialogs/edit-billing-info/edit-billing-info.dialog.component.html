@@ -7,6 +7,7 @@
       <input placeholder="Postal Code"
              autocomplete="off"
              formControlName="postalCode"
+             data-testid="postal-code"
              matInput>
       <mat-error *ngIf="form.get('postalCode')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('postalCode')?.hasError('pattern')">Invalid postal code</mat-error>
@@ -22,6 +23,7 @@
              placeholder="Card Holder"
              autocomplete="off"
              formControlName="cardHolderName"
+             data-testid="card-holder-name"
              matInput>
       <mat-error *ngIf="form.get('cardHolderName')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('cardHolderName')?.hasError('whitespace')">This field is empty</mat-error>
@@ -34,6 +36,7 @@
              autocomplete="cc-number"
              ccNumber
              formControlName="cardNumber"
+             data-testid="card-number"
              matInput
              #ccNumber="ccNumber">
       <span matSuffix
@@ -52,6 +55,7 @@
              autocomplete="cc-exp"
              ccExp
              formControlName="cardExpirationDate"
+             data-testid="card-expiration-date"
              matInput>
       <mat-error *ngIf="form.get('cardExpirationDate')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('cardExpirationDate')?.hasError('expDate')">Invalid expiration date</mat-error>
@@ -64,6 +68,7 @@
              autocomplete="off"
              ccCVC
              formControlName="cardCCV"
+             data-testid="card-ccv"
              matInput>
       <mat-error *ngIf="form.get('cardCCV')?.hasError('required')">This field is required</mat-error>
       <mat-error *ngIf="form.get('cardCCV')?.hasError('minlength') || form.get('cardCCV')?.hasError('maxlength')">
@@ -78,6 +83,7 @@
             type="submit"
             color="primary"
             class="ml-4"
+            data-testid="submit-button"
             [disabled]="form.invalid">
       Save
     </button>
