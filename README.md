@@ -1,105 +1,62 @@
+<h1 align="center">Car rental subscription service</h1>
 
+<h3 align="center">
+  <a href="https://get-a-car.netlify.app/" target="_blank">Visit the live app</a> |
+  <a href="https://github.com/guilhermeSousa1/get-a-car/tree/master/apps/get-a-car" target="_blank">View client</a> 
+</h3>
 
-# GuilhermeSousa1
+![demo](https://s3.gifyu.com/images/demo7cf35a2f027b946c.gif)
 
-This project was generated using [Nx](https://nx.dev).
+## What is this 🤷‍♂️
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+I have been working with Angular for one year at [Farfetch](https://www.farfetch.com/). In that time, I have developed and worked on some great web applications, but all of them are internal apps that
+I can't show.
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+This is a showcase application that I've built in my spare time using some of the more modern technologies now being adopted in the Angular ecosystem.
 
-## Quick Start & Documentation
+## Tech stack 👨‍💻
 
-[Nx Documentation](https://nx.dev/angular)
+![logos.png](https://i.postimg.cc/Y2N6WhbY/logos.png)
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+- [NX](https://nx.dev/latest/angular/getting-started/intro)
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Jest](https://jestjs.io/)
+- [ngneat/until-destroy](https://github.com/ngneat/until-destroy)
+- [Eslint](https://eslint.org/)
+- [Netlify](https://www.netlify.com/)
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+## Unit/Integration tests 🧪
 
-## Adding capabilities to your workspace
+All of the application components, services, pipes, validators, interceptors, etc., are fully tested using [Jest](https://jestjs.io/).
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+Code coverage is sitting at **94%**.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+## Setting up the development environment 🛠
 
-Below are our core plugins:
+- `git clone https://github.com/guilhermeSousa1/get-a-car.git`
+- `cd get-a-car`
+- `npm test` for testing the application
+- `npm start` for serving the application
+- The app should run on `http://localhost:4200/`
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+## Author: Guilherme Sousa ✍️
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+- Linkedin: https://www.linkedin.com/in/guilherme-sousa/
+- Github: https://github.com/guilhermeSousa1
 
-## Generate an application
+## Credits
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+User interface was inspired by [this](https://dribbble.com/shots/14248362-Upshift-Car-request) dribbble post.
 
-> You can use any of the plugins above to generate applications as well.
+## License
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+[MIT](https://opensource.org/licenses/MIT)
 
-## Generate a library
+<hr>
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@guilherme-sousa1/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
-
-## ☁ Nx Cloud
-
-### Computation Memoization in the Cloud
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+<h3>
+  <a href="https://get-a-car.netlify.app/" target="_blank">Visit the live app</a> |
+  <a href="https://github.com/guilhermeSousa1/get-a-car/tree/master/apps/get-a-car" target="_blank">View client</a> 
+</h3>
