@@ -20,10 +20,10 @@ module.exports = {
         'xl': '1280px',
         '2xl': '1570px',
       },
-      backgroundImage: () => ({
-        'toyota-prius': "url('/assets/img/toyota-prius.png')",
-        "jeep-wrangler": "url('/assets/img/jeep-wrangler.png')",
-      })
+      // backgroundImage: () => ({
+      //   'toyota-prius': "url('/assets/img/toyota-prius.png')",
+      //   "jeep-wrangler": "url('/assets/img/jeep-wrangler.png')",
+      // })
     },
   },
   variants: {
