@@ -1,6 +1,7 @@
-@use "global";
-@use "material";
-@use "tailwind";
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import "global";
+@import "material";
+@import "tailwind";
+
