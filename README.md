@@ -5,7 +5,7 @@
   <a href="https://github.com/guilhermeSousa1/get-a-car/tree/master/apps/get-a-car" target="_blank">View client</a> 
 </h3>
 
-![demo](https://s3.gifyu.com/images/demo7cf35a2f027b946c.gif)
+![demo](https://github.com/guilhermeSousa1/gif-storage/blob/main/demo.gif)
 
 ## What is this 🤷‍♂️
 
