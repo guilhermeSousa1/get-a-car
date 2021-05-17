@@ -20,7 +20,7 @@ export class ReferralsPageComponent {
   /** Flag indicating if the list of emails is valid */
   public isEmailListValid = false;
   /** The referral link */
-  public referralLink = 'amazing-app.com/referral=23748623';
+  public referralLink = 'get-a-car.netlify.app/referral=23748623';
   /** The separator key codes for the mat-chip-list */
   public readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
